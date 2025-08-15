@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgb7f44smhfvb"]
+
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="1_s3bvw"]
+
+[sub_resource type="Theme" id="Theme_s3bvw"]
+default_font = ExtResource("1_s3bvw")
+default_font_size = 35
+
+[node name="HUD" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 450.0
+offset_right = 1052.0
+offset_bottom = 618.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/DialogueBox"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 942.0
+offset_bottom = 168.0
+theme = SubResource("Theme_s3bvw")
+text = "Press Space"
+scroll_active = false

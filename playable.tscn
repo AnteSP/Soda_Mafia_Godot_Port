@@ -1,0 +1,105 @@
+[gd_scene load_steps=19 format=4 uid="uid://cev7507ujlxyd"]
+
+[ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_hbccw"]
+[ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_lb8q2"]
+[ext_resource type="PackedScene" uid="uid://bnhjcdm4tneov" path="res://Prefabs/Tree.tscn" id="3_lb8q2"]
+[ext_resource type="Script" uid="uid://55m633i0gbmx" path="res://scripts/Talker.gd" id="4_ktssj"]
+[ext_resource type="Resource" uid="uid://dav4r8h5ceu5n" path="res://Dialogue/test2.dialogue" id="5_mpxu6"]
+[ext_resource type="AudioStream" uid="uid://dtqxerhj7vesc" path="res://sound/DefaultMaleTypeNoise.wav" id="6_mpxu6"]
+[ext_resource type="Texture2D" uid="uid://cuncyo0ppoepb" path="res://sprites/UI/UI-tab-retracted-norm.png" id="8_4if2k"]
+[ext_resource type="PackedScene" uid="uid://dr1pbs47u47cm" path="res://Prefabs/Items/inv_ui.tscn" id="8_yew0h"]
+[ext_resource type="Texture2D" uid="uid://dk3jjigaf772j" path="res://sprites/UI/UI-tab-pressed.png" id="9_b2nb3"]
+[ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://UI_button.gd" id="9_exwis"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="10_bqykw"]
+[ext_resource type="Texture2D" uid="uid://coakyd2ctsosf" path="res://sprites/UI/UI-tab-retracted-hover.png" id="10_uo1ua"]
+[ext_resource type="Texture2D" uid="uid://dgybi5uhp8jwr" path="res://sprites/UI/UI-tab-extended-norm.png" id="11_b2nb3"]
+[ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="12_uo1ua"]
+[ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="14_uo1ua"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
+texture = ExtResource("1_hbccw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/y_sort_origin = 6
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/y_sort_origin = -3741
+1:1/0 = 0
+1:1/0/y_sort_origin = 6
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 2.54905, 16, 2.86768, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_ktssj"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_p3837")
+
+[sub_resource type="Theme" id="Theme_3rrdj"]
+default_font = ExtResource("10_bqykw")
+default_font_size = 0
+
+[node name="world" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAABAAMAAQAAAAAAAAACAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAGAAMAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAHAAEAAQAAAAAAAAAHAAIAAQAAAAAAAAAHAAMAAQAAAAAAAAADAAEAAQABAAEAAAACAAIAAQAAAAEAAAABAAIAAQAAAAEAAAABAAEAAQAAAAEAAAACAAEAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAFAAEAAQAAAAEAAAAEAAEAAQAAAAEAAAAGAAEAAQAAAAEAAAAGAAIAAQAAAAEAAAAEAAMAAQAAAAEAAAA=")
+tile_set = SubResource("TileSet_ktssj")
+rendering_quadrant_size = 32
+
+[node name="player" parent="TileMapLayer" instance=ExtResource("2_lb8q2")]
+position = Vector2(80, 160)
+
+[node name="Tree" parent="." node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("3_lb8q2")]
+position = Vector2(168, 232)
+script = ExtResource("4_ktssj")
+convo = "start"
+resource = ExtResource("5_mpxu6")
+type_noise = NodePath("../DefaultMaleTypeNoise")
+
+[node name="Tree2" parent="." groups=["Interactable"] instance=ExtResource("3_lb8q2")]
+position = Vector2(232, 160)
+
+[node name="Tree3" parent="." groups=["Interactable"] instance=ExtResource("3_lb8q2")]
+position = Vector2(200, 168)
+
+[node name="DefaultMaleTypeNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mpxu6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="inv_ui" parent="CanvasLayer" instance=ExtResource("8_yew0h")]
+visible = false
+script = null
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 456.0
+offset_right = 60.0
+offset_bottom = 469.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("8_4if2k")
+texture_pressed = ExtResource("9_b2nb3")
+texture_hover = ExtResource("10_uo1ua")
+script = ExtResource("9_exwis")
+target_node = NodePath("../inv_ui")
+alt_norm = ExtResource("11_b2nb3")
+alt_hover = ExtResource("12_uo1ua")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextureButton"]
+layout_mode = 0
+offset_left = 1.5
+offset_top = 1.6
+offset_right = 145.5
+offset_bottom = 39.6
+scale = Vector2(0.29, 0.49)
+mouse_filter = 1
+theme = SubResource("Theme_3rrdj")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Inventory"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/TextureButton"]
+stream = ExtResource("14_uo1ua")
+
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="CanvasLayer/TextureButton" method="_on_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://hsdju174rnut"]
+
+[ext_resource type="Texture2D" uid="uid://bj0rtqwxsmcdo" path="res://sprites/UI/spacebarpress.png" id="1_pq7gu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goip4"]
+atlas = ExtResource("1_pq7gu")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tto1k"]
+atlas = ExtResource("1_pq7gu")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v42gf"]
+atlas = ExtResource("1_pq7gu")
+region = Rect2(0, 45, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qm4ni"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_goip4")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_tto1k")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_v42gf")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_tto1k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_v42gf")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_qm4ni")
+animation = &"pressed"
+autoplay = "default"
