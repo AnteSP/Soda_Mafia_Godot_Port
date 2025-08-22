@@ -1,20 +1,24 @@
-[gd_scene load_steps=19 format=4 uid="uid://cev7507ujlxyd"]
+[gd_scene load_steps=23 format=4 uid="uid://cev7507ujlxyd"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_hbccw"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_lb8q2"]
+[ext_resource type="Resource" uid="uid://bchubbvxddp4h" path="res://Prefabs/Items/PlayerInventory.tres" id="3_40yur"]
 [ext_resource type="PackedScene" uid="uid://bnhjcdm4tneov" path="res://Prefabs/Tree.tscn" id="3_lb8q2"]
 [ext_resource type="Script" uid="uid://55m633i0gbmx" path="res://scripts/Talker.gd" id="4_ktssj"]
 [ext_resource type="Resource" uid="uid://dav4r8h5ceu5n" path="res://Dialogue/test2.dialogue" id="5_mpxu6"]
 [ext_resource type="AudioStream" uid="uid://dtqxerhj7vesc" path="res://sound/DefaultMaleTypeNoise.wav" id="6_mpxu6"]
+[ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="7_wi52v"]
+[ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="8_3j4rx"]
 [ext_resource type="Texture2D" uid="uid://cuncyo0ppoepb" path="res://sprites/UI/UI-tab-retracted-norm.png" id="8_4if2k"]
 [ext_resource type="PackedScene" uid="uid://dr1pbs47u47cm" path="res://Prefabs/Items/inv_ui.tscn" id="8_yew0h"]
 [ext_resource type="Texture2D" uid="uid://dk3jjigaf772j" path="res://sprites/UI/UI-tab-pressed.png" id="9_b2nb3"]
-[ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://UI_button.gd" id="9_exwis"]
+[ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://scripts/UI_button.gd" id="9_exwis"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="10_bqykw"]
 [ext_resource type="Texture2D" uid="uid://coakyd2ctsosf" path="res://sprites/UI/UI-tab-retracted-hover.png" id="10_uo1ua"]
 [ext_resource type="Texture2D" uid="uid://dgybi5uhp8jwr" path="res://sprites/UI/UI-tab-extended-norm.png" id="11_b2nb3"]
 [ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="12_uo1ua"]
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="14_uo1ua"]
+[ext_resource type="PackedScene" uid="uid://qvawp73lc564" path="res://Prefabs/Apple.tscn" id="17_3j4rx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
 texture = ExtResource("1_hbccw")
@@ -50,6 +54,7 @@ rendering_quadrant_size = 32
 
 [node name="player" parent="TileMapLayer" instance=ExtResource("2_lb8q2")]
 position = Vector2(80, 160)
+Inventory = ExtResource("3_40yur")
 
 [node name="Tree" parent="." node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("3_lb8q2")]
 position = Vector2(168, 232)
@@ -71,14 +76,14 @@ stream = ExtResource("6_mpxu6")
 
 [node name="inv_ui" parent="CanvasLayer" instance=ExtResource("8_yew0h")]
 visible = false
-script = null
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
 offset_left = 8.0
 offset_top = 456.0
 offset_right = 60.0
 offset_bottom = 469.0
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
+focus_mode = 0
 texture_normal = ExtResource("8_4if2k")
 texture_pressed = ExtResource("9_b2nb3")
 texture_hover = ExtResource("10_uo1ua")
@@ -89,10 +94,10 @@ alt_hover = ExtResource("12_uo1ua")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextureButton"]
 layout_mode = 0
-offset_left = 1.5
-offset_top = 1.6
-offset_right = 145.5
-offset_bottom = 39.6
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 146.0
+offset_bottom = 22.0
 scale = Vector2(0.29, 0.49)
 mouse_filter = 1
 theme = SubResource("Theme_3rrdj")
@@ -101,5 +106,22 @@ text = "Inventory"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/TextureButton"]
 stream = ExtResource("14_uo1ua")
+
+[node name="Apple" parent="." groups=["Interactable"] instance=ExtResource("17_3j4rx")]
+position = Vector2(96, 240)
+script = ExtResource("7_wi52v")
+item = ExtResource("8_3j4rx")
+quantity = 1
+inventory = ExtResource("3_40yur")
+use_time = 0.5
+
+[node name="Apple2" parent="." groups=["Interactable"] instance=ExtResource("17_3j4rx")]
+modulate = Color(0.368627, 0.498039, 0.282353, 1)
+position = Vector2(48, 240)
+script = ExtResource("7_wi52v")
+item = ExtResource("8_3j4rx")
+quantity = 1
+inventory = ExtResource("3_40yur")
+use_time = 4.0
 
 [connection signal="pressed" from="CanvasLayer/TextureButton" to="CanvasLayer/TextureButton" method="_on_pressed"]

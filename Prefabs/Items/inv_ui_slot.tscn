@@ -1,22 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccakifieoc2aa"]
+[gd_scene load_steps=4 format=3 uid="uid://ccakifieoc2aa"]
 
-[ext_resource type="Script" uid="uid://by3sfs52htea3" path="res://Prefabs/Items/inv_ui_slot.gd" id="1_0doom"]
-[ext_resource type="Texture2D" uid="uid://dmkvd7jaat3g5" path="res://icon.svg" id="1_6p0mf"]
+[ext_resource type="Script" uid="uid://by3sfs52htea3" path="res://scripts/inv_ui_slot.gd" id="1_0doom"]
+[ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="2_0doom"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="3_n7fex"]
 
 [node name="inv_ui_slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(40, 40)
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 script = ExtResource("1_0doom")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3125, 0.3125)
-texture = ExtResource("1_6p0mf")
+self_modulate = Color(1, 0.443137, 1, 0.392157)
+texture = ExtResource("2_0doom")
 centered = false
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -25,3 +26,16 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+scale = Vector2(1.8, 1.8)
+
+[node name="Quantity" type="RichTextLabel" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = 16.0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = ExtResource("3_n7fex")
+theme_override_font_sizes/normal_font_size = 15
+text = "999"
+scroll_active = false
+autowrap_mode = 0

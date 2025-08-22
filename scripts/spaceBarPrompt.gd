@@ -5,12 +5,13 @@ class_name SpaceBarPrompt
 var space_bar_prompt_reference
 var space_bar_innactive
 var c_bod
-
+var progress_bar
 
 
 func _ready() -> void:
 	space_bar_prompt_reference = get_node("Spacebar")
 	space_bar_innactive = space_bar_prompt_reference.global_position
+	progress_bar = get_node("Spacebar/ProgressBar")
 
 func get_closest_body(filter_groups: Array = []) -> PhysicsBody2D:
 	var closest_body: PhysicsBody2D = null
@@ -36,8 +37,9 @@ func interact_with_c_bod():
 	already_reset = false
 	space_bar_prompt_reference.play("pressed")
 	space_bar_prompt_reference.self_modulate = Color(0.3,0.3,0.3,0.46)
-	if c_bod is Talker:
-		c_bod.Talk_Tuah()
+	if c_bod is Interactable:
+		#c_bod.Use(1)
+		progress_bar.start_progress(c_bod.use_time,c_bod)
 		return true
 	else:
 		return false
@@ -51,10 +53,24 @@ func reset_spacebar():
 	space_bar_prompt_reference.self_modulate = Color(1,1,1,0.46)
 	already_reset = true
 
+var last_c_bod: String = ""
 func _physics_process(_delta):
 	if stopped:return
 	c_bod = get_closest_body(["Interactable"])
 	if c_bod:
 		space_bar_prompt_reference.global_position = c_bod.global_position + Vector2(0, -25)
+		if(c_bod.name != last_c_bod):
+			changed_c_bod()
+		last_c_bod = c_bod.name
 	else:
 		space_bar_prompt_reference.global_position = space_bar_innactive
+		if(last_c_bod != ""):
+			changed_c_bod()
+			last_c_bod = ""
+
+func changed_c_bod():
+	progress_bar.reset_timer()
+	pass
+
+func _on_progress_bar_progress_completed() -> void:
+	print("IT DID IT!!!!")

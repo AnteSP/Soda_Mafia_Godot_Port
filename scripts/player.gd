@@ -1,10 +1,11 @@
 extends CharacterBody2D
+class_name player
 
 const speed = 100
 var actual_speed : float = 0
 var current_dir = "down"
 @export var sbp: SpaceBarPrompt
-@export var Inv: Inv
+@export var Inventory: Inv
 var interactable
 
 func _ready():
@@ -12,24 +13,27 @@ func _ready():
 	DialogueManager.connect("dialogue_ended", post_dialogue_cleanup)
 
 func _physics_process(delta):
+	#print("Stopped- " , stopped)
+	if Input.is_action_just_released("Space"):
+		sbp.reset_spacebar()
+		just_pressed = false
 	player_movement(delta)
 
-var stopped = false
+static var stopped = false
+static var just_pressed = false
 
 func player_movement(_delta):
 	if stopped:
 		return
 	
-	if Input.is_action_just_pressed("Space"):
+	if Input.is_action_just_pressed("Space") && !just_pressed:
 		$AnimatedSprite2D.play("idle_" + current_dir)
+		just_pressed = true
 		if sbp.interact_with_c_bod():
-			stopped = true
-		else:
-			stopped = false
+			pass
+			#stopped = true
 		return
-	elif Input.is_action_just_released("Space"):
-		sbp.reset_spacebar()
-	
+
 	var input_dir = Input.get_vector("A", "D", "W", "S")
 	if Input.is_action_pressed("Shift"):
 		actual_speed = speed/3
@@ -45,6 +49,10 @@ func player_movement(_delta):
 		update_animation("idle", input_dir)
 		
 
+static func start_stop_movement(start: bool):
+	
+	stopped = !start
+	print("STOPPED PLAYER " , stopped)
 
 func post_dialogue_cleanup(resource: DialogueResource):
 	# Your code to execute when dialogue ends
