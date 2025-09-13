@@ -21,5 +21,6 @@ func pre_dialogue_prep(_resource: DialogueResource):
 
 func post_dialogue_cleanup(_resource: DialogueResource):
 	type_noise.stop()
+	DialogueManagerExampleBalloon.change_type_noise(null)
 	DialogueManager.disconnect("dialogue_ended",post_dialogue_cleanup)
 	

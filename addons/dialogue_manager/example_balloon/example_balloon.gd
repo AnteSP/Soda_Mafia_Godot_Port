@@ -25,6 +25,7 @@ var locals: Dictionary = {}
 var _locale: String = TranslationServer.get_locale()
 
 static var type_noise = null
+static var is_stopped = false
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -131,10 +132,19 @@ func apply_dialogue_line() -> void:
 
 ## Go to the next line
 func next(next_id: String) -> void:
-	# === SHIT I DID:
-	if type_noise != null: type_noise.play()
-	# ===
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
+	# === SHIT I DID:
+	if(self.dialogue_line.get_tag_value("tnoise") != ""):
+		var tnoise = self.dialogue_line.get_tag_value("tnoise")
+		if tnoise == "null":
+			if type_noise is AudioStreamPlayer:
+				type_noise.stream = null
+		else:
+			var audio_stream = ResourceLoader.load("res://sound/TypeNoises/" + tnoise)
+			if type_noise is AudioStreamPlayer:
+				type_noise.stream = audio_stream
+	if type_noise != null: type_noise.play()
+
 
 
 #region Signals
@@ -156,7 +166,7 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 	# See if we need to skip typing of the dialogue
 	if dialogue_label.is_typing:
 		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
-		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
+		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action) or event.is_action_pressed(next_action)
 		if mouse_was_clicked or skip_button_was_pressed:
 			get_viewport().set_input_as_handled()
 			dialogue_label.skip_typing()
@@ -169,14 +179,17 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		next(dialogue_line.next_id)
-	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
+		#next(dialogue_line.next_id)
+		pass
+	elif !is_stopped and event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
 
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
+static func start_stop_CS(start: bool):
+	is_stopped = !start
 
 #endregion
 
@@ -190,4 +203,6 @@ func _on_dialogue_label_finished_typing() -> void:
 		type_noise.stop()
 
 static func change_type_noise(a : AudioStreamPlayer):
+	if a == null and type_noise != null:
+		type_noise.stop()
 	type_noise = a
