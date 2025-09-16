@@ -209,14 +209,10 @@ quantity = 1
 inventory = ExtResource("3_40yur")
 use_time = 4.0
 
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("disable_on_start", "CS_tnoise", "start_anim", "label")]
-script = ExtResource("20_cov07")
-convo = "cs1"
-resource = ExtResource("21_h05kx")
-disable_on_start = [NodePath("../Tree"), NodePath("../TileMapLayer/player")]
-CS_tnoise = NodePath("../CS_tnoise")
-start_anim = NodePath("../CanvasLayer2/Transition/AnimationPlayer")
-label = NodePath("../CanvasLayer2/Transition/RichTextLabel")
+[node name="StaticBody2D" parent="." instance=ExtResource("17_3j4rx")]
+position = Vector2(703.013, 80.7476)
+
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="CanvasLayer/TextureButton" method="_on_pressed"]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 128
