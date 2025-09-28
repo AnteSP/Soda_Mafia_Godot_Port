@@ -1,0 +1,267 @@
+[gd_scene load_steps=31 format=4 uid="uid://ck46hd5aiskji"]
+
+[ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
+[ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_6ui25"]
+[ext_resource type="Resource" uid="uid://bchubbvxddp4h" path="res://Prefabs/Items/PlayerInventory.tres" id="3_n2c5f"]
+[ext_resource type="PackedScene" uid="uid://bnhjcdm4tneov" path="res://Prefabs/Tree.tscn" id="4_l83ky"]
+[ext_resource type="Script" uid="uid://55m633i0gbmx" path="res://scripts/Talker.gd" id="5_3beet"]
+[ext_resource type="Resource" uid="uid://dav4r8h5ceu5n" path="res://Dialogue/test2.dialogue" id="6_tc0jy"]
+[ext_resource type="AudioStream" uid="uid://dtqxerhj7vesc" path="res://sound/TypeNoises/DefaultMaleTypeNoise.wav" id="7_utrln"]
+[ext_resource type="PackedScene" uid="uid://dr1pbs47u47cm" path="res://Prefabs/Items/inv_ui.tscn" id="8_vlxol"]
+[ext_resource type="Texture2D" uid="uid://cuncyo0ppoepb" path="res://sprites/UI/UI-tab-retracted-norm.png" id="9_4sjt4"]
+[ext_resource type="Texture2D" uid="uid://dk3jjigaf772j" path="res://sprites/UI/UI-tab-pressed.png" id="10_iw2f0"]
+[ext_resource type="Texture2D" uid="uid://coakyd2ctsosf" path="res://sprites/UI/UI-tab-retracted-hover.png" id="11_ycgla"]
+[ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://scripts/UI_button.gd" id="12_1weh1"]
+[ext_resource type="Texture2D" uid="uid://dgybi5uhp8jwr" path="res://sprites/UI/UI-tab-extended-norm.png" id="13_mgbok"]
+[ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="14_nguuq"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="15_5sf6f"]
+[ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="16_ur4j3"]
+[ext_resource type="PackedScene" uid="uid://qvawp73lc564" path="res://Prefabs/Apple.tscn" id="17_vdnnh"]
+[ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="18_16566"]
+[ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="19_mfpy4"]
+[ext_resource type="Script" uid="uid://c26fwd1q8awsq" path="res://scripts/Talker_cs.gd" id="20_3beet"]
+[ext_resource type="Texture2D" uid="uid://dteicinp1d2wk" path="res://sprites/ConkerCoola.png" id="20_n2c5f"]
+[ext_resource type="Texture2D" uid="uid://3jsgh1i32syc" path="res://sprites/storedoor.png" id="21_l83ky"]
+[ext_resource type="Resource" uid="uid://ccvqw6cwvy8a3" path="res://Dialogue/cs_test.dialogue" id="21_tc0jy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
+texture = ExtResource("1_gk4mc")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/y_sort_origin = 6
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/y_sort_origin = -3741
+1:1/0 = 0
+1:1/0/y_sort_origin = 6
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 2.54905, 16, 2.86768, 16, 16, -16, 16)
+2:1/next_alternative_id = 2
+2:1/0 = 0
+2:1/1 = 1
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/1 = 1
+
+[sub_resource type="TileSet" id="TileSet_ktssj"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_p3837")
+
+[sub_resource type="Theme" id="Theme_3rrdj"]
+default_font = ExtResource("15_5sf6f")
+default_font_size = 0
+
+[sub_resource type="Animation" id="Animation_wgd18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h05kx"]
+resource_name = "Start_CS"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667, 2.13333, 2.86667),
+"transitions": PackedFloat32Array(1, 14.9285, 1.93187, 1e-05),
+"update": 0,
+"values": [Vector2(-1000, -800), Vector2(0, 0), Vector2(0, 0), Vector2(2000, -2000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.77, 2.13667, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 2, 1),
+"update": 0,
+"values": [-1.5708, 0.0, 0.0, 1.5708]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Node")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.766667, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"pack_up"
+}, {
+"args": [true],
+"method": &"start_stop_CS"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhmq4"]
+_data = {
+&"RESET": SubResource("Animation_wgd18"),
+&"Start_CS": SubResource("Animation_h05kx")
+}
+
+[sub_resource type="Theme" id="Theme_h05kx"]
+
+[node name="world" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAAEAP//AQAAAAAAAAADAP7/AQAAAAAAAAACAP7/AQAAAAAAAAABAP7/AQAAAAAAAAD/////AQACAAAAAAAAAP7/AQACAAAAAAD///7/AQACAAEAAAAAAP3/AQACAAEAAAD///3/AQACAAEAAAAAAPz/AQACAAEAAAAEAP7/AQACAAAAARAFAP//AQACAAAAARAFAP7/AQACAAEAARAFAP3/AQACAAEAARAEAP3/AQACAAEAARAEAPz/AQACAAEAARADAP3/AQACAAEAARABAP3/AQACAAEAAQABAPz/AQACAAEAAQADAPz/AQACAAEAARACAP3/AQABAAAAAAACAPz/AQABAAAAAAACAPv/AQABAAAAAAADAPv/AQACAAEAARABAPv/AQACAAEAAQAFAPz/AQACAAEAARD///z/AQACAAEAAQD///v/AQACAAEAAQAAAPv/AQACAAEAAQAEAPv/AQACAAEAARAFAPv/AQACAAEAARACAAIAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_ktssj")
+rendering_quadrant_size = 32
+
+[node name="player" parent="TileMapLayer" instance=ExtResource("2_6ui25")]
+position = Vector2(80, 160)
+Inventory = ExtResource("3_n2c5f")
+
+[node name="Tree" parent="." node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("4_l83ky")]
+position = Vector2(168, 232)
+script = ExtResource("5_3beet")
+convo = "start"
+resource = ExtResource("6_tc0jy")
+type_noise = NodePath("../DefaultMaleTypeNoise")
+
+[node name="Tree2" parent="." groups=["Interactable"] instance=ExtResource("4_l83ky")]
+position = Vector2(232, 160)
+
+[node name="Tree3" parent="." groups=["Interactable"] instance=ExtResource("4_l83ky")]
+position = Vector2(200, 168)
+
+[node name="DefaultMaleTypeNoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
+stream = ExtResource("7_utrln")
+
+[node name="CS_tnoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
+stream = ExtResource("7_utrln")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="inv_ui" parent="CanvasLayer" instance=ExtResource("8_vlxol")]
+visible = false
+
+[node name="InventoryButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 456.0
+offset_right = 60.0
+offset_bottom = 469.0
+scale = Vector2(3, 3)
+focus_mode = 0
+texture_normal = ExtResource("9_4sjt4")
+texture_pressed = ExtResource("10_iw2f0")
+texture_hover = ExtResource("11_ycgla")
+script = ExtResource("12_1weh1")
+target_node = NodePath("../inv_ui")
+alt_norm = ExtResource("13_mgbok")
+alt_hover = ExtResource("14_nguuq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/InventoryButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 146.0
+offset_bottom = 22.0
+scale = Vector2(0.29, 0.49)
+mouse_filter = 1
+theme = SubResource("Theme_3rrdj")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Inventory"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/InventoryButton"]
+stream = ExtResource("16_ur4j3")
+
+[node name="Apple" parent="." groups=["Interactable"] instance=ExtResource("17_vdnnh")]
+position = Vector2(96, 240)
+script = ExtResource("18_16566")
+item = ExtResource("19_mfpy4")
+quantity = 1
+inventory = ExtResource("3_n2c5f")
+use_time = 0.5
+
+[node name="Apple2" parent="." groups=["Interactable"] instance=ExtResource("17_vdnnh")]
+modulate = Color(0.368627, 0.498039, 0.282353, 1)
+position = Vector2(48, 240)
+script = ExtResource("18_16566")
+item = ExtResource("19_mfpy4")
+quantity = 1
+inventory = ExtResource("3_n2c5f")
+use_time = 4.0
+
+[node name="Apple3" parent="." instance=ExtResource("17_vdnnh")]
+position = Vector2(288, 136)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("20_3beet")
+convo = "cs1"
+resource = ExtResource("21_tc0jy")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Transition" type="ColorRect" parent="CanvasLayer2"]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer2/Transition"]
+libraries = {
+&"": SubResource("AnimationLibrary_uhmq4")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/Transition"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 576.0
+theme = SubResource("Theme_h05kx")
+theme_override_fonts/normal_font = ExtResource("15_5sf6f")
+theme_override_font_sizes/normal_font_size = 66
+text = "Whooa a text thibng???!?!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConkerCoola" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(80, 16)
+texture = ExtResource("20_n2c5f")
+
+[node name="Storedoor" type="Sprite2D" parent="."]
+position = Vector2(80, 106)
+texture = ExtResource("21_l83ky")
+
+[connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]
