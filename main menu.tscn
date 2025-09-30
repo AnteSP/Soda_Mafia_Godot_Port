@@ -1,55 +1,56 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqhym4kq6vyim"]
+[gd_scene load_steps=19 format=3 uid="uid://dqhym4kq6vyim"]
 
-[ext_resource type="Texture2D" uid="uid://b4o741n28woq7" path="res://gangsta_elite.jpg" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://d0vefhxldagfk" path="res://Start Screen-Sheet1.png" id="2_0e48y"]
-[ext_resource type="Script" uid="uid://2acubl2tnalm" path="res://scripts/SceneChangeButton.cs" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://b4o741n28woq7" path="res://gangsta_elite.jpg" id="1_qqwyt"]
+[ext_resource type="Texture2D" uid="uid://d0vefhxldagfk" path="res://Start Screen-Sheet1.png" id="2_iv0vr"]
+[ext_resource type="Script" uid="uid://db240uog5wl2q" path="res://scripts/Utils.gd" id="3_5d0og"]
+[ext_resource type="PackedScene" uid="uid://ck46hd5aiskji" path="res://Ch1_Intro.tscn" id="4_mw7qi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epypp"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(0, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(320, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(640, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(960, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(1280, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(1600, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d7sh"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(1920, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir8iy"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(2240, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqns4"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(2560, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0ka3"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(2880, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h7mo"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(3200, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nr8wp"]
-atlas = ExtResource("2_0e48y")
+atlas = ExtResource("2_iv0vr")
 region = Rect2(3520, 0, 320, 180)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d2bti"]
@@ -123,7 +124,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_wtcfe")
+texture = ExtResource("1_qqwyt")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -154,7 +155,8 @@ grow_horizontal = 0
 layout_mode = 2
 size_flags_vertical = 6
 text = "1st button"
-script = ExtResource("3_epypp")
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2

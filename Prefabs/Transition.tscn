@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://btlq8t13lv4ob"]
+
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="1_refkr"]
+
+[sub_resource type="Animation" id="Animation_wgd18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h05kx"]
+resource_name = "Start_CS"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667, 2.13333, 2.86667),
+"transitions": PackedFloat32Array(1, 14.9285, 1.93187, 1e-05),
+"update": 0,
+"values": [Vector2(-1000, -800), Vector2(0, 0), Vector2(0, 0), Vector2(2000, -2000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.77, 2.13667, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 2, 1),
+"update": 0,
+"values": [-1.5708, 0.0, 0.0, 1.5708]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Intro_CS")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.766667, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"pack_up"
+}, {
+"args": [true],
+"method": &"start_stop_CS"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhmq4"]
+_data = {
+&"RESET": SubResource("Animation_wgd18"),
+&"Start_CS": SubResource("Animation_h05kx")
+}
+
+[sub_resource type="Theme" id="Theme_h05kx"]
+
+[node name="Transition" type="CanvasLayer"]
+layer = 128
+
+[node name="Transition" type="ColorRect" parent="."]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+&"": SubResource("AnimationLibrary_uhmq4")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Transition"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 576.0
+theme = SubResource("Theme_h05kx")
+theme_override_fonts/normal_font = ExtResource("1_refkr")
+theme_override_font_sizes/normal_font_size = 66
+text = "Whooa a text thibng???!?!"
+horizontal_alignment = 1
+vertical_alignment = 1

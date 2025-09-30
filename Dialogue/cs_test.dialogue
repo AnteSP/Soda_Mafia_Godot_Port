@@ -1,6 +1,7 @@
 ~ cs1
 ...: Press Space[#tnoise=null]
 You: Eyo does ts work?[#tnoise=DefaultMaleTypeNoise.wav]
+do TalkerCS.call_out("Ch1_Intro_KickedOut")
 Bar Tender: I don't exist yet but I still hate you!!![#tnoise=MafiaTypeNoise.wav]
 You: Check this shit out [bgcolor=blue]whooa[/bgcolor] [shake rate=20.0 level=20 connected=1]we can even get shaky bruh[/shake] [#tnoise=DefaultMaleTypeNoise.wav]
 => END

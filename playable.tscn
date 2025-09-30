@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cev7507ujlxyd"]
+[gd_scene load_steps=26 format=4 uid="uid://cev7507ujlxyd"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_hbccw"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_lb8q2"]
@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="12_uo1ua"]
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="14_uo1ua"]
 [ext_resource type="PackedScene" uid="uid://qvawp73lc564" path="res://Prefabs/Apple.tscn" id="17_3j4rx"]
+[ext_resource type="Script" uid="uid://c26fwd1q8awsq" path="res://scripts/Talker_cs.gd" id="20_h05kx"]
+[ext_resource type="PackedScene" uid="uid://btlq8t13lv4ob" path="res://Prefabs/Transition.tscn" id="20_wgd18"]
+[ext_resource type="Resource" uid="uid://ccvqw6cwvy8a3" path="res://Dialogue/cs_test.dialogue" id="21_wgd18"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
 texture = ExtResource("1_hbccw")
@@ -42,86 +45,6 @@ sources/1 = SubResource("TileSetAtlasSource_p3837")
 [sub_resource type="Theme" id="Theme_3rrdj"]
 default_font = ExtResource("10_bqykw")
 default_font_size = 0
-
-[sub_resource type="Animation" id="Animation_wgd18"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_h05kx"]
-resource_name = "Start_CS"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.766667, 2.13333, 2.86667),
-"transitions": PackedFloat32Array(1, 14.9285, 1.93187, 1e-05),
-"update": 0,
-"values": [Vector2(-1000, -800), Vector2(0, 0), Vector2(0, 0), Vector2(2000, -2000)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.77, 2.13667, 2.86667),
-"transitions": PackedFloat32Array(1, 1, 2, 1),
-"update": 0,
-"values": [-1.5708, 0.0, 0.0, 1.5708]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../Node")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.766667, 2.6),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"pack_up"
-}, {
-"args": [true],
-"method": &"start_stop_CS"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhmq4"]
-_data = {
-&"RESET": SubResource("Animation_wgd18"),
-&"Start_CS": SubResource("Animation_h05kx")
-}
-
-[sub_resource type="Theme" id="Theme_h05kx"]
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
@@ -207,37 +130,15 @@ quantity = 1
 inventory = ExtResource("3_40yur")
 use_time = 4.0
 
-[node name="StaticBody2D" parent="." instance=ExtResource("17_3j4rx")]
-position = Vector2(703.013, 80.7476)
+[node name="Transition" parent="." instance=ExtResource("20_wgd18")]
+visible = false
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 128
-
-[node name="Transition" type="ColorRect" parent="CanvasLayer2"]
-z_index = 4096
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer2/Transition"]
-libraries = {
-&"": SubResource("AnimationLibrary_uhmq4")
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/Transition"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 1088.0
-offset_bottom = 576.0
-theme = SubResource("Theme_h05kx")
-theme_override_fonts/normal_font = ExtResource("10_bqykw")
-theme_override_font_sizes/normal_font_size = 66
-text = "Whooa a text thibng???!?!"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Intro_CS" type="Node" parent="." node_paths=PackedStringArray("disable_on_start", "CS_tnoise", "transition")]
+script = ExtResource("20_h05kx")
+convo = "cs1"
+resource = ExtResource("21_wgd18")
+disable_on_start = [NodePath("../Apple"), NodePath("../Apple2"), NodePath("../TileMapLayer/player")]
+CS_tnoise = NodePath("../CS_tnoise")
+transition = NodePath("../Transition")
 
 [connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]

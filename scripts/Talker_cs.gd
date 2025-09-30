@@ -1,19 +1,34 @@
-extends Node
+extends AnimationPlayer
+
+class_name TalkerCS
 
 @export var convo = ""
 @export var resource: DialogueResource
 @export var start_on_ready: bool = true
 @export var disable_on_start: Array[Node]
 @export var CS_tnoise: AudioStreamPlayer
-@export var start_anim: AnimationPlayer
-@export var label: RichTextLabel
+@export var transition: Node
+var start_anim: AnimationPlayer
+var label: RichTextLabel
 var stopping = false
+static var current: TalkerCS
+
+static func call_out(anim= ""):
+	print("beh")
+	if anim != "":
+		current.play(anim)
 
 func _ready():
+	start_anim = transition.get_node("Transition/AnimationPlayer")
+	label = transition.get_node("Transition/RichTextLabel")
+
 	if start_on_ready:
+		transition.get_node("Transition").visible = true
+		transition.show()
 		start_cs()
 
 func start_cs():
+	current = self
 	stopping = false
 	stopped_echo = false
 	label.text = "Starting cutscene"
