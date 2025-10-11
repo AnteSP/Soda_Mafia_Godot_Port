@@ -58,6 +58,9 @@ func post_dialogue_cleanup(_resource: DialogueResource):
 func start_stop_CS(start: bool):
 	DialogueManagerExampleBalloon.start_stop_CS(start)
 
+func set_good_to_go(go: bool):
+	DialogueManagerExampleBalloon.start_stop_CS(go)
+
 var stopped_echo = false
 func pack_up():
 	print("CALLED PACKUP")

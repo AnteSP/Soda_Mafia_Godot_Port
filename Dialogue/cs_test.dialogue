@@ -2,6 +2,20 @@
 ...: Press Space[#tnoise=null]
 You: Eyo does ts work?[#tnoise=DefaultMaleTypeNoise.wav]
 do TalkerCS.call_out("Ch1_Intro_KickedOut")
-Bar Tender: I don't exist yet but I still hate you!!![#tnoise=MafiaTypeNoise.wav]
+Bar Tender: GET OUTTA MY PUB YOU DRUNKARD![#tnoise=MafiaTypeNoise.wav]
+You: ...[#tnoise=DefaultMaleTypeNoise.wav]
+You: Egh... F- *hiccup* fffffuck you
+Everyone: [shake rate=20.0 level=20 connected=1]HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA[/shake]
+You: Heyyy... Fuck y- *hiccup* fyUCK you ALL!
+...
+#brother pulls up and laughs
+Brother: Oh, if it aint my LOSER brother
+Brother: Sigh... It must suck not to be the rich and famous CEO of Conker Coola
+#brother leaves
+Brother: Toodeloo brother! Just remember, I'LL ALWAYS BE BETTER THAN YOU
+You: FUCK YOU BROTHER! I'll make my OWN SODA COMPANY
+You: AND IT'LL BE A BAJILLION TIMES BETTER THAN YOURS
+#you start walking away
+You: I'll show [bgcolor=red]him[/bgcolor]...
 You: Check this shit out [bgcolor=blue]whooa[/bgcolor] [shake rate=20.0 level=20 connected=1]we can even get shaky bruh[/shake] [#tnoise=DefaultMaleTypeNoise.wav]
 => END

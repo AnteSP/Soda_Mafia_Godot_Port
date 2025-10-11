@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Soda Mafia"
 run/main_scene="uid://dqhym4kq6vyim"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="uid://72e3m722ssxm"
 
 [autoload]
@@ -22,6 +22,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 [dialogue_manager]
 
 runtime/balloon_path="res://Dialogue/Balloon.tscn"
+runtime/advanced/uses_dotnet=true
 
 [display]
 

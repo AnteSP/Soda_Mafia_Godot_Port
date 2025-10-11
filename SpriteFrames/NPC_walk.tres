@@ -1,115 +1,139 @@
-[gd_scene load_steps=36 format=3 uid="uid://cm8bawqhwdrt2"]
+[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://bf1utegua4yo4"]
 
-[ext_resource type="Script" uid="uid://dmgemtwlgsmjk" path="res://scripts/player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://bhjy4nft2fc0i" path="res://sprites/characters/player/Player_d walking.png" id="2_i3pqv"]
-[ext_resource type="Script" uid="uid://ba43dlmufgwwd" path="res://scripts/spaceBarPrompt.gd" id="3_y5hcb"]
-[ext_resource type="PackedScene" uid="uid://hsdju174rnut" path="res://Prefabs/spaceBarPrompt.tscn" id="4_2nftw"]
-[ext_resource type="Script" uid="uid://bx7bhhyvtpcj7" path="res://Prefabs/progress_bar.gd" id="5_hck1p"]
-[ext_resource type="Script" uid="uid://co6n2i8hovnyi" path="res://scripts/CamZoom.gd" id="5_knrd4"]
-[ext_resource type="Shader" uid="uid://bdqdsuuoxnsn" path="res://Prefabs/progress_bar.gdshader" id="6_juxdh"]
+[ext_resource type="Texture2D" uid="uid://cmb0bpno2qia1" path="res://sprites/characters/player/ch 2 poses.png" id="1_0fjjt"]
+[ext_resource type="Texture2D" uid="uid://bje7y7txdokhi" path="res://sprites/Empty.png" id="1_uw3t7"]
+[ext_resource type="Texture2D" uid="uid://bhjy4nft2fc0i" path="res://sprites/characters/player/Player_d walking.png" id="3_j8jh3"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 2.3
-height = 10.6
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8jh3"]
+atlas = ExtResource("1_0fjjt")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em5n5"]
+atlas = ExtResource("1_0fjjt")
+region = Rect2(224, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_606se"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u1c27"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pylmc"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pbfsw"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5tmop"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q13i1"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dx0e4"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jm5j8"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7hik5"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtqh7"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
-atlas = ExtResource("2_i3pqv")
+atlas = ExtResource("3_j8jh3")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2wuci"]
+[resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8jh3")
+}],
+"loop": true,
+"name": &"Getting up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uw3t7")
+}],
+"loop": true,
+"name": &"Invis",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em5n5")
+}],
+"loop": true,
+"name": &"Thrown",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hqtel")
@@ -222,83 +246,3 @@ animations = [{
 "name": &"walk_up",
 "speed": 5.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_y5hcb"]
-radius = 32.9848
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qbli"]
-shader = ExtResource("6_juxdh")
-shader_parameter/progress = 0.0
-
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sbp")]
-y_sort_enabled = true
-script = ExtResource("1_onrkg")
-sbp = NodePath("InteractArea")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2wuci")
-animation = &"idle_down"
-frame_progress = 0.658666
-
-[node name="InteractArea" type="Area2D" parent="."]
-script = ExtResource("3_y5hcb")
-
-[node name="interactable" type="CollisionShape2D" parent="InteractArea"]
-position = Vector2(0, 24)
-shape = SubResource("CircleShape2D_y5hcb")
-
-[node name="Spacebar" parent="InteractArea" instance=ExtResource("4_2nftw")]
-self_modulate = Color(1, 1, 1, 0.470588)
-top_level = true
-position = Vector2(0, 10000)
-
-[node name="ProgressBar" type="Control" parent="InteractArea/Spacebar"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_hck1p")
-
-[node name="Background" type="ColorRect" parent="InteractArea/Spacebar/ProgressBar"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = -10.0
-offset_right = 16.0
-offset_bottom = -2.0
-scale = Vector2(1, 0.26)
-color = Color(1, 1, 1, 0.392157)
-
-[node name="Fill" type="ColorRect" parent="InteractArea/Spacebar/ProgressBar"]
-material = SubResource("ShaderMaterial_4qbli")
-layout_mode = 0
-offset_left = -16.0
-offset_top = -10.0
-offset_right = 16.0
-offset_bottom = -2.0
-scale = Vector2(1, 0.26)
-color = Color(1, 0.470588, 0.152941, 0.784314)
-
-[node name="Timer" type="Timer" parent="InteractArea/Spacebar/ProgressBar"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-process_mode = 3
-zoom = Vector2(3.105, 3.105)
-position_smoothing_speed = 25.0
-script = ExtResource("5_knrd4")
-zoom_speed = 1.0
-min_zoom = 1.5
-max_zoom = 8.0
-zoom_step = 1.0
-mouse_influence_strength = 50.0
-mouse_influence_radius = 5.0
-return_speed = 30.0
-
-[connection signal="progress_completed" from="InteractArea/Spacebar/ProgressBar" to="InteractArea" method="_on_progress_bar_progress_completed"]
-[connection signal="timeout" from="InteractArea/Spacebar/ProgressBar/Timer" to="InteractArea/Spacebar/ProgressBar" method="_on_timer_timeout"]
