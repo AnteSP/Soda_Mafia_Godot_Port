@@ -67,6 +67,9 @@ var _last_mutation_index: int = -1
 var _waiting_seconds: float = 0
 var _is_awaiting_mutation: bool = false
 
+#THIS WAS ME
+var type_noise_stopped = false
+
 
 func _process(delta: float) -> void:
 	if self.is_typing:
@@ -74,10 +77,16 @@ func _process(delta: float) -> void:
 		if visible_ratio < 1:
 			# See if we are waiting
 			if _waiting_seconds > 0:
+				if DialogueManagerExampleBalloon.type_noise is AudioStreamPlayer and _waiting_seconds > 0.2:
+					DialogueManagerExampleBalloon.type_noise.stop()
+					type_noise_stopped = true
 				_waiting_seconds = _waiting_seconds - delta
 			# If we are no longer waiting then keep typing
 			if _waiting_seconds <= 0:
 				_type_next(delta, _waiting_seconds)
+				if DialogueManagerExampleBalloon.type_noise is AudioStreamPlayer and type_noise_stopped:
+					DialogueManagerExampleBalloon.type_noise.play()
+					type_noise_stopped = false
 		else:
 			# Make sure any mutations at the end of the line get run
 			_mutate_inline_mutations(get_total_character_count())

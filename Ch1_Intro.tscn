@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=36 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_6ui25"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bjngloo1lko5y" path="res://sprites/storedoor_open.png" id="23_vlxol"]
 [ext_resource type="PackedScene" uid="uid://btlq8t13lv4ob" path="res://Prefabs/Transition.tscn" id="24_tc0jy"]
 [ext_resource type="SpriteFrames" uid="uid://bf1utegua4yo4" path="res://SpriteFrames/NPC_walk.tres" id="26_4sjt4"]
+[ext_resource type="Script" uid="uid://bf1c4ddh5h84e" path="res://scripts/NPC_movement.gd" id="27_4sjt4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
 texture = ExtResource("1_gk4mc")
@@ -51,6 +52,10 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_p3837")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 2.3
+height = 10.6
 
 [sub_resource type="Theme" id="Theme_3rrdj"]
 default_font = ExtResource("15_5sf6f")
@@ -152,15 +157,28 @@ tracks/2/keys = {
 "values": [ExtResource("21_l83ky")]
 }
 
+[sub_resource type="Animation" id="Animation_4sjt4"]
+resource_name = "Player_Drunk"
+length = 2.52
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro_CS/Player Actor/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Drunk"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utrln"]
 _data = {
 &"Ch1_Intro_KickedOut": SubResource("Animation_tc0jy"),
+&"Player_Drunk": SubResource("Animation_4sjt4"),
 &"RESET": SubResource("Animation_utrln")
 }
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 2.3
-height = 10.6
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
@@ -168,17 +186,47 @@ y_sort_enabled = true
 [node name="World" type="Node" parent="."]
 
 [node name="Tree" parent="World" node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("4_l83ky")]
-position = Vector2(168, 232)
+y_sort_enabled = true
+position = Vector2(-56, 136)
 script = ExtResource("5_3beet")
 convo = "start"
 resource = ExtResource("6_tc0jy")
 type_noise = NodePath("../../DefaultMaleTypeNoise")
 
 [node name="Tree2" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-position = Vector2(232, 160)
+y_sort_enabled = true
+position = Vector2(-120, 112)
 
 [node name="Tree3" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-position = Vector2(200, 168)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-72, 72)
+
+[node name="Tree4" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+y_sort_enabled = true
+position = Vector2(-96, 208)
+
+[node name="Tree5" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+y_sort_enabled = true
+position = Vector2(-56, 272)
+
+[node name="Tree6" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+y_sort_enabled = true
+position = Vector2(-8, 304)
+
+[node name="Tree7" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+y_sort_enabled = true
+position = Vector2(176, 312)
+
+[node name="Tree8" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(216, 280)
+
+[node name="Tree9" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(216, 96)
 
 [node name="Apple" parent="World" groups=["Interactable"] instance=ExtResource("17_vdnnh")]
 position = Vector2(96, 240)
@@ -218,6 +266,206 @@ texture = ExtResource("20_n2c5f")
 [node name="Storedoor" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(80, 106)
 texture = ExtResource("21_l83ky")
+
+[node name="Crowd" type="Node" parent="TileMapLayer"]
+
+[node name="guy" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(0, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy2" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(-16, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy2"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy2"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy3" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(-16, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy3"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy3"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy4" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(-24, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy4"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy4"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy5" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(-48, 168)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy5"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy5"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy6" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(136, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy6"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy6"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_left"
+autoplay = "idle_left"
+
+[node name="guy7" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(128, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy7"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy7"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_left"
+autoplay = "idle_left"
+
+[node name="guy8" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(160, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy8"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy8"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_left"
+autoplay = "idle_left"
+
+[node name="guy9" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(56, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy9"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy9"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_up"
+autoplay = "idle_up"
+
+[node name="guy10" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(104, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy10"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy10"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_up"
+autoplay = "idle_up"
+
+[node name="guy11" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
+y_sort_enabled = true
+position = Vector2(72, 248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy11"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy11"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_up"
+autoplay = "idle_up"
 
 [node name="DefaultMaleTypeNoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
 stream = ExtResource("7_utrln")
@@ -277,6 +525,7 @@ transition = NodePath("../Transition")
 [node name="Player Actor" type="CharacterBody2D" parent="Intro_CS"]
 y_sort_enabled = true
 position = Vector2(77, 132)
+script = ExtResource("27_4sjt4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Intro_CS/Player Actor"]
 z_index = 1
@@ -289,5 +538,11 @@ one_way_collision_margin = 0.0
 position = Vector2(3, -12)
 sprite_frames = ExtResource("26_4sjt4")
 animation = &"Thrown"
+autoplay = "Invis"
+
+[node name="Positions" type="Node" parent="Intro_CS"]
+
+[node name="PPos1" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(48, 192)
 
 [connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]

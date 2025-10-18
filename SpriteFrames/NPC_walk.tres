@@ -1,8 +1,13 @@
-[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://bf1utegua4yo4"]
+[gd_resource type="SpriteFrames" load_steps=32 format=3 uid="uid://bf1utegua4yo4"]
 
 [ext_resource type="Texture2D" uid="uid://cmb0bpno2qia1" path="res://sprites/characters/player/ch 2 poses.png" id="1_0fjjt"]
+[ext_resource type="Texture2D" uid="uid://hoi20mxdbvh4" path="res://sprites/characters/player/front run d.png" id="1_j8jh3"]
 [ext_resource type="Texture2D" uid="uid://bje7y7txdokhi" path="res://sprites/Empty.png" id="1_uw3t7"]
 [ext_resource type="Texture2D" uid="uid://bhjy4nft2fc0i" path="res://sprites/characters/player/Player_d walking.png" id="3_j8jh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2tw4"]
+atlas = ExtResource("1_j8jh3")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8jh3"]
 atlas = ExtResource("1_0fjjt")
@@ -110,6 +115,14 @@ region = Rect2(0, 96, 32, 32)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2tw4")
+}],
+"loop": true,
+"name": &"Drunk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j8jh3")

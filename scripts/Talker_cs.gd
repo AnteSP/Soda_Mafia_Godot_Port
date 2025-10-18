@@ -18,6 +18,11 @@ static func call_out(anim= ""):
 	if anim != "":
 		current.play(anim)
 
+static func do_movement(actor="",posi="",new_speed: float = 100):
+	var actor_node = current.get_node(actor)
+	if actor_node is NPC_Movement:
+		actor_node.set_target(current.get_node("Positions/" + posi).get_path(),new_speed)
+
 func _ready():
 	start_anim = transition.get_node("Transition/AnimationPlayer")
 	label = transition.get_node("Transition/RichTextLabel")
