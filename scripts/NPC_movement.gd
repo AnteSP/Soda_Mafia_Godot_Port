@@ -10,7 +10,7 @@ func set_target(target: NodePath,new_speed:float = 100):
 	target_path = target
 	speed = new_speed
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not target_path:
 		return
 
@@ -32,10 +32,9 @@ func _physics_process(delta):
 
 func update_animation(state: String, input_dir: Vector2):
 	# Determine direction (prioritizes horizontal over vertical)
-	var offset = 20
-	if input_dir.x < 0:
+	if input_dir.x < 0 and input_dir.x < input_dir.y:
 		current_dir = "left"
-	elif input_dir.x > 0:
+	elif input_dir.x > 0 and input_dir.x > input_dir.y:
 		current_dir = "right"
 	elif input_dir.y < 0:
 		current_dir = "up"

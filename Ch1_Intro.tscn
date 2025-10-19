@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=46 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_6ui25"]
@@ -10,15 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://dr1pbs47u47cm" path="res://Prefabs/Items/inv_ui.tscn" id="8_vlxol"]
 [ext_resource type="Texture2D" uid="uid://cuncyo0ppoepb" path="res://sprites/UI/UI-tab-retracted-norm.png" id="9_4sjt4"]
 [ext_resource type="Texture2D" uid="uid://dk3jjigaf772j" path="res://sprites/UI/UI-tab-pressed.png" id="10_iw2f0"]
+[ext_resource type="AudioStream" uid="uid://c86d5n6xfm8mx" path="res://sound/TypeNoises/laugh.wav" id="10_mgbok"]
 [ext_resource type="Texture2D" uid="uid://coakyd2ctsosf" path="res://sprites/UI/UI-tab-retracted-hover.png" id="11_ycgla"]
 [ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://scripts/UI_button.gd" id="12_1weh1"]
 [ext_resource type="Texture2D" uid="uid://dgybi5uhp8jwr" path="res://sprites/UI/UI-tab-extended-norm.png" id="13_mgbok"]
 [ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="14_nguuq"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="15_5sf6f"]
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="16_ur4j3"]
-[ext_resource type="PackedScene" uid="uid://qvawp73lc564" path="res://Prefabs/Apple.tscn" id="17_vdnnh"]
-[ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="18_16566"]
-[ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="19_mfpy4"]
 [ext_resource type="Script" uid="uid://c26fwd1q8awsq" path="res://scripts/Talker_cs.gd" id="20_3beet"]
 [ext_resource type="Texture2D" uid="uid://dteicinp1d2wk" path="res://sprites/ConkerCoola.png" id="20_n2c5f"]
 [ext_resource type="Texture2D" uid="uid://3jsgh1i32syc" path="res://sprites/storedoor.png" id="21_l83ky"]
@@ -27,11 +25,21 @@
 [ext_resource type="PackedScene" uid="uid://btlq8t13lv4ob" path="res://Prefabs/Transition.tscn" id="24_tc0jy"]
 [ext_resource type="SpriteFrames" uid="uid://bf1utegua4yo4" path="res://SpriteFrames/NPC_walk.tres" id="26_4sjt4"]
 [ext_resource type="Script" uid="uid://bf1c4ddh5h84e" path="res://scripts/NPC_movement.gd" id="27_4sjt4"]
+[ext_resource type="Texture2D" uid="uid://bq44jd2snmkhs" path="res://sprites/characters/Brother/Car laugh.png" id="28_mgbok"]
+[ext_resource type="Texture2D" uid="uid://ddn3jdrjkkn6k" path="res://sprites/characters/Brother/Car laugh 1.png" id="29_nguuq"]
+[ext_resource type="Texture2D" uid="uid://bgb7vqgfi2yvn" path="res://sprites/characters/Brother/Car look left.png" id="30_5sf6f"]
+[ext_resource type="Texture2D" uid="uid://dkihdqsxdew2c" path="res://sprites/characters/Brother/Car.png" id="31_ur4j3"]
+[ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="32_5sf6f"]
+[ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="33_ur4j3"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5sf6f"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
 texture = ExtResource("1_gk4mc")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_5sf6f")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:0/0 = 0
 1:0/0/y_sort_origin = 6
@@ -50,8 +58,19 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ktssj"]
 tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_p3837")
+
+[sub_resource type="Gradient" id="Gradient_vdnnh"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_16566"]
+gradient = SubResource("Gradient_vdnnh")
+fill = 1
+fill_from = Vector2(0.5, 0.015)
+fill_to = Vector2(0.97, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 2.3
@@ -118,6 +137,22 @@ tracks/3/keys = {
 "values": [ExtResource("23_vlxol"), ExtResource("21_l83ky")]
 }
 
+[sub_resource type="Animation" id="Animation_4sjt4"]
+resource_name = "Player_Drunk"
+length = 2.52
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro_CS/Player Actor/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Drunk"]
+}
+
 [sub_resource type="Animation" id="Animation_utrln"]
 length = 0.001
 tracks/0/type = "value"
@@ -156,29 +191,224 @@ tracks/2/keys = {
 "update": 1,
 "values": [ExtResource("21_l83ky")]
 }
-
-[sub_resource type="Animation" id="Animation_4sjt4"]
-resource_name = "Player_Drunk"
-length = 2.52
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Intro_CS/Player Actor/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro_CS/Car:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, -120)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Intro_CS/Car:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Intro_CS/Car:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Drunk"]
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_mgbok"]
+resource_name = "Brother Approach"
+length = 3.6895
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro_CS/Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.93),
+"transitions": PackedFloat32Array(1.1487, 0.420448, 1),
+"update": 0,
+"values": [Vector2(240, -120), Vector2(224.01, 112.755), Vector2(218.67, 169.37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro_CS/Car:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.69),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.129154]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro_CS/Car:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Looking"]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro_CS")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.23333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"start_stop_CS"
+}, {
+"args": [true],
+"method": &"start_stop_CS"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Intro_CS/Car")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Laugh", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nguuq"]
+resource_name = "Brother Leave"
+length = 3.6895
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro_CS/Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.16667),
+"transitions": PackedFloat32Array(4.28709, 1),
+"update": 0,
+"values": [Vector2(218.67, 169.37), Vector2(238.805, 500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro_CS/Car:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.666667, 1.33333, 1.74667),
+"transitions": PackedFloat32Array(1.93187, 0.378929, 0.392292),
+"update": 0,
+"values": [0.129154, -0.0349066, -0.0488692]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro_CS/Car:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro_CS")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.23333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"start_stop_CS"
+}, {
+"args": [true],
+"method": &"start_stop_CS"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utrln"]
 _data = {
+&"Brother Approach": SubResource("Animation_mgbok"),
+&"Brother Leave": SubResource("Animation_nguuq"),
 &"Ch1_Intro_KickedOut": SubResource("Animation_tc0jy"),
 &"Player_Drunk": SubResource("Animation_4sjt4"),
 &"RESET": SubResource("Animation_utrln")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdnnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_mgbok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_nguuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_mgbok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_nguuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_mgbok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_nguuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_5sf6f")
+}],
+"loop": true,
+"name": &"Laugh",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_5sf6f")
+}],
+"loop": true,
+"name": &"Looking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_ur4j3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
@@ -216,37 +446,17 @@ position = Vector2(-8, 304)
 
 [node name="Tree7" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 y_sort_enabled = true
-position = Vector2(176, 312)
+position = Vector2(168, 312)
 
 [node name="Tree8" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 z_index = -1
 y_sort_enabled = true
-position = Vector2(216, 280)
+position = Vector2(120, 336)
 
 [node name="Tree9" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 z_index = -1
 y_sort_enabled = true
-position = Vector2(216, 96)
-
-[node name="Apple" parent="World" groups=["Interactable"] instance=ExtResource("17_vdnnh")]
-position = Vector2(96, 240)
-script = ExtResource("18_16566")
-item = ExtResource("19_mfpy4")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
-use_time = 0.5
-
-[node name="Apple2" parent="World" groups=["Interactable"] instance=ExtResource("17_vdnnh")]
-modulate = Color(0.368627, 0.498039, 0.282353, 1)
-position = Vector2(48, 240)
-script = ExtResource("18_16566")
-item = ExtResource("19_mfpy4")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
-use_time = 4.0
-
-[node name="Apple3" parent="World" instance=ExtResource("17_vdnnh")]
-position = Vector2(288, 136)
+position = Vector2(416, 104)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -255,13 +465,20 @@ tile_set = SubResource("TileSet_ktssj")
 rendering_quadrant_size = 32
 
 [node name="player" parent="TileMapLayer" instance=ExtResource("2_6ui25")]
-position = Vector2(80, 160)
+position = Vector2(80, 168)
 Inventory = ExtResource("3_n2c5f")
 
 [node name="ConkerCoola" type="Sprite2D" parent="TileMapLayer"]
 z_index = 1
-position = Vector2(80, 16)
+position = Vector2(80, 40)
 texture = ExtResource("20_n2c5f")
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMapLayer/ConkerCoola"]
+position = Vector2(3.8147e-06, 184)
+scale = Vector2(4.00631, 6.88431)
+skew = 0.0363033
+color = Color(0.996078, 0.72549, 0.8, 1)
+texture = SubResource("GradientTexture2D_16566")
 
 [node name="Storedoor" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(80, 106)
@@ -467,6 +684,9 @@ sprite_frames = ExtResource("26_4sjt4")
 animation = &"idle_up"
 autoplay = "idle_up"
 
+[node name="LaughTrack" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
+stream = ExtResource("10_mgbok")
+
 [node name="DefaultMaleTypeNoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
@@ -544,5 +764,63 @@ autoplay = "Invis"
 
 [node name="PPos1" type="Node2D" parent="Intro_CS/Positions"]
 position = Vector2(48, 192)
+
+[node name="PPos2" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(64, 184)
+
+[node name="PPos3" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(88, 224)
+
+[node name="PPos4" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(328, 192)
+
+[node name="Car" type="AnimatedSprite2D" parent="Intro_CS"]
+position = Vector2(240, -120)
+sprite_frames = SubResource("SpriteFrames_vdnnh")
+
+[node name="PointLight2D" type="PointLight2D" parent="Intro_CS/Car"]
+position = Vector2(24, 112)
+rotation = -0.0661566
+scale = Vector2(2, 2.625)
+color = Color(0.994902, 1, 0.801477, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_16566")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Intro_CS/Car"]
+position = Vector2(-24, 112)
+rotation = 0.0663225
+scale = Vector2(2, 2.625)
+color = Color(0.996078, 1, 0.8, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_16566")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.570946, 0.626316, 0.710555, 1)
+
+[node name="Ground" type="Node" parent="."]
+
+[node name="Grass" type="Sprite2D" parent="Ground"]
+z_index = -5
+position = Vector2(-230.5, 80)
+scale = Vector2(1.00761, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass2" type="Sprite2D" parent="Ground"]
+z_index = -5
+position = Vector2(-230.5, 347.75)
+scale = Vector2(1.00761, 1.03137)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass3" type="Sprite2D" parent="Ground"]
+z_index = -5
+position = Vector2(-8, 448)
+texture = ExtResource("32_5sf6f")
+
+[node name="Square" type="Sprite2D" parent="Ground"]
+modulate = Color(0.374139, 0.374139, 0.374139, 1)
+z_index = -9
+position = Vector2(152, 68)
+scale = Vector2(92, 122)
+texture = ExtResource("33_ur4j3")
 
 [connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]
