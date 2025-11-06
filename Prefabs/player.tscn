@@ -288,7 +288,6 @@ color = Color(1, 0.470588, 0.152941, 0.784314)
 [node name="Timer" type="Timer" parent="InteractArea/Spacebar/ProgressBar"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-process_mode = 3
 zoom = Vector2(3.105, 3.105)
 position_smoothing_speed = 25.0
 script = ExtResource("5_knrd4")

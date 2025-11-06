@@ -10,6 +10,11 @@ extends Camera2D
 @export var mouse_influence_radius := 200.0  # Pixels from center where influence starts
 @export var return_speed := 3.0  # How quickly camera returns to center
 
+var cam_centre: Vector2 = Vector2.ZERO
+
+func set_camera_centre(new_cam_centre: Vector2):
+	cam_centre = new_cam_centre
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		# Zoom in/out with mouse wheel
@@ -33,7 +38,7 @@ func _process(delta):
 	var viewport_rect = get_viewport().get_visible_rect()
 	
 	if !viewport_rect.has_point(mouse_pos_screen):
-		position = Vector2(0,0)
+		position = cam_centre
 		return
 
 	# Calculate mouse influence
@@ -42,11 +47,11 @@ func _process(delta):
 	var mouse_offset = mouse_pos - global_position
 	var distance_from_center = mouse_offset.length()
 	
-	var mouse_influence = Vector2.ZERO
+	var mouse_influence = cam_centre
 	if distance_from_center > mouse_influence_radius:
 		var influence_dir = mouse_offset.normalized()
 		var influence_amount = min((distance_from_center - mouse_influence_radius) / 100.0, 1.0)
-		mouse_influence = influence_dir * mouse_influence_strength * influence_amount
+		mouse_influence += influence_dir * mouse_influence_strength * influence_amount
 	
 	# Combine positions
 	var target_position = mouse_influence

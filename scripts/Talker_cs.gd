@@ -11,7 +11,12 @@ class_name TalkerCS
 var start_anim: AnimationPlayer
 var label: RichTextLabel
 var stopping = false
-static var current: TalkerCS
+static var current: TalkerCS = null
+var return_to_cam: Camera2D
+var balloon
+
+static func is_cutscene_happening():
+	return current == null
 
 static func call_out(anim= ""):
 	print("beh")
@@ -49,7 +54,15 @@ func start_cs():
 		d.visible = false
 		d.process_mode = d.PROCESS_MODE_DISABLED
 	DialogueManagerExampleBalloon.start_stop_CS(false)
-	DialogueManager.show_dialogue_balloon(resource,convo)
+	balloon = DialogueManager.show_dialogue_balloon(resource,convo)
+	print("type: " , balloon.get_class() )
+	return_to_cam = get_viewport().get_camera_2d()
+	$Camera2D.process_mode = Node.PROCESS_MODE_INHERIT
+	$Camera2D.visible = true
+	$Camera2D.make_current()
+	$Camera2D.set_camera_centre($Positions/CamPos1.position)
+	
+	print("Camera status: " , $Camera2D.visible)
 	#start_anim.get_parent().move_child(start_anim, start_anim.get_parent().get_child_count() - 1)
 	
 func post_dialogue_cleanup(_resource: DialogueResource):
@@ -79,3 +92,11 @@ func pack_up():
 		d.process_mode = d.PROCESS_MODE_INHERIT
 	player.start_stop_movement(true)
 	DialogueManager.disconnect("dialogue_ended",post_dialogue_cleanup)
+	current = null
+	$Camera2D.process_mode = Node.PROCESS_MODE_DISABLED
+	$Camera2D.visible = false
+	return_to_cam.make_current()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		balloon.next(resource.get_next_dialogue_line())

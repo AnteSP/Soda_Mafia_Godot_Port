@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=47 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_6ui25"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bq44jd2snmkhs" path="res://sprites/characters/Brother/Car laugh.png" id="28_mgbok"]
 [ext_resource type="Texture2D" uid="uid://ddn3jdrjkkn6k" path="res://sprites/characters/Brother/Car laugh 1.png" id="29_nguuq"]
 [ext_resource type="Texture2D" uid="uid://bgb7vqgfi2yvn" path="res://sprites/characters/Brother/Car look left.png" id="30_5sf6f"]
+[ext_resource type="Script" uid="uid://co6n2i8hovnyi" path="res://scripts/CamZoom.gd" id="30_nguuq"]
 [ext_resource type="Texture2D" uid="uid://dkihdqsxdew2c" path="res://sprites/characters/Brother/Car.png" id="31_ur4j3"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="32_5sf6f"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="33_ur4j3"]
@@ -76,9 +77,133 @@ fill_to = Vector2(0.97, 0)
 radius = 2.3
 height = 10.6
 
-[sub_resource type="Theme" id="Theme_3rrdj"]
-default_font = ExtResource("15_5sf6f")
-default_font_size = 0
+[sub_resource type="Animation" id="Animation_mgbok"]
+resource_name = "Brother Approach"
+length = 3.6895
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro_CS/Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.93),
+"transitions": PackedFloat32Array(1.1487, 0.420448, 1),
+"update": 0,
+"values": [Vector2(240, -120), Vector2(224.01, 112.755), Vector2(218.67, 169.37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro_CS/Car:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.69),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.129154]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro_CS/Car:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Looking"]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro_CS")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.23333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"start_stop_CS"
+}, {
+"args": [true],
+"method": &"start_stop_CS"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Intro_CS/Car")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Laugh", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nguuq"]
+resource_name = "Brother Leave"
+length = 3.6895
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro_CS/Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.16667),
+"transitions": PackedFloat32Array(4.28709, 1),
+"update": 0,
+"values": [Vector2(218.67, 169.37), Vector2(238.805, 500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro_CS/Car:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.666667, 1.33333, 1.74667),
+"transitions": PackedFloat32Array(1.93187, 0.378929, 0.392292),
+"update": 0,
+"values": [0.129154, -0.0349066, -0.0488692]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro_CS/Car:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro_CS")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.23333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"start_stop_CS"
+}, {
+"args": [true],
+"method": &"start_stop_CS"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_tc0jy"]
 resource_name = "Ch1_Intro_KickedOut"
@@ -228,134 +353,6 @@ tracks/5/keys = {
 "values": [&"default"]
 }
 
-[sub_resource type="Animation" id="Animation_mgbok"]
-resource_name = "Brother Approach"
-length = 3.6895
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Intro_CS/Car:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.1, 1.93),
-"transitions": PackedFloat32Array(1.1487, 0.420448, 1),
-"update": 0,
-"values": [Vector2(240, -120), Vector2(224.01, 112.755), Vector2(218.67, 169.37)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Intro_CS/Car:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.03333, 1.69),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.129154]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Intro_CS/Car:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2.7),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Looking"]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Intro_CS")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.23333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [false],
-"method": &"start_stop_CS"
-}, {
-"args": [true],
-"method": &"start_stop_CS"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Intro_CS/Car")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Laugh", 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_nguuq"]
-resource_name = "Brother Leave"
-length = 3.6895
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Intro_CS/Car:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.16667),
-"transitions": PackedFloat32Array(4.28709, 1),
-"update": 0,
-"values": [Vector2(218.67, 169.37), Vector2(238.805, 500)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Intro_CS/Car:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.666667, 1.33333, 1.74667),
-"transitions": PackedFloat32Array(1.93187, 0.378929, 0.392292),
-"update": 0,
-"values": [0.129154, -0.0349066, -0.0488692]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Intro_CS/Car:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Intro_CS")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.23333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [false],
-"method": &"start_stop_CS"
-}, {
-"args": [true],
-"method": &"start_stop_CS"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utrln"]
 _data = {
 &"Brother Approach": SubResource("Animation_mgbok"),
@@ -409,6 +406,10 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Theme" id="Theme_3rrdj"]
+default_font = ExtResource("15_5sf6f")
+default_font_size = 0
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
@@ -465,7 +466,7 @@ tile_set = SubResource("TileSet_ktssj")
 rendering_quadrant_size = 32
 
 [node name="player" parent="TileMapLayer" instance=ExtResource("2_6ui25")]
-position = Vector2(80, 168)
+position = Vector2(436, 136)
 Inventory = ExtResource("3_n2c5f")
 
 [node name="ConkerCoola" type="Sprite2D" parent="TileMapLayer"]
@@ -693,6 +694,87 @@ stream = ExtResource("7_utrln")
 [node name="CS_tnoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
+[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("disable_on_start", "CS_tnoise", "transition")]
+libraries = {
+&"": SubResource("AnimationLibrary_utrln")
+}
+script = ExtResource("20_3beet")
+convo = "cs1"
+resource = ExtResource("21_tc0jy")
+start_on_ready = null
+disable_on_start = [NodePath("../TileMapLayer/player")]
+CS_tnoise = NodePath("../CS_tnoise")
+transition = NodePath("../Transition")
+
+[node name="Camera2D" type="Camera2D" parent="Intro_CS"]
+process_mode = 4
+visible = false
+zoom = Vector2(3.105, 3.105)
+position_smoothing_speed = 25.0
+script = ExtResource("30_nguuq")
+zoom_speed = 1.0
+min_zoom = 1.5
+max_zoom = 8.0
+zoom_step = 1.0
+mouse_influence_strength = 50.0
+mouse_influence_radius = 5.0
+return_speed = 30.0
+
+[node name="Player Actor" type="CharacterBody2D" parent="Intro_CS"]
+y_sort_enabled = true
+position = Vector2(77, 132)
+script = ExtResource("27_4sjt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro_CS/Player Actor"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Intro_CS/Player Actor"]
+position = Vector2(3, -12)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"Thrown"
+autoplay = "Invis"
+
+[node name="Positions" type="Node" parent="Intro_CS"]
+
+[node name="PPos1" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(48, 192)
+
+[node name="PPos2" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(64, 184)
+
+[node name="PPos3" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(88, 224)
+
+[node name="PPos4" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(328, 192)
+
+[node name="CamPos1" type="Node2D" parent="Intro_CS/Positions"]
+position = Vector2(79, 172)
+
+[node name="Car" type="AnimatedSprite2D" parent="Intro_CS"]
+position = Vector2(240, -120)
+sprite_frames = SubResource("SpriteFrames_vdnnh")
+
+[node name="PointLight2D" type="PointLight2D" parent="Intro_CS/Car"]
+position = Vector2(24, 112)
+rotation = -0.0661566
+scale = Vector2(2, 2.625)
+color = Color(0.994902, 1, 0.801477, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_16566")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Intro_CS/Car"]
+position = Vector2(-24, 112)
+rotation = 0.0663225
+scale = Vector2(2, 2.625)
+color = Color(0.996078, 1, 0.8, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_16566")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="inv_ui" parent="CanvasLayer" instance=ExtResource("8_vlxol")]
@@ -730,69 +812,6 @@ stream = ExtResource("16_ur4j3")
 
 [node name="Transition" parent="." instance=ExtResource("24_tc0jy")]
 visible = false
-
-[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("disable_on_start", "CS_tnoise", "transition")]
-libraries = {
-&"": SubResource("AnimationLibrary_utrln")
-}
-script = ExtResource("20_3beet")
-convo = "cs1"
-resource = ExtResource("21_tc0jy")
-disable_on_start = [NodePath("../TileMapLayer/player")]
-CS_tnoise = NodePath("../CS_tnoise")
-transition = NodePath("../Transition")
-
-[node name="Player Actor" type="CharacterBody2D" parent="Intro_CS"]
-y_sort_enabled = true
-position = Vector2(77, 132)
-script = ExtResource("27_4sjt4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro_CS/Player Actor"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Intro_CS/Player Actor"]
-position = Vector2(3, -12)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"Thrown"
-autoplay = "Invis"
-
-[node name="Positions" type="Node" parent="Intro_CS"]
-
-[node name="PPos1" type="Node2D" parent="Intro_CS/Positions"]
-position = Vector2(48, 192)
-
-[node name="PPos2" type="Node2D" parent="Intro_CS/Positions"]
-position = Vector2(64, 184)
-
-[node name="PPos3" type="Node2D" parent="Intro_CS/Positions"]
-position = Vector2(88, 224)
-
-[node name="PPos4" type="Node2D" parent="Intro_CS/Positions"]
-position = Vector2(328, 192)
-
-[node name="Car" type="AnimatedSprite2D" parent="Intro_CS"]
-position = Vector2(240, -120)
-sprite_frames = SubResource("SpriteFrames_vdnnh")
-
-[node name="PointLight2D" type="PointLight2D" parent="Intro_CS/Car"]
-position = Vector2(24, 112)
-rotation = -0.0661566
-scale = Vector2(2, 2.625)
-color = Color(0.994902, 1, 0.801477, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_16566")
-
-[node name="PointLight2D2" type="PointLight2D" parent="Intro_CS/Car"]
-position = Vector2(-24, 112)
-rotation = 0.0663225
-scale = Vector2(2, 2.625)
-color = Color(0.996078, 1, 0.8, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_16566")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.570946, 0.626316, 0.710555, 1)

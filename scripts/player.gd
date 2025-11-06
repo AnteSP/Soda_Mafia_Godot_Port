@@ -82,3 +82,11 @@ func update_animation(state: String, input_dir: Vector2):
 	# Play animation (e.g., "walk_left" or "idle_down")
 	$AnimatedSprite2D.play(state + "_" + current_dir)
 	$AnimatedSprite2D.speed_scale = actual_speed/100
+
+func dissapear():
+	$Camera2D.visible = false
+	$Camera2D.process_mode = $Camera2D.PROCESS_MODE_DISABLED
+	
+func reappear():
+	$Camera2D.visible = true
+	$Camera2D.process_mode = $Camera2D.PROCESS_MODE_INHERIT
