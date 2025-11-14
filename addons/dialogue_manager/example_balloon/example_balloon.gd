@@ -143,7 +143,12 @@ func next(next_id: String) -> void:
 			var audio_stream = ResourceLoader.load("res://sound/TypeNoises/" + tnoise)
 			if type_noise is AudioStreamPlayer:
 				type_noise.stream = audio_stream
-	if type_noise != null: type_noise.play()
+	if type_noise != null and type_noise is AudioStreamPlayer: 
+		type_noise.play()
+		if doing_force_finish:
+			type_noise.pitch_scale = 3
+		else:
+			type_noise.pitch_scale = 1
 
 
 
@@ -184,7 +189,6 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 	elif !is_stopped and event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
 
-
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
@@ -193,6 +197,17 @@ static func start_stop_CS(start: bool):
 
 #endregion
 
+#SHIT I DID:
+static var doing_force_finish = false
+func force_finish():
+	if not doing_force_finish:
+		doing_force_finish = true
+		while dialogue_label and doing_force_finish:
+			AudioServer.get_bus_effect(0, 0).pitch_scale = 3
+			await get_tree().create_timer(0.2).timeout
+			dialogue_label.skip_typing()
+			next(dialogue_line.next_id)
+		AudioServer.get_bus_effect(0, 0).pitch_scale = 1
 
 func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
 	pass # Replace with function body.

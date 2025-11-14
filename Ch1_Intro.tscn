@@ -694,15 +694,13 @@ stream = ExtResource("7_utrln")
 [node name="CS_tnoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
-[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("disable_on_start", "CS_tnoise", "transition")]
+[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("CS_tnoise", "transition")]
 libraries = {
 &"": SubResource("AnimationLibrary_utrln")
 }
 script = ExtResource("20_3beet")
 convo = "cs1"
 resource = ExtResource("21_tc0jy")
-start_on_ready = null
-disable_on_start = [NodePath("../TileMapLayer/player")]
 CS_tnoise = NodePath("../CS_tnoise")
 transition = NodePath("../Transition")
 

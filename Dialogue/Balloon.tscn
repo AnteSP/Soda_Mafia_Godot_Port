@@ -76,7 +76,6 @@ default_font = ExtResource("4_wgpgj")
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
-visible = false
 script = ExtResource("1_7h7kg")
 
 [node name="Balloon" type="Control" parent="."]

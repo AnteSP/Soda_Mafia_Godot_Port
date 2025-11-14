@@ -14,19 +14,44 @@ var stopping = false
 static var current: TalkerCS = null
 var return_to_cam: Camera2D
 var balloon
+var prev_escape: bool = false
+static var skip_prompt_on: bool = false
+var fade_instance = null
+
+func _process(delta):
+	if Input.is_key_pressed(KEY_ESCAPE) and not prev_escape and not stopping:
+		if skip_prompt_on and balloon:
+			balloon.force_finish()
+			current.speed_scale = 99
+		else:
+			fade_instance = load("res://Prefabs/SkipCutscenePopup.tscn").instantiate()
+			add_child(fade_instance)
+			skip_prompt_on = true
+			prev_escape = Input.is_key_pressed(KEY_ESCAPE)
+	else:
+		prev_escape = Input.is_key_pressed(KEY_ESCAPE)
+		if DialogueManagerExampleBalloon.doing_force_finish:
+			DialogueManagerExampleBalloon.doing_force_finish = false
+			if current:
+				current.speed_scale = 1
+
+static func skip_cs_prompt_gone():
+	skip_prompt_on = false
 
 static func is_cutscene_happening():
 	return current == null
 
 static func call_out(anim= ""):
-	print("beh")
 	if anim != "":
 		current.play(anim)
 
 static func do_movement(actor="",posi="",new_speed: float = 100):
 	var actor_node = current.get_node(actor)
 	if actor_node is NPC_Movement:
-		actor_node.set_target(current.get_node("Positions/" + posi).get_path(),new_speed)
+		actor_node.set_target(current.get_node("Positions/" + posi).get_path(),new_speed )
+		if DialogueManagerExampleBalloon.doing_force_finish:
+			await current.get_tree().create_timer(0.05).timeout
+			actor_node.position = current.get_node("Positions/" + posi).position
 
 func _ready():
 	start_anim = transition.get_node("Transition/AnimationPlayer")
@@ -66,12 +91,16 @@ func start_cs():
 	#start_anim.get_parent().move_child(start_anim, start_anim.get_parent().get_child_count() - 1)
 	
 func post_dialogue_cleanup(_resource: DialogueResource):
+	stopping = true
+	DialogueManagerExampleBalloon.doing_force_finish = false
+	if fade_instance:
+		fade_instance.hide()
 	start_anim.stop()
 	start_anim.play("Start_CS")
 	start_anim.seek(start_anim.get_animation("Start_CS").length-0.4)
 	start_anim.speed_scale = -1
 	label.text = "Byebye cutscene :3"
-	stopping = true
+	
 
 func start_stop_CS(start: bool):
 	DialogueManagerExampleBalloon.start_stop_CS(start)
@@ -96,7 +125,3 @@ func pack_up():
 	$Camera2D.process_mode = Node.PROCESS_MODE_DISABLED
 	$Camera2D.visible = false
 	return_to_cam.make_current()
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		balloon.next(resource.get_next_dialogue_line())

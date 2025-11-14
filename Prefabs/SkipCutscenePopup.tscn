@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj0y8y8bl8ps"]
+
+[ext_resource type="Script" uid="uid://dc8r04k3x87c8" path="res://scripts/fadeout.gd" id="1_sye36"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="2_k8ru5"]
+[ext_resource type="Shader" uid="uid://bl5ci6jfoev0w" path="res://Prefabs/vhs_shader.gdshader" id="3_k8ru5"]
+[ext_resource type="AudioStream" uid="uid://5bgb3tovos5n" path="res://sound/fast_forward.wav" id="4_mf21j"]
+
+[sub_resource type="Theme" id="Theme_h855t"]
+default_font = ExtResource("2_k8ru5")
+default_font_size = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mf21j"]
+shader = ExtResource("3_k8ru5")
+shader_parameter/time_speed = 2.0
+shader_parameter/noise_strength = 0.03
+shader_parameter/jitter = 2.0
+shader_parameter/scanline_strength = 0.15
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_scale = 4.5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sye36")
+fade_time = 4.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 72.0
+color = Color(0.61339, 0.61339, 0.61339, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 582.0
+offset_bottom = 40.0
+scale = Vector2(1.52, 1.52)
+theme = SubResource("Theme_h855t")
+text = "Hold Escape to skip cutscene"
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 712.0
+offset_bottom = 64.0
+color = Color(0.0196078, 0.0196078, 0.0196078, 0.172549)
+
+[node name="VHS" type="ColorRect" parent="Control"]
+visible = false
+top_level = true
+z_index = 999
+material = SubResource("ShaderMaterial_mf21j")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 1, 1, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/VHS"]
+stream = ExtResource("4_mf21j")
+pitch_scale = 0.34
