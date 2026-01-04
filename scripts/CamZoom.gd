@@ -1,4 +1,5 @@
 extends Camera2D
+class_name CamZoom
 
 @export var zoom_speed := 0.1      # How fast to zoom
 @export var min_zoom := 0.5       # Closest zoom
@@ -10,7 +11,16 @@ extends Camera2D
 @export var mouse_influence_radius := 200.0  # Pixels from center where influence starts
 @export var return_speed := 3.0  # How quickly camera returns to center
 
+static var main_camera: CamZoom = null
 var cam_centre: Vector2 = Vector2.ZERO
+var child: CameraShake = null
+
+func _ready() -> void:
+	child = CameraShake.new()
+	child.shake_amount = 10.0
+	child.decrease_factor = 1.0
+	add_child(child)
+	main_camera = self
 
 func set_camera_centre(new_cam_centre: Vector2):
 	cam_centre = new_cam_centre
@@ -55,6 +65,8 @@ func _process(delta):
 	
 	# Combine positions
 	var target_position = mouse_influence
+	if child:
+		target_position += child.get_offset()
 	
 	# Smooth movement
 	position = position.lerp(target_position, return_speed * delta)

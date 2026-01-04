@@ -18,7 +18,7 @@ var prev_escape: bool = false
 static var skip_prompt_on: bool = false
 var fade_instance = null
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE) and not prev_escape and not stopping:
 		if skip_prompt_on and balloon:
 			balloon.force_finish()

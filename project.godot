@@ -12,17 +12,17 @@ config_version=5
 
 config/name="Soda Mafia"
 run/main_scene="uid://dqhym4kq6vyim"
-config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://72e3m722ssxm"
 
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+flowerwall_crt="*res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn"
 
 [dialogue_manager]
 
 runtime/balloon_path="res://Dialogue/Balloon.tscn"
-runtime/advanced/uses_dotnet=true
 
 [display]
 
@@ -34,7 +34,14 @@ project/assembly_name="New Game Project"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/flowerwall_postprocess/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://scripts/": "green",
+"res://sprites/": "purple"
+}
 
 [global_group]
 

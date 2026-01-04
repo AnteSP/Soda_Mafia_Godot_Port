@@ -5,9 +5,11 @@ Bar Tender: GET OUTTA MY PUB YOU DRUNKARD![#tnoise=MafiaTypeNoise.wav]
 do TalkerCS.call_out("Player_Drunk")
 You: ...[#tnoise=DefaultMaleTypeNoise.wav]
 You: Egh... F- *hiccup* fffffuck you
+do CamZoom.main_camera.child.start(4,15,1)
 Everyone: [shake rate=20.0 level=20 connected=1]HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA[/shake][#tnoise=laugh.wav]
+do CamZoom.main_camera.child.stop()
 do TalkerCS.do_movement("Player Actor","PPos1",20)
-You: Heyyy... Fuck y- *hiccup* fyUCK you ALL![#tnoise=DefaultMaleTypeNoise.wav]
+You: Heyyy... Fuck y- *hiccup* -ou ALL![#tnoise=DefaultMaleTypeNoise.wav]
 do TalkerCS.call_out("Brother Approach")
 ...
 #brother pulls up and laughs

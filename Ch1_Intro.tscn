@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=48 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_6ui25"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dgybi5uhp8jwr" path="res://sprites/UI/UI-tab-extended-norm.png" id="13_mgbok"]
 [ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="14_nguuq"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="15_5sf6f"]
+[ext_resource type="Script" uid="uid://b2p1qwmqx4qyx" path="res://camera_shake.gd" id="16_5sf6f"]
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="16_ur4j3"]
 [ext_resource type="Script" uid="uid://c26fwd1q8awsq" path="res://scripts/Talker_cs.gd" id="20_3beet"]
 [ext_resource type="Texture2D" uid="uid://dteicinp1d2wk" path="res://sprites/ConkerCoola.png" id="20_n2c5f"]
@@ -717,6 +718,10 @@ zoom_step = 1.0
 mouse_influence_strength = 50.0
 mouse_influence_radius = 5.0
 return_speed = 30.0
+
+[node name="Shaker" type="Node" parent="Intro_CS/Camera2D"]
+process_mode = 3
+script = ExtResource("16_5sf6f")
 
 [node name="Player Actor" type="CharacterBody2D" parent="Intro_CS"]
 y_sort_enabled = true
