@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://btlq8t13lv4ob"]
+[gd_scene load_steps=7 format=3 uid="uid://btlq8t13lv4ob"]
 
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="1_refkr"]
 
@@ -82,6 +82,8 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_h05kx"]
 
+[sub_resource type="FontVariation" id="FontVariation_refkr"]
+
 [node name="Transition" type="CanvasLayer"]
 layer = 128
 
@@ -107,6 +109,7 @@ offset_right = 1088.0
 offset_bottom = 576.0
 theme = SubResource("Theme_h05kx")
 theme_override_fonts/normal_font = ExtResource("1_refkr")
+theme_override_fonts/bold_font = SubResource("FontVariation_refkr")
 theme_override_font_sizes/normal_font_size = 66
 text = "Whooa a text thibng???!?!"
 horizontal_alignment = 1

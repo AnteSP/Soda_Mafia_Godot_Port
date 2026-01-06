@@ -123,3 +123,20 @@ func _on_preset_selected(value:int) -> void:
 			bloom_t.value = 0.16
 			bloom_i.value = 1.9
 			rgb.button_pressed = true
+			
+		6: #Soda Mafia
+			color_compression.value = 3.8#pos off
+			downscale.value = 0#pos off
+			preblur_sl.value = 1.0
+			grain_sl.value = 0.15#pos off
+			scanlines_sl.value = 0.45#pos off
+			scanlines_size_slider.value = 0.9#pos off
+			curve_sl.value = 1.03#pos off
+			vignette_size_sl.value = 2.0#pos off
+			vignette_smoothness_sl.value = 0.45#pos off
+			wiggle_sl.value = 0.005#pos off
+			chromaberr_sl.value = 1.0#pos off
+			brightness.value = 1.25#pos off
+			bloom_t.value = 0.18#pos
+			bloom_i.value = 3#pos
+			rgb.button_pressed = true
