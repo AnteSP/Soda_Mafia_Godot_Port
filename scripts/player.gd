@@ -7,10 +7,13 @@ var current_dir = "down"
 @export var sbp: SpaceBarPrompt
 @export var Inventory: Inv
 var interactable
+static var current: player
+@onready var boundary_pulsation = get_tree().get_first_node_in_group("Boundary").get_parent()
 
 func _ready():
 	interactable = sbp.get_node("interactable")
 	DialogueManager.connect("dialogue_ended", post_dialogue_cleanup)
+	current = self
 
 func _physics_process(delta):
 	#print("Stopped- " , stopped)
@@ -36,7 +39,7 @@ func player_movement(_delta):
 
 	var input_dir = Input.get_vector("A", "D", "W", "S")
 	if Input.is_action_pressed("Shift"):
-		actual_speed = speed/3
+		actual_speed = float(speed)/3
 	else:
 		actual_speed = speed
 	velocity = input_dir * actual_speed
@@ -45,8 +48,10 @@ func player_movement(_delta):
 	# Update animation only if there's movement input
 	if input_dir != Vector2.ZERO:
 		update_animation("walk", input_dir)
+		boundary_pulsation.start_stop_pulsing(true)
 	else:
 		update_animation("idle", input_dir)
+		boundary_pulsation.interrupt_pulsating()
 		
 
 static func start_stop_movement(start: bool):

@@ -7,8 +7,10 @@ radius = 2.3
 height = 10.6
 
 [node name="StaticBody2D" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("2_f6yr7")
 offset = Vector2(0, -32.575)
 

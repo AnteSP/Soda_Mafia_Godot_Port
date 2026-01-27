@@ -14,12 +14,18 @@ func _ready() -> void:
 	progress_bar = get_node("Spacebar/ProgressBar")
 
 func get_closest_body(filter_groups: Array = []) -> PhysicsBody2D:
+	if filter_groups.size() <= 0:
+		return null
+	
 	var closest_body: PhysicsBody2D = null
 	var closest_distance_sq: float = INF
 	var center_position: Vector2 = global_position
 	
 	for body in get_overlapping_bodies():
-		if filter_groups.size() > 0 and not body.is_in_group(filter_groups[0]):
+		
+		if body.is_in_group("Boundary"):
+			body.get_parent().pulsate_barrier()
+		if not body.is_in_group(filter_groups[0]):
 			continue
 		var distance_sq = center_position.distance_squared_to(body.global_position)
 		if distance_sq < closest_distance_sq:

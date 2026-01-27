@@ -1,12 +1,14 @@
-[gd_scene load_steps=48 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=51 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
+[ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="1_ur4j3"]
 [ext_resource type="PackedScene" uid="uid://cm8bawqhwdrt2" path="res://Prefabs/player.tscn" id="2_6ui25"]
 [ext_resource type="Resource" uid="uid://bchubbvxddp4h" path="res://Prefabs/Items/PlayerInventory.tres" id="3_n2c5f"]
 [ext_resource type="PackedScene" uid="uid://bnhjcdm4tneov" path="res://Prefabs/Tree.tscn" id="4_l83ky"]
 [ext_resource type="Script" uid="uid://55m633i0gbmx" path="res://scripts/Talker.gd" id="5_3beet"]
 [ext_resource type="Resource" uid="uid://dav4r8h5ceu5n" path="res://Dialogue/test2.dialogue" id="6_tc0jy"]
 [ext_resource type="AudioStream" uid="uid://dtqxerhj7vesc" path="res://sound/TypeNoises/DefaultMaleTypeNoise.wav" id="7_utrln"]
+[ext_resource type="PackedScene" uid="uid://ddwq0yu6fm4sq" path="res://Prefabs/player_ruler.tscn" id="8_vdnnh"]
 [ext_resource type="PackedScene" uid="uid://dr1pbs47u47cm" path="res://Prefabs/Items/inv_ui.tscn" id="8_vlxol"]
 [ext_resource type="Texture2D" uid="uid://cuncyo0ppoepb" path="res://sprites/UI/UI-tab-retracted-norm.png" id="9_4sjt4"]
 [ext_resource type="Texture2D" uid="uid://dk3jjigaf772j" path="res://sprites/UI/UI-tab-pressed.png" id="10_iw2f0"]
@@ -33,6 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://dkihdqsxdew2c" path="res://sprites/characters/Brother/Car.png" id="31_ur4j3"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="32_5sf6f"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="33_ur4j3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ur4j3"]
+rough = true
+absorbent = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5sf6f"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -415,49 +421,66 @@ default_font_size = 0
 [node name="world" type="Node2D"]
 y_sort_enabled = true
 
-[node name="World" type="Node" parent="."]
+[node name="Boundary" type="Node2D" parent="."]
 
-[node name="Tree" parent="World" node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("4_l83ky")]
+[node name="StaticBody2D" type="StaticBody2D" parent="Boundary"]
+physics_material_override = SubResource("PhysicsMaterial_ur4j3")
+script = ExtResource("1_ur4j3")
+
+[node name="CollisionShape" type="CollisionPolygon2D" parent="Boundary/StaticBody2D"]
+position = Vector2(-12, -15)
+build_mode = 1
+polygon = PackedVector2Array(753, 233, 639, 86, 466, 75, 370, 112, 373, 220)
+one_way_collision_margin = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Boundary/StaticBody2D"]
+position = Vector2(-12, -15)
+color = Color(1, 1, 1, 0)
+invert_enabled = true
+polygon = PackedVector2Array(753, 233, 639, 86, 466, 75, 370, 112, 373, 220)
+
+[node name="Detection" type="StaticBody2D" parent="Boundary/StaticBody2D" groups=["Boundary"]]
+
+[node name="DetectionShape" type="CollisionPolygon2D" parent="Boundary/StaticBody2D/Detection"]
+position = Vector2(-12, -15)
+build_mode = 1
+polygon = PackedVector2Array(844, 278, 660, 43, 463, 28, 334, 74, 330, 258)
+one_way_collision_margin = 0.0
+
+[node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Tree" parent="Trees" node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(-56, 136)
 script = ExtResource("5_3beet")
 convo = "start"
 resource = ExtResource("6_tc0jy")
-type_noise = NodePath("../../DefaultMaleTypeNoise")
+type_noise = NodePath("../../Intro_CS/DefaultMaleTypeNoise")
 
-[node name="Tree2" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-y_sort_enabled = true
+[node name="Tree2" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(-120, 112)
 
-[node name="Tree3" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+[node name="Tree3" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 z_index = -1
-y_sort_enabled = true
 position = Vector2(-72, 72)
 
-[node name="Tree4" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-y_sort_enabled = true
+[node name="Tree4" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(-96, 208)
 
-[node name="Tree5" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-y_sort_enabled = true
+[node name="Tree5" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(-56, 272)
 
-[node name="Tree6" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-y_sort_enabled = true
+[node name="Tree6" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(-8, 304)
 
-[node name="Tree7" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-y_sort_enabled = true
+[node name="Tree7" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(168, 312)
 
-[node name="Tree8" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
+[node name="Tree8" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 z_index = -1
-y_sort_enabled = true
 position = Vector2(120, 336)
 
-[node name="Tree9" parent="World" groups=["Interactable"] instance=ExtResource("4_l83ky")]
-z_index = -1
-y_sort_enabled = true
+[node name="Tree9" parent="Trees" groups=["Interactable"] instance=ExtResource("4_l83ky")]
 position = Vector2(416, 104)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -467,8 +490,12 @@ tile_set = SubResource("TileSet_ktssj")
 rendering_quadrant_size = 32
 
 [node name="player" parent="TileMapLayer" instance=ExtResource("2_6ui25")]
-position = Vector2(436, 136)
+position = Vector2(433, 132)
 Inventory = ExtResource("3_n2c5f")
+
+[node name="player_ruler" parent="TileMapLayer" instance=ExtResource("8_vdnnh")]
+visible = false
+position = Vector2(714, 205)
 
 [node name="ConkerCoola" type="Sprite2D" parent="TileMapLayer"]
 z_index = 1
@@ -686,15 +713,6 @@ sprite_frames = ExtResource("26_4sjt4")
 animation = &"idle_up"
 autoplay = "idle_up"
 
-[node name="LaughTrack" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
-stream = ExtResource("10_mgbok")
-
-[node name="DefaultMaleTypeNoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
-stream = ExtResource("7_utrln")
-
-[node name="CS_tnoise" type="AudioStreamPlayer" parent="." groups=["tnoise"]]
-stream = ExtResource("7_utrln")
-
 [node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("CS_tnoise", "transition")]
 libraries = {
 &"": SubResource("AnimationLibrary_utrln")
@@ -702,7 +720,7 @@ libraries = {
 script = ExtResource("20_3beet")
 convo = "cs1"
 resource = ExtResource("21_tc0jy")
-CS_tnoise = NodePath("../CS_tnoise")
+CS_tnoise = NodePath("CS_tnoise")
 transition = NodePath("../Transition")
 
 [node name="Camera2D" type="Camera2D" parent="Intro_CS"]
@@ -778,6 +796,15 @@ color = Color(0.996078, 1, 0.8, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_16566")
 
+[node name="LaughTrack" type="AudioStreamPlayer" parent="Intro_CS" groups=["tnoise"]]
+stream = ExtResource("10_mgbok")
+
+[node name="DefaultMaleTypeNoise" type="AudioStreamPlayer" parent="Intro_CS" groups=["tnoise"]]
+stream = ExtResource("7_utrln")
+
+[node name="CS_tnoise" type="AudioStreamPlayer" parent="Intro_CS" groups=["tnoise"]]
+stream = ExtResource("7_utrln")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="inv_ui" parent="CanvasLayer" instance=ExtResource("8_vlxol")]
@@ -846,3 +873,5 @@ scale = Vector2(92, 122)
 texture = ExtResource("33_ur4j3")
 
 [connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]
+
+[editable path="TileMapLayer/player_ruler"]

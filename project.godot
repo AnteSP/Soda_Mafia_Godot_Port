@@ -48,6 +48,7 @@ folder_colors={
 Interactable="spaceBarPrompt will pick this up"
 CameraBounds=""
 tnoise="for typenoises"
+Boundary="Invisible walls"
 
 [input]
 
