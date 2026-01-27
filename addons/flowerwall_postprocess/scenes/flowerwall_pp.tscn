@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc1fomjf362h5"]
+[gd_scene load_steps=15 format=3 uid="uid://cc1fomjf362h5"]
 
 [ext_resource type="Script" uid="uid://dmk7ono2imeae" path="res://addons/flowerwall_postprocess/scripts/flowerwall_pp_script.gd" id="1_8p6dx"]
 [ext_resource type="Script" uid="uid://dxlwhj47enyqa" path="res://addons/flowerwall_postprocess/scripts/config ui scripts/fl_pp_presets.gd" id="2_aii1a"]
+[ext_resource type="Texture2D" uid="uid://72e3m722ssxm" path="res://ICON.png" id="7_2g1mu"]
 [ext_resource type="Script" uid="uid://tog6nmrph15b" path="res://addons/flowerwall_postprocess/scripts/config ui scripts/fl_pp_ui_slider.gd" id="8_orrbg"]
 [ext_resource type="Script" uid="uid://c5emn1tatcw1r" path="res://addons/flowerwall_postprocess/scripts/config ui scripts/fl_pp_ui_toggle.gd" id="9_30wqw"]
-[ext_resource type="Material" uid="uid://c45ounqnx7c2o" path="res://addons/flowerwall_postprocess/shaders/dithering_shader.material" id="26_aii1a"]
-[ext_resource type="Material" uid="uid://2tsdqpogesqb" path="res://addons/flowerwall_postprocess/shaders/blurx_shader.material" id="27_yx2vx"]
-[ext_resource type="Material" uid="uid://7wl8n2wh5jxt" path="res://addons/flowerwall_postprocess/shaders/crt_shader.material" id="28_aii1a"]
-[ext_resource type="Material" uid="uid://bjln2ovgooo2l" path="res://addons/flowerwall_postprocess/shaders/blury_shader.material" id="28_yx2vx"]
-[ext_resource type="Material" uid="uid://qpvyejb5i2sn" path="res://addons/flowerwall_postprocess/shaders/bloom_shader.material" id="29_aii1a"]
+[ext_resource type="Material" uid="uid://45ifrdosy4ob" path="res://addons/flowerwall_postprocess/shaders/dithering_shader.material" id="26_aii1a"]
+[ext_resource type="Material" uid="uid://cxkuhlfam7xlh" path="res://addons/flowerwall_postprocess/shaders/blurx_shader.material" id="27_yx2vx"]
+[ext_resource type="Material" uid="uid://kour5mhba4lb" path="res://addons/flowerwall_postprocess/shaders/crt_shader.material" id="28_aii1a"]
+[ext_resource type="Material" uid="uid://5alt6mginfqa" path="res://addons/flowerwall_postprocess/shaders/blury_shader.material" id="28_yx2vx"]
+[ext_resource type="Material" uid="uid://dy2kx7ry8fflx" path="res://addons/flowerwall_postprocess/shaders/bloom_shader.material" id="29_aii1a"]
 [ext_resource type="Script" uid="uid://dtpi5lt33t6eg" path="res://addons/flowerwall_postprocess/scripts/config ui scripts/fl_pp_close.gd" id="32_8p6dx"]
 [ext_resource type="Script" uid="uid://ch7evcy0lie0m" path="res://addons/flowerwall_postprocess/scripts/config ui scripts/fl_pp_save.gd" id="32_jahb0"]
 
@@ -36,7 +37,7 @@ post_bloom = NodePath("post_bloom")
 crt = NodePath("CRT")
 
 [node name="dithering" type="CanvasLayer" parent="."]
-layer = 99
+layer = 129
 
 [node name="dither" type="ColorRect" parent="dithering"]
 material = ExtResource("26_aii1a")
@@ -48,7 +49,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="preblur_x" type="CanvasLayer" parent="."]
-layer = 100
+layer = 129
 
 [node name="x_blur" type="ColorRect" parent="preblur_x"]
 material = ExtResource("27_yx2vx")
@@ -62,7 +63,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="preblur_y" type="CanvasLayer" parent="."]
-layer = 100
+layer = 129
 
 [node name="y_blur" type="ColorRect" parent="preblur_y"]
 material = ExtResource("28_yx2vx")
@@ -76,7 +77,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="CRT" type="CanvasLayer" parent="."]
-layer = 102
+layer = 129
 
 [node name="crt_shader" type="ColorRect" parent="CRT"]
 material = ExtResource("28_aii1a")
@@ -88,7 +89,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="post_bloom" type="CanvasLayer" parent="."]
-layer = 103
+layer = 129
 
 [node name="bloom" type="ColorRect" parent="post_bloom"]
 material = ExtResource("29_aii1a")
@@ -102,7 +103,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
-layer = 104
+layer = 129
 
 [node name="FlowerwallCrtConfigUi" type="ColorRect" parent="UI"]
 anchors_preset = 9
@@ -122,7 +123,7 @@ offset_top = 56.0
 offset_right = 506.5
 offset_bottom = 87.0
 grow_horizontal = 2
-item_count = 6
+item_count = 7
 popup/item_0/text = "Sharp"
 popup/item_0/id = 0
 popup/item_1/text = "Crisp low-res"
@@ -135,6 +136,9 @@ popup/item_4/text = "VHS Tape"
 popup/item_4/id = 4
 popup/item_5/text = "Artoria's 1440p+ settings"
 popup/item_5/id = 5
+popup/item_6/text = "Soda Mafia"
+popup/item_6/icon = ExtResource("7_2g1mu")
+popup/item_6/id = 6
 script = ExtResource("2_aii1a")
 color_compression = NodePath("../Options/Color Compression/color_compression_slider")
 downscale = NodePath("../Options/Downscaling/downscale_slider")
@@ -350,7 +354,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 6.0
-value = 0.45
 script = ExtResource("8_orrbg")
 _mat = ExtResource("28_aii1a")
 _var = "shader_parameter/scanline_thickness"
@@ -457,7 +460,7 @@ size_flags_vertical = 4
 min_value = 0.05
 max_value = 5.0
 step = 0.05
-value = 0.4
+value = 0.39999999999999997
 script = ExtResource("8_orrbg")
 _mat = ExtResource("28_aii1a")
 _var = "shader_parameter/vignette_smoothness"
