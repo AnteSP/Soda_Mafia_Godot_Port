@@ -92,7 +92,6 @@ func start_cs():
 	
 func post_dialogue_cleanup(_resource: DialogueResource):
 	stopping = true
-	DialogueManagerExampleBalloon.doing_force_finish = false
 	if fade_instance:
 		fade_instance.hide()
 	start_anim.stop()
@@ -101,6 +100,9 @@ func post_dialogue_cleanup(_resource: DialogueResource):
 	start_anim.speed_scale = -1
 	label.text = "Byebye cutscene :3"
 	
+	if DialogueManagerExampleBalloon.doing_force_finish:
+		AudioServer.get_bus_effect(0, 0).pitch_scale = 1
+	DialogueManagerExampleBalloon.doing_force_finish = false
 
 func start_stop_CS(start: bool):
 	DialogueManagerExampleBalloon.start_stop_CS(start)

@@ -10,7 +10,7 @@ func _ready():
 	tween.tween_callback(self.queue_free)
 	tween.tween_callback(TalkerCS.skip_cs_prompt_gone)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$VHS.visible = DialogueManagerExampleBalloon.doing_force_finish
 	if DialogueManagerExampleBalloon.doing_force_finish:
 		if not $VHS/AudioStreamPlayer2D.playing:
