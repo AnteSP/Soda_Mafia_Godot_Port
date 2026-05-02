@@ -25,6 +25,8 @@ func get_closest_body(filter_groups: Array = []) -> PhysicsBody2D:
 		
 		if body.is_in_group("Boundary"):
 			body.get_parent().pulsate_barrier()
+		elif body.is_in_group("Auto_Interact"):
+			body.Use(0)
 		if not body.is_in_group(filter_groups[0]):
 			continue
 		var distance_sq = center_position.distance_squared_to(body.global_position)

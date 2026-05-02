@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=64 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_3aw6c"]
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
@@ -40,8 +40,11 @@
 [ext_resource type="PackedScene" uid="uid://qvawp73lc564" path="res://Prefabs/Apple.tscn" id="36_mfpy4"]
 [ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="37_t6rrq"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="38_t6rrq"]
+[ext_resource type="Resource" uid="uid://8i57gjhmfs1y" path="res://Dialogue/Chapter1Singles.dialogue" id="40_kxw66"]
 [ext_resource type="Texture2D" uid="uid://dnvcucrofdx0f" path="res://sprites/WASD sign.png" id="40_rlcjp"]
+[ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="40_rsj32"]
 [ext_resource type="AudioStream" uid="uid://bqxltvj5bausg" path="res://sound/Perfectly_Good_Soda_Maker.mp3" id="41_8aefv"]
+[ext_resource type="Shader" uid="uid://ddtf7047f335t" path="res://SCREEN.gdshader" id="45_vxgx1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ur4j3"]
 rough = true
@@ -421,9 +424,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxgx1"]
+shader = ExtResource("45_vxgx1")
+shader_parameter/distortion_strength = 0.1
+shader_parameter/zoom = 0.9
+
 [sub_resource type="Theme" id="Theme_3rrdj"]
 default_font = ExtResource("15_5sf6f")
 default_font_size = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsj32"]
+size = Vector2(59, 211)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxw66"]
 size = Vector2(100, 28)
@@ -824,15 +835,27 @@ stream = ExtResource("7_utrln")
 [node name="CS_tnoise" type="AudioStreamPlayer" parent="Intro_CS" groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="inv_ui" parent="CanvasLayer" instance=ExtResource("8_vlxol")]
+[node name="TV effects" type="CanvasLayer" parent="."]
 visible = false
 
+[node name="inv_ui" parent="TV effects" instance=ExtResource("8_vlxol")]
+visible = false
+
+[node name="TV Shader" type="ColorRect" parent="TV effects"]
+material = SubResource("ShaderMaterial_vxgx1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="InventoryButton" type="TextureButton" parent="CanvasLayer"]
-offset_left = 8.0
+offset_left = 27.0
 offset_top = 456.0
-offset_right = 60.0
+offset_right = 79.0
 offset_bottom = 469.0
 scale = Vector2(3, 3)
 focus_mode = 0
@@ -840,7 +863,7 @@ texture_normal = ExtResource("9_4sjt4")
 texture_pressed = ExtResource("10_iw2f0")
 texture_hover = ExtResource("11_ycgla")
 script = ExtResource("12_1weh1")
-target_node = NodePath("../inv_ui")
+target_node = NodePath("../../TV effects/inv_ui")
 alt_norm = ExtResource("13_mgbok")
 alt_hover = ExtResource("14_nguuq")
 
@@ -950,9 +973,32 @@ position = Vector2(934, 254)
 scale = Vector2(1.0152779, 1)
 texture = ExtResource("32_5sf6f")
 
-[node name="Apple" parent="." instance=ExtResource("36_mfpy4")]
+[node name="Apple" parent="." groups=["Interactable"] instance=ExtResource("36_mfpy4")]
 position = Vector2(760, 86)
 script = ExtResource("37_t6rrq")
+item = ExtResource("40_rsj32")
+quantity = 1
+inventory = ExtResource("3_n2c5f")
+
+[node name="insta1" type="StaticBody2D" parent="." node_paths=PackedStringArray("type_noise") groups=["Auto_Interact"]]
+position = Vector2(616, 126)
+script = ExtResource("5_3beet")
+convo = "insta1"
+resource = ExtResource("40_kxw66")
+type_noise = NodePath("../Intro_CS/DefaultMaleTypeNoise")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="insta1"]
+shape = SubResource("RectangleShape2D_rsj32")
+
+[node name="insta2" type="StaticBody2D" parent="." node_paths=PackedStringArray("type_noise") groups=["Auto_Interact"]]
+position = Vector2(734, 117)
+script = ExtResource("5_3beet")
+convo = "insta2"
+resource = ExtResource("40_kxw66")
+type_noise = NodePath("../Intro_CS/DefaultMaleTypeNoise")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="insta2"]
+shape = SubResource("RectangleShape2D_rsj32")
 
 [node name="WasdSign" type="Sprite2D" parent="."]
 position = Vector2(400, 49)
