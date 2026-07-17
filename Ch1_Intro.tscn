@@ -836,7 +836,6 @@ stream = ExtResource("7_utrln")
 stream = ExtResource("7_utrln")
 
 [node name="TV effects" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="inv_ui" parent="TV effects" instance=ExtResource("8_vlxol")]
 visible = false

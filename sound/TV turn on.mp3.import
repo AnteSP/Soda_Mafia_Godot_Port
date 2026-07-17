@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mx766w0auhhp"
+path="res://.godot/imported/TV turn on.mp3-caaa53fcee7bbcb2a968ddac58b2fd83.mp3str"
+
+[deps]
+
+source_file="res://sound/TV turn on.mp3"
+dest_files=["res://.godot/imported/TV turn on.mp3-caaa53fcee7bbcb2a968ddac58b2fd83.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
