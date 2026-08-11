@@ -1,11 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqhym4kq6vyim"]
+[gd_scene load_steps=35 format=3 uid="uid://dqhym4kq6vyim"]
 
 [ext_resource type="Texture2D" uid="uid://b4o741n28woq7" path="res://gangsta_elite.jpg" id="1_qqwyt"]
 [ext_resource type="Texture2D" uid="uid://d0vefhxldagfk" path="res://Start Screen-Sheet1.png" id="2_iv0vr"]
 [ext_resource type="Script" uid="uid://db240uog5wl2q" path="res://scripts/Utils.gd" id="3_5d0og"]
+[ext_resource type="Texture2D" uid="uid://b1fcyani76hpo" path="res://sprites/UI/play 1.png" id="3_n1emc"]
 [ext_resource type="PackedScene" uid="uid://ck46hd5aiskji" path="res://Ch1_Intro.tscn" id="4_mw7qi"]
 [ext_resource type="AudioStream" uid="uid://mx766w0auhhp" path="res://sound/TV turn on.mp3" id="5_5d0og"]
 [ext_resource type="Shader" uid="uid://ddtf7047f335t" path="res://SCREEN.gdshader" id="5_iv0vr"]
+[ext_resource type="Texture2D" uid="uid://ox551fu321l3" path="res://sprites/UI/play 2.png" id="6_7bqju"]
+[ext_resource type="Texture2D" uid="uid://c7y354lwpm3tv" path="res://images/napkin.png" id="6_gym6g"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="8_r6v61"]
+[ext_resource type="Texture2D" uid="uid://dgs3y7qvku0bh" path="res://images/cardboard.png" id="9_r6v61"]
+[ext_resource type="Texture2D" uid="uid://cctpvvlphcd3h" path="res://images/wood.png" id="10_jybf4"]
+[ext_resource type="Texture2D" uid="uid://cnlnwfo1pf76l" path="res://images/bristol.png" id="11_ixj22"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epypp"]
 atlas = ExtResource("2_iv0vr")
@@ -99,6 +106,54 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_jybf4"]
+line_spacing = 0.0
+font = ExtResource("8_r6v61")
+font_size = 30
+font_color = Color(0.24477637, 0.2447764, 0.24477637, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7bqju"]
+line_spacing = 0.0
+font = ExtResource("8_r6v61")
+font_size = 20
+font_color = Color(0.3403393, 0.34033933, 0.3403393, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ixj22"]
+line_spacing = 0.0
+font = ExtResource("8_r6v61")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ug8y"]
+line_spacing = 0.0
+font = ExtResource("8_r6v61")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1kowr"]
+line_spacing = 0.0
+font = ExtResource("8_r6v61")
+font_size = 30
+font_color = Color(0.40546456, 0.25759077, 0.13037077, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vi0h8"]
+line_spacing = 0.0
+font = ExtResource("8_r6v61")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_0e48y"]
 line_spacing = -33.665
 paragraph_spacing = -0.245
@@ -152,81 +207,334 @@ autoplay = "default"
 frame_progress = 0.85796
 speed_scale = 0.68
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
-clip_contents = true
-custom_minimum_size = Vector2(0, 1000)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -512.0
-offset_bottom = 1000.0
-grow_horizontal = 0
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 641.0
+offset_top = -1.0
+offset_right = 1649.0
+offset_bottom = 732.0
+horizontal_scroll_mode = 0
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer" node_paths=PackedStringArray("screen_material")]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ScrollContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(1000, 2000)
 layout_mode = 2
-size_flags_vertical = 6
-text = "1st button"
+
+[node name="Chapter1" type="ColorRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -2.0
+offset_top = 19.0
+offset_right = 638.0
+offset_bottom = 769.0
+rotation = -0.050614547
+scale = Vector2(0.855, 0.855)
+texture = ExtResource("6_gym6g")
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect"]
+layout_mode = 0
+offset_left = 142.86273
+offset_top = 3.5056267
+offset_right = 603.1914
+offset_bottom = 92.00424
+text = "Chapter 1: Kipling Park"
+label_settings = SubResource("LabelSettings_jybf4")
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect"]
+layout_mode = 0
+offset_left = 135.79353
+offset_top = 93.94703
+offset_right = 607.38104
+offset_bottom = 253.2815
+text = "Drunkenly stealing a soda machine leads to a fateful encounter..."
+label_settings = SubResource("LabelSettings_7bqju")
+autowrap_mode = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect" node_paths=PackedStringArray("screen_material", "mouse_blocked")]
+layout_mode = 0
+offset_left = 27.231323
+offset_top = 2.62331
+offset_right = 107.23132
+offset_bottom = 82.62331
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "Play Story"
+icon = ExtResource("3_n1emc")
+flat = true
+expand_icon = true
 script = ExtResource("3_5d0og")
 switch_to_scene = ExtResource("4_mw7qi")
-screen_material = NodePath("../../../TV effects/TV Shader")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+mouse_blocked = NodePath("../../../../../MOUSEBLOCKER")
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Play2" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 28.40673
+offset_top = 102.18917
+offset_right = 108.40673
+offset_bottom = 182.18918
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "FreePlay"
+disabled = true
+icon = ExtResource("6_7bqju")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Chapter2" type="ColorRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter2"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 8.108618
+offset_top = -37.592537
+offset_right = 609.04315
+offset_bottom = 395.86798
+rotation = 0.054105207
+scale = Vector2(0.855, 0.855)
+texture = ExtResource("9_r6v61")
+expand_mode = 5
+stretch_mode = 4
+flip_v = true
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter2/TextureRect"]
+layout_mode = 0
+offset_left = 142.86273
+offset_top = 3.5056267
+offset_right = 603.1914
+offset_bottom = 92.00424
+text = "Chapter 2: Islington"
+label_settings = SubResource("LabelSettings_jybf4")
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter2/TextureRect"]
+layout_mode = 0
+offset_left = 135.79353
+offset_top = 93.94703
+offset_right = 607.38104
+offset_bottom = 253.2815
+text = "Soda Lad finds a way to escape the mafia before uncle Tony gets him..."
+label_settings = SubResource("LabelSettings_7bqju")
+autowrap_mode = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter2/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 27.231323
+offset_top = 2.62331
+offset_right = 107.23132
+offset_bottom = 82.62331
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "Play Story"
+disabled = true
+icon = ExtResource("3_n1emc")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Play2" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter2/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 28.40673
+offset_top = 102.18917
+offset_right = 108.40673
+offset_bottom = 182.18918
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "FreePlay"
+disabled = true
+icon = ExtResource("6_7bqju")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Chapter3" type="ColorRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter3"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -2.0
+offset_top = -60.84
+offset_right = 1526.0
+offset_bottom = 721.16
+scale = Vector2(0.855, 0.855)
+texture = ExtResource("10_jybf4")
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter3/TextureRect"]
+layout_mode = 0
+offset_left = 142.86273
+offset_top = 3.5056267
+offset_right = 603.1914
+offset_bottom = 92.00424
+text = "Chapter 3: York"
+label_settings = SubResource("LabelSettings_ixj22")
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter3/TextureRect"]
+layout_mode = 0
+offset_left = 132.16376
+offset_top = 52.444447
+offset_right = 603.7513
+offset_bottom = 211.77892
+text = "The promise of a fresh start is interrupted by an unexpected foe, leading to a deal with the devil..."
+label_settings = SubResource("LabelSettings_3ug8y")
+autowrap_mode = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter3/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 27.231323
+offset_top = 2.62331
+offset_right = 107.23132
+offset_bottom = 82.62331
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "Play Story"
+disabled = true
+icon = ExtResource("3_n1emc")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Play2" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter3/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 28.40673
+offset_top = 102.18917
+offset_right = 108.40673
+offset_bottom = 182.18918
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "FreePlay"
+disabled = true
+icon = ExtResource("6_7bqju")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Chapter4" type="ColorRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter4"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -1.0
+offset_top = -91.0
+offset_right = 646.0
+offset_bottom = 659.0
+rotation = -0.050614547
+scale = Vector2(0.855, 0.855)
+texture = ExtResource("11_ixj22")
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter4/TextureRect"]
+layout_mode = 0
+offset_left = 142.86273
+offset_top = 3.5056267
+offset_right = 603.1914
+offset_bottom = 92.00424
+text = "Chapter 4: The old mill"
+label_settings = SubResource("LabelSettings_1kowr")
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter4/TextureRect"]
+layout_mode = 0
+offset_left = 135.79353
+offset_top = 93.94703
+offset_right = 607.38104
+offset_bottom = 253.2815
+text = "Your resolve to expand is tested by enemies, friends, and even yourself"
+label_settings = SubResource("LabelSettings_vi0h8")
+autowrap_mode = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter4/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 27.231323
+offset_top = 2.62331
+offset_right = 107.23132
+offset_bottom = 82.62331
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "Play Story"
+disabled = true
+icon = ExtResource("3_n1emc")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Play2" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter4/TextureRect" node_paths=PackedStringArray("screen_material")]
+layout_mode = 0
+offset_left = 28.40673
+offset_top = 102.18917
+offset_right = 108.40673
+offset_bottom = 182.18918
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "FreePlay"
+disabled = true
+icon = ExtResource("6_7bqju")
+flat = true
+expand_icon = true
+script = ExtResource("3_5d0og")
+switch_to_scene = ExtResource("4_mw7qi")
+screen_material = NodePath("../../../../../../TV effects/TV Shader")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "2nd button"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Button2"]
+modulate = Color(0.49391723, 0.3509943, 0.23437414, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_top = -55.3
+offset_right = 640.0
+offset_bottom = 694.7
+rotation = 0.04363323
+scale = Vector2(0.805, 0.805)
+texture = ExtResource("6_gym6g")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "3rd button"
 
-[node name="Button4" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer/Button3"]
+modulate = Color(0.22740361, 0.42318597, 0.4458471, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 1.942
+offset_top = -63.41
+offset_right = 641.942
+offset_bottom = 686.59
+scale = Vector2(0.805, 0.805)
+texture = ExtResource("6_gym6g")
 
-[node name="Button5" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button6" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button7" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button8" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button9" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button10" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button11" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="Button12" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "3rd button"
-
-[node name="TVSOUND" type="AudioStreamPlayer" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="TVSOUND" type="AudioStreamPlayer" parent="CanvasLayer/Control/ScrollContainer/VBoxContainer"]
 stream = ExtResource("5_5d0og")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
@@ -244,6 +552,13 @@ text = "Soda deez nuts"
 label_settings = SubResource("LabelSettings_0e48y")
 autowrap_mode = 2
 
+[node name="MOUSEBLOCKER" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1238.0
+offset_bottom = 706.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
 [node name="TV effects" type="CanvasLayer" parent="CanvasLayer"]
 
 [node name="TV Shader" type="ColorRect" parent="CanvasLayer/TV effects"]
@@ -255,3 +570,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[connection signal="button_down" from="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" to="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" method="_on_button_down"]
+[connection signal="button_up" from="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" to="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" method="_on_button_up"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" to="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" to="CanvasLayer/Control/ScrollContainer/VBoxContainer/Chapter1/TextureRect/Play" method="_on_mouse_exited"]

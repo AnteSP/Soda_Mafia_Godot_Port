@@ -2,29 +2,12 @@ extends Button
 
 @export var switch_to_scene : PackedScene
 @export var screen_material : CanvasItem
+@export var mouse_blocked: Control
 var flowerwall_node
 
 func _ready():
 	# Find the flowerwall_pp node anywhere in the scene
 	flowerwall_node = get_tree().root.find_child("flowerwall_crt", true, false)
-
-	if flowerwall_node:
-		print("Found flowerwall_crt node: ", flowerwall_node.name)
-		print("Children:")
-
-		# Loop through all children and print their names
-		for child in flowerwall_node.get_children():
-			print("  - ", child.name)
-			
-		# Optional: Also print all properties of the node to find the effect parameters
-		print("\nProperties:")
-		var property_list = flowerwall_node.get_property_list()
-		for property in property_list:
-			# Filter out built-in Godot properties to make it more readable
-			if not property.name.begins_with("_") and property.name != "script" and property.name != "EditorDescription":
-				print("  - ", property.name, " = ", flowerwall_node.get(property.name))
-	else:
-		print("flowerwall_pp node not found!")
 
 func _enter_tree() -> void:
 	pressed.connect(_on_button_pressed)
@@ -34,7 +17,7 @@ func _exit_tree() -> void:
 
 func _on_button_pressed() -> void:
 	var tweens = [] ; for i in range(18): tweens.append(create_tween())
-	get_parent().get_node("TVSOUND").play()
+	get_parent().get_parent().get_parent().get_node("TVSOUND").play()
 	# This animates the 'distortion_strength' parameter from 0.0 to 0.5 over 2 seconds
 	tweens[0].tween_property(screen_material.material, "shader_parameter/distortion_strength", 0.1, 2)
 	tweens[1].tween_property(screen_material.material, "shader_parameter/zoom", 0.9, 2)
@@ -66,3 +49,19 @@ func _on_button_pressed() -> void:
 	#flowerwallPP.should_enable_bloom()
 	await tweens[0].finished
 	get_tree().change_scene_to_packed(switch_to_scene)
+
+func _on_mouse_entered():
+	self_modulate = Color("6ab7ff")
+	print("got in")
+
+func _on_mouse_exited():
+	self_modulate = Color.WHITE
+
+
+func _on_button_down() -> void:
+	self_modulate = Color("00172dff")
+
+
+func _on_button_up() -> void:
+	self_modulate = Color.WHITE
+	mouse_blocked.mouse_filter = Control.MOUSE_FILTER_STOP
