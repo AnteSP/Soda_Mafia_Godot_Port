@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://40t1g7hceh7s"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_0tift"]
+[ext_resource type="Texture2D" uid="uid://oquo6l2488ie" path="res://sprites/machinery/Table.png" id="2_5gq0d"]
+
+[resource]
+script = ExtResource("1_0tift")
+name = "Foldable Table"
+desc = "A foldable table that might make your soda selling setup look more legit"
+texture = ExtResource("2_5gq0d")
+metadata/_custom_type_script = "uid://bymup841uavx4"

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3nm2g0bxisaa"]
+
+[ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="1_i5118"]
+[ext_resource type="Script" uid="uid://d1rhdqr82kwaj" path="res://Prefabs/UI/item_get_panel.gd" id="2_f8r75"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="3_g66j3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j35bf"]
+font = ExtResource("3_g66j3")
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0.60237265, 0.33692464, 3.85046e-07, 1)
+
+[node name="Panel_ready" type="TextureRect"]
+offset_right = 412.00354
+offset_bottom = 122.0
+mouse_filter = 0
+texture = ExtResource("1_i5118")
+script = ExtResource("2_f8r75")
+
+[node name="Item_Frame" type="TextureRect" parent="."]
+self_modulate = Color(0.585062, 0.585062, 0.5850621, 1)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 113.0
+offset_bottom = 114.0
+texture = ExtResource("1_i5118")
+
+[node name="Item_Frame2" type="TextureRect" parent="Item_Frame"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 103.0
+offset_bottom = 103.0
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 7.0
+offset_right = 409.0
+offset_bottom = 114.0
+text = "Placeholder TEXT
+third line"
+label_settings = SubResource("LabelSettings_j35bf")
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

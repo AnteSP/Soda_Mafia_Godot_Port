@@ -25,7 +25,7 @@ func _ready() -> void:
 func set_camera_centre(new_cam_centre: Vector2):
 	cam_centre = new_cam_centre
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseButton:
 		# Zoom in/out with mouse wheel
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:

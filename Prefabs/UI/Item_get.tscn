@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cphtpdx4cg3bo"]
+
+[ext_resource type="Script" uid="uid://7fgx3nhy11d3" path="res://Prefabs/UI/item_get_anim.gd" id="1_6njw7"]
+[ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="1_v404h"]
+[ext_resource type="PackedScene" uid="uid://b3nm2g0bxisaa" path="res://Prefabs/UI/item_get_panel_ready.tscn" id="2_v404h"]
+
+[node name="ItemGet" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_6njw7")
+
+[node name="Panels" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Panel1_ready" parent="Panels" instance=ExtResource("2_v404h")]
+process_mode = 4
+layout_mode = 0
+offset_left = 1157.0
+offset_top = 405.0
+offset_right = 1569.0035
+offset_bottom = 525.0
+
+[node name="Panel2_ready" parent="Panels" instance=ExtResource("2_v404h")]
+process_mode = 4
+layout_mode = 0
+offset_left = 1157.0
+offset_top = 405.0
+offset_right = 1569.0035
+offset_bottom = 525.0
+
+[node name="Panel3_ready" parent="Panels" instance=ExtResource("2_v404h")]
+process_mode = 4
+layout_mode = 0
+offset_left = 1157.0
+offset_top = 405.0
+offset_right = 1569.0035
+offset_bottom = 525.0
+
+[node name="Panel4_ready" parent="Panels" instance=ExtResource("2_v404h")]
+process_mode = 4
+layout_mode = 0
+offset_left = 1157.0
+offset_top = 405.0
+offset_right = 1569.0035
+offset_bottom = 525.0
+
+[node name="Panel_ref" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 740.0
+offset_top = 527.0
+offset_right = 1152.0029
+offset_bottom = 647.0
+mouse_filter = 2
+texture = ExtResource("1_v404h")

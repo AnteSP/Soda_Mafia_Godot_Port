@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_phodu")
 name = "Apple"
+desc = "a sweet crunchy potential soda recipe"
 texture = ExtResource("2_fg1n4")
 metadata/_custom_type_script = "uid://bymup841uavx4"

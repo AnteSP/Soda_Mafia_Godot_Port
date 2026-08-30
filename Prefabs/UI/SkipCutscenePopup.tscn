@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dc8r04k3x87c8" path="res://scripts/fadeout.gd" id="1_sye36"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="2_k8ru5"]
-[ext_resource type="Shader" uid="uid://bl5ci6jfoev0w" path="res://Prefabs/vhs_shader.gdshader" id="3_k8ru5"]
+[ext_resource type="Shader" uid="uid://bl5ci6jfoev0w" path="res://Prefabs/UI/vhs_shader.gdshader" id="3_k8ru5"]
 [ext_resource type="AudioStream" uid="uid://5bgb3tovos5n" path="res://sound/fast_forward.wav" id="4_mf21j"]
 
 [sub_resource type="Theme" id="Theme_h855t"]

@@ -24,7 +24,7 @@ func _process(_delta):
 			balloon.force_finish()
 			current.speed_scale = 99
 		else:
-			fade_instance = load("res://Prefabs/SkipCutscenePopup.tscn").instantiate()
+			fade_instance = load("res://Prefabs/UI/SkipCutscenePopup.tscn").instantiate()
 			add_child(fade_instance)
 			skip_prompt_on = true
 			prev_escape = Input.is_key_pressed(KEY_ESCAPE)

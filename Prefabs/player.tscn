@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dmgemtwlgsmjk" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bhjy4nft2fc0i" path="res://sprites/characters/player/Player_d walking.png" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://ba43dlmufgwwd" path="res://scripts/spaceBarPrompt.gd" id="3_y5hcb"]
-[ext_resource type="PackedScene" uid="uid://hsdju174rnut" path="res://Prefabs/spaceBarPrompt.tscn" id="4_2nftw"]
-[ext_resource type="Script" uid="uid://bx7bhhyvtpcj7" path="res://Prefabs/progress_bar.gd" id="5_hck1p"]
+[ext_resource type="PackedScene" uid="uid://hsdju174rnut" path="res://Prefabs/UI/spaceBarPrompt.tscn" id="4_2nftw"]
+[ext_resource type="Script" uid="uid://bx7bhhyvtpcj7" path="res://Prefabs/UI/progress_bar.gd" id="5_hck1p"]
 [ext_resource type="Script" uid="uid://co6n2i8hovnyi" path="res://scripts/CamZoom.gd" id="5_knrd4"]
-[ext_resource type="Shader" uid="uid://bdqdsuuoxnsn" path="res://Prefabs/progress_bar.gdshader" id="6_juxdh"]
+[ext_resource type="Shader" uid="uid://bdqdsuuoxnsn" path="res://Prefabs/UI/progress_bar.gdshader" id="6_juxdh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 2.3
