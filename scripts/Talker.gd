@@ -20,7 +20,8 @@ func Use(_inp):
 	active_balloons.append(balloon)
 
 func pre_dialogue_prep(_resource: DialogueResource):
-	type_noise.play()
+	if type_noise:
+		type_noise.play()
 	if is_in_group("Auto_Interact"):
 		remove_from_group("Auto_Interact")
 		get_child(0).disabled = true
@@ -31,7 +32,8 @@ func pre_dialogue_prep(_resource: DialogueResource):
 	pass
 
 func post_dialogue_cleanup(_resource: DialogueResource):
-	type_noise.stop()
+	if type_noise:
+		type_noise.stop()
 	DialogueManagerExampleBalloon.change_type_noise(null)
 	DialogueManager.disconnect("dialogue_ended",post_dialogue_cleanup)
 	active_balloons.erase(balloon)

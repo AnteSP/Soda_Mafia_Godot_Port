@@ -5,3 +5,15 @@ You: I'll show him...
 ~ insta2
 You: Ha! This idiot left a perfectly good *hic soda machine in his backyard
 => END
+
+~ start_nazi_encounter
+if Inv_UI.player_has_item("Soda Machine",1) and Inv_UI.player_has_item("Foldable Table",1)
+	*You have the required items to continue
+	do get_tree().current_scene.find_child("nazi_intro_CS", true, false).start_cs()
+elif Inv_UI.player_has_item("Soda Machine",1)
+	*You need to get that foldable table to continue
+elif Inv_UI.player_has_item("Foldable Table",1)
+	*You need to get that purple soda machine to continue
+else
+	*You need some items to continue
+=> END

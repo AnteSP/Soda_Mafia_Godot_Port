@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=74 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_3aw6c"]
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
@@ -38,16 +38,18 @@
 [ext_resource type="Texture2D" uid="uid://dkihdqsxdew2c" path="res://sprites/characters/Brother/Car.png" id="31_ur4j3"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="32_5sf6f"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="33_ur4j3"]
-[ext_resource type="PackedScene" uid="uid://qvawp73lc564" path="res://Prefabs/Apple.tscn" id="36_mfpy4"]
 [ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="37_t6rrq"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="38_t6rrq"]
+[ext_resource type="Texture2D" uid="uid://i4tbewu851r3" path="res://sprites/shadow.png" id="40_34pti"]
+[ext_resource type="Texture2D" uid="uid://b1fcyani76hpo" path="res://sprites/UI/play 1.png" id="40_kwywy"]
 [ext_resource type="Resource" uid="uid://8i57gjhmfs1y" path="res://Dialogue/Chapter1Singles.dialogue" id="40_kxw66"]
 [ext_resource type="Texture2D" uid="uid://dnvcucrofdx0f" path="res://sprites/WASD sign.png" id="40_rlcjp"]
-[ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="40_rsj32"]
 [ext_resource type="AudioStream" uid="uid://bqxltvj5bausg" path="res://sound/Perfectly_Good_Soda_Maker.mp3" id="41_8aefv"]
 [ext_resource type="Resource" uid="uid://40t1g7hceh7s" path="res://Prefabs/Items/Foldable Table.tres" id="42_4f58f"]
 [ext_resource type="Texture2D" uid="uid://oquo6l2488ie" path="res://sprites/machinery/Table.png" id="43_llvvt"]
+[ext_resource type="Resource" uid="uid://yjyil7hgmwvd" path="res://Prefabs/Items/Soda Machine.tres" id="45_34pti"]
 [ext_resource type="Shader" uid="uid://ddtf7047f335t" path="res://SCREEN.gdshader" id="45_vxgx1"]
+[ext_resource type="Texture2D" uid="uid://cbyrgxyep37lf" path="res://sprites/machinery/soda_atlas.tres" id="46_mlafc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ur4j3"]
 rough = true
@@ -436,9 +438,50 @@ shader_parameter/zoom = 0.9
 default_font = ExtResource("15_5sf6f")
 default_font_size = 0
 
+[sub_resource type="Animation" id="Animation_kwywy"]
+resource_name = "hover"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.36602148, 2.2191386, 2.3784146),
+"update": 0,
+"values": [1.0, -5.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_34pti"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlafc"]
+_data = {
+&"RESET": SubResource("Animation_34pti"),
+&"hover": SubResource("Animation_kwywy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34pti"]
+size = Vector2(3.9999962, 15)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwywy"]
-radius = 2.3
-height = 8.0
+radius = 1.2696381
+height = 2.5392761
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsj32"]
 size = Vector2(59, 211)
@@ -842,6 +885,52 @@ stream = ExtResource("7_utrln")
 [node name="CS_tnoise" type="AudioStreamPlayer" parent="Intro_CS" groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
+[node name="nazi_intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("talkers_disable_on_start", "disable_on_start", "CS_tnoise", "transition")]
+script = ExtResource("20_3beet")
+convo = "cs2"
+resource = ExtResource("21_tc0jy")
+start_on_ready = false
+talkers_disable_on_start = [NodePath("../Start_Cutscene/Play1/StaticBody2D")]
+disable_on_start = [NodePath("../Start_Cutscene/Play1")]
+CS_tnoise = NodePath("../Intro_CS/CS_tnoise")
+transition = NodePath("../Transition")
+metadata/_custom_type_script = "uid://c26fwd1q8awsq"
+
+[node name="Camera2D" type="Camera2D" parent="nazi_intro_CS"]
+process_mode = 4
+position = Vector2(1018, 102)
+zoom = Vector2(3.105, 3.105)
+position_smoothing_speed = 25.0
+script = ExtResource("30_nguuq")
+zoom_speed = 1.0
+min_zoom = 1.5
+max_zoom = 8.0
+zoom_step = 1.0
+mouse_influence_strength = 50.0
+mouse_influence_radius = 5.0
+return_speed = 30.0
+
+[node name="Shaker" type="Node" parent="nazi_intro_CS/Camera2D"]
+process_mode = 3
+script = ExtResource("16_5sf6f")
+
+[node name="Positions" type="Node" parent="nazi_intro_CS"]
+
+[node name="PPos1" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1093, 127)
+
+[node name="PPos2" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1099, 53)
+
+[node name="PPos3" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1121, 89)
+
+[node name="PPos4" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1141, 117)
+
+[node name="CamPos1" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1010, 104)
+
 [node name="TV effects" type="CanvasLayer" parent="."]
 
 [node name="inv_ui" parent="TV effects" node_paths=PackedStringArray("InventoryButton") instance=ExtResource("8_vlxol")]
@@ -986,12 +1075,90 @@ position = Vector2(934, 254)
 scale = Vector2(1.0152779, 1)
 texture = ExtResource("32_5sf6f")
 
-[node name="Apple" parent="." groups=["Interactable"] instance=ExtResource("36_mfpy4")]
-position = Vector2(765, 203)
-script = ExtResource("37_t6rrq")
-item = ExtResource("40_rsj32")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
+[node name="4x4 (2)2" type="Node2D" parent="Ground"]
+position = Vector2(801, -539)
+
+[node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)2"]
+z_index = -5
+position = Vector2(534, -16)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)2"]
+z_index = -5
+position = Vector2(534, 255)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)2"]
+z_index = -5
+position = Vector2(934.00977, -16.5)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)2"]
+z_index = -5
+position = Vector2(934, 254)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="4x4 (2)3" type="Node2D" parent="Ground"]
+position = Vector2(2, -541)
+
+[node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)3"]
+z_index = -5
+position = Vector2(534, -16)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)3"]
+z_index = -5
+position = Vector2(534, 255)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)3"]
+z_index = -5
+position = Vector2(934.00977, -16.5)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)3"]
+z_index = -5
+position = Vector2(934, 254)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("32_5sf6f")
+
+[node name="Start_Cutscene" type="Node2D" parent="."]
+position = Vector2(981.01, 108)
+
+[node name="Play1" type="Sprite2D" parent="Start_Cutscene"]
+position = Vector2(0, 1)
+rotation = -1.5707964
+texture = ExtResource("40_kwywy")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Start_Cutscene/Play1"]
+libraries = {
+&"": SubResource("AnimationLibrary_mlafc")
+}
+autoplay = "hover"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Start_Cutscene/Play1" groups=["Interactable"]]
+script = ExtResource("5_3beet")
+convo = "start_nazi_encounter"
+resource = ExtResource("40_kxw66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start_Cutscene/Play1/StaticBody2D"]
+position = Vector2(-5.9444656, 0.48999023)
+shape = SubResource("RectangleShape2D_34pti")
+
+[node name="Shadow" type="Sprite2D" parent="Start_Cutscene"]
+modulate = Color(0, 0, 0, 0.4117647)
+show_behind_parent = true
+y_sort_enabled = true
+texture = ExtResource("40_34pti")
+offset = Vector2(0, 11.71)
 
 [node name="Foldable Table" type="StaticBody2D" parent="." groups=["Interactable"]]
 position = Vector2(760, 86)
@@ -1013,101 +1180,22 @@ scale = Vector2(5.04, 6.301)
 shape = SubResource("CapsuleShape2D_kwywy")
 one_way_collision_margin = 0.0
 
-[node name="Foldable Table2" type="StaticBody2D" parent="." groups=["Interactable"]]
-position = Vector2(918, 103)
+[node name="Soda machine" type="StaticBody2D" parent="." groups=["Interactable"]]
+y_sort_enabled = true
+position = Vector2(760, 66)
 script = ExtResource("37_t6rrq")
-item = ExtResource("42_4f58f")
+item = ExtResource("45_34pti")
 quantity = 1
 inventory = ExtResource("3_n2c5f")
 
-[node name="Sprite2D" type="Sprite2D" parent="Foldable Table2"]
+[node name="Sprite2D" type="Sprite2D" parent="Soda machine"]
 position = Vector2(-4, 36)
-texture = ExtResource("43_llvvt")
+texture = ExtResource("46_mlafc")
 offset = Vector2(0, -32.575)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foldable Table2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Soda machine"]
 z_index = 1
-position = Vector2(-6.815, 6.135)
-rotation = 1.5708
-scale = Vector2(5.04, 6.301)
-shape = SubResource("CapsuleShape2D_kwywy")
-one_way_collision_margin = 0.0
-
-[node name="Foldable Table3" type="StaticBody2D" parent="." groups=["Interactable"]]
-position = Vector2(1004, 78)
-script = ExtResource("37_t6rrq")
-item = ExtResource("42_4f58f")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
-
-[node name="Sprite2D" type="Sprite2D" parent="Foldable Table3"]
-position = Vector2(-4, 36)
-texture = ExtResource("43_llvvt")
-offset = Vector2(0, -32.575)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foldable Table3"]
-z_index = 1
-position = Vector2(-6.815, 6.135)
-rotation = 1.5708
-scale = Vector2(5.04, 6.301)
-shape = SubResource("CapsuleShape2D_kwywy")
-one_way_collision_margin = 0.0
-
-[node name="Foldable Table4" type="StaticBody2D" parent="." groups=["Interactable"]]
-position = Vector2(1111, 139)
-script = ExtResource("37_t6rrq")
-item = ExtResource("42_4f58f")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
-
-[node name="Sprite2D" type="Sprite2D" parent="Foldable Table4"]
-position = Vector2(-4, 36)
-texture = ExtResource("43_llvvt")
-offset = Vector2(0, -32.575)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foldable Table4"]
-z_index = 1
-position = Vector2(-6.815, 6.135)
-rotation = 1.5708
-scale = Vector2(5.04, 6.301)
-shape = SubResource("CapsuleShape2D_kwywy")
-one_way_collision_margin = 0.0
-
-[node name="Foldable Table5" type="StaticBody2D" parent="." groups=["Interactable"]]
-position = Vector2(989, 190)
-script = ExtResource("37_t6rrq")
-item = ExtResource("42_4f58f")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
-
-[node name="Sprite2D" type="Sprite2D" parent="Foldable Table5"]
-position = Vector2(-4, 36)
-texture = ExtResource("43_llvvt")
-offset = Vector2(0, -32.575)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foldable Table5"]
-z_index = 1
-position = Vector2(-6.815, 6.135)
-rotation = 1.5708
-scale = Vector2(5.04, 6.301)
-shape = SubResource("CapsuleShape2D_kwywy")
-one_way_collision_margin = 0.0
-
-[node name="Foldable Table6" type="StaticBody2D" parent="." groups=["Interactable"]]
-position = Vector2(989, 190)
-script = ExtResource("37_t6rrq")
-item = ExtResource("42_4f58f")
-quantity = 1
-inventory = ExtResource("3_n2c5f")
-
-[node name="Sprite2D" type="Sprite2D" parent="Foldable Table6"]
-position = Vector2(-4, 36)
-texture = ExtResource("43_llvvt")
-offset = Vector2(0, -32.575)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foldable Table6"]
-z_index = 1
-position = Vector2(-6.815, 6.135)
+position = Vector2(-3.9999976, 4.999998)
 rotation = 1.5708
 scale = Vector2(5.04, 6.301)
 shape = SubResource("CapsuleShape2D_kwywy")

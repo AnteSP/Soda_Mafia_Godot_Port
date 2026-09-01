@@ -12,7 +12,6 @@ func _ready() -> void:
 		starting_y = position.y
 	if starting_x == 999999:
 		starting_x = position.x
-	print("DID READY FOR ITEM_GET")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

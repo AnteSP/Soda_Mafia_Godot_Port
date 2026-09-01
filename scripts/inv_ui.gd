@@ -2,6 +2,7 @@ class_name Inv_UI extends Control
 
 @export var InventoryButton: TextureButton
 @onready var inv: Inv = preload("res://Prefabs/Items/PlayerInventory.tres")
+static var static_inv: Inv
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 
 @onready var title: RichTextLabel = $Title
@@ -14,6 +15,7 @@ func _ready():
 	update_slots()
 	close()
 	inv.InventoryButton = InventoryButton
+	static_inv = inv
 
 func update_slots():
 	for i in range(min(inv.item_pairs.size(),slots.size())):
@@ -29,7 +31,8 @@ func display_info_for(item: InvItem) -> void:
 		title.text = item.name
 		desc.text = item.desc
 	
-	
+static func player_has_item(item_name: String,quantity: int):
+	return static_inv.item_exists(item_name,quantity)
 
 
 func _on_visibility_changed() -> void:

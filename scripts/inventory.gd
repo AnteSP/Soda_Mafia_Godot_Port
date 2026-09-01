@@ -23,3 +23,9 @@ func find_pair(item: InvItem) -> InvPair:
 		if pair.item == item:
 			return pair
 	return null
+
+func item_exists(item_name: String,quantity: int) -> bool:
+	for pair in item_pairs:
+		if pair.item.name == item_name:
+			return pair.quantity >= quantity
+	return false

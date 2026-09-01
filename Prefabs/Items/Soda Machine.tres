@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://yjyil7hgmwvd"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_ldk8o"]
+[ext_resource type="Texture2D" uid="uid://cbyrgxyep37lf" path="res://sprites/machinery/soda_atlas.tres" id="2_ldk8o"]
+
+[resource]
+script = ExtResource("1_ldk8o")
+name = "Soda Machine"
+desc = "Turns water into soda water. The basis of your dream"
+texture = ExtResource("2_ldk8o")
+metadata/_custom_type_script = "uid://bymup841uavx4"

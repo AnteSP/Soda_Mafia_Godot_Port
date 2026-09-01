@@ -5,6 +5,7 @@ class_name TalkerCS
 @export var convo = ""
 @export var resource: DialogueResource
 @export var start_on_ready: bool = true
+@export var talkers_disable_on_start: Array[Talker]
 @export var disable_on_start: Array[Node]
 @export var CS_tnoise: AudioStreamPlayer
 @export var transition: Node
@@ -17,6 +18,7 @@ var balloon
 var prev_escape: bool = false
 static var skip_prompt_on: bool = false
 var fade_instance = null
+
 
 func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE) and not prev_escape and not stopping:
@@ -61,8 +63,12 @@ func _ready():
 		transition.get_node("Transition").visible = true
 		transition.show()
 		start_cs()
+	else:
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func start_cs():
+	print("STARTING CS" , name)
+	process_mode = Node.PROCESS_MODE_INHERIT
 	current = self
 	stopping = false
 	stopped_echo = false
@@ -71,23 +77,29 @@ func start_cs():
 	player.start_stop_movement(false)
 	DialogueManagerExampleBalloon.change_type_noise(CS_tnoise)
 
+	transition.process_mode = Node.PROCESS_MODE_ALWAYS
+	start_anim.process_mode = Node.PROCESS_MODE_ALWAYS
+	transition.visible = true
 	start_anim.play("Start_CS")
 	if start_on_ready:
 		start_anim.seek(1)
+
+	for d in talkers_disable_on_start:
+		d.post_dialogue_cleanup(d.resource)
+		d.visible = false
+		d.process_mode = d.PROCESS_MODE_DISABLED
 
 	for d in disable_on_start:
 		d.visible = false
 		d.process_mode = d.PROCESS_MODE_DISABLED
 	DialogueManagerExampleBalloon.start_stop_CS(false)
 	balloon = DialogueManager.show_dialogue_balloon(resource,convo)
-	print("type: " , balloon.get_class() )
 	return_to_cam = get_viewport().get_camera_2d()
 	$Camera2D.process_mode = Node.PROCESS_MODE_INHERIT
 	$Camera2D.visible = true
 	$Camera2D.make_current()
 	$Camera2D.set_camera_centre($Positions/CamPos1.position)
 	
-	print("Camera status: " , $Camera2D.visible)
 	#start_anim.get_parent().move_child(start_anim, start_anim.get_parent().get_child_count() - 1)
 	
 func post_dialogue_cleanup(_resource: DialogueResource):

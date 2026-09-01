@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://cm8bawqhwdrt2"]
+[gd_scene load_steps=37 format=3 uid="uid://cm8bawqhwdrt2"]
 
 [ext_resource type="Script" uid="uid://dmgemtwlgsmjk" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bhjy4nft2fc0i" path="res://sprites/characters/player/Player_d walking.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://i4tbewu851r3" path="res://sprites/shadow.png" id="3_4qbli"]
 [ext_resource type="Script" uid="uid://ba43dlmufgwwd" path="res://scripts/spaceBarPrompt.gd" id="3_y5hcb"]
 [ext_resource type="PackedScene" uid="uid://hsdju174rnut" path="res://Prefabs/UI/spaceBarPrompt.tscn" id="4_2nftw"]
 [ext_resource type="Script" uid="uid://bx7bhhyvtpcj7" path="res://Prefabs/UI/progress_bar.gd" id="5_hck1p"]
@@ -247,6 +248,14 @@ y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_2wuci")
 animation = &"idle_down"
 frame_progress = 0.658666
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+modulate = Color(0, 0, 0, 0.4117647)
+show_behind_parent = true
+y_sort_enabled = true
+position = Vector2(0, -1)
+texture = ExtResource("3_4qbli")
+offset = Vector2(0, 11.71)
 
 [node name="InteractArea" type="Area2D" parent="."]
 script = ExtResource("3_y5hcb")

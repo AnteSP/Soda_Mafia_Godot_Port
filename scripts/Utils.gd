@@ -52,7 +52,6 @@ func _on_button_pressed() -> void:
 
 func _on_mouse_entered():
 	self_modulate = Color("6ab7ff")
-	print("got in")
 
 func _on_mouse_exited():
 	self_modulate = Color.WHITE
