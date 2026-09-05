@@ -26,7 +26,7 @@ func pre_dialogue_prep(_resource: DialogueResource):
 		remove_from_group("Auto_Interact")
 		get_child(0).disabled = true
 	else:
-		player.start_stop_movement(false)
+		player.start_stop_movement(false,"Interaction")
 	DialogueManager.disconnect("dialogue_started",pre_dialogue_prep)
 	#%DialogueLabel.connect("spoke",typenoise)
 	pass

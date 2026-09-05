@@ -8,11 +8,13 @@ var shake_duration := 0.0
 var _start_duration := 0.0
 
 func start(duration: float,shake_amount_override: float = shake_amount, decrease_factor_override: float = decrease_factor):
+	print('get set dumbass' , get_parent().get_parent().name)
 	shake_duration = duration
 	shake_amount = shake_amount_override
 	decrease_factor = decrease_factor_override
 	_start_duration = duration
 	set_process(true)
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func stop():
 	shake_duration = 0

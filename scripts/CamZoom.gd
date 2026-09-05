@@ -20,7 +20,8 @@ func _ready() -> void:
 	child.shake_amount = 10.0
 	child.decrease_factor = 1.0
 	add_child(child)
-	main_camera = self
+	if process_mode != PROCESS_MODE_DISABLED:
+		main_camera = self
 
 func set_camera_centre(new_cam_centre: Vector2):
 	cam_centre = new_cam_centre

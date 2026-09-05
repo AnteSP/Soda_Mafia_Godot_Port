@@ -218,6 +218,10 @@ func _on_dialogue_label_finished_typing() -> void:
 		type_noise.stop()
 
 static func change_type_noise(a : AudioStreamPlayer):
+	if a:
+		print("changing type noise " , a.name)
+	else:
+		print("changing type noise =NULL=")
 	if a == null and type_noise != null:
 		type_noise.stop()
 	type_noise = a

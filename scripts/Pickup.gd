@@ -7,7 +7,7 @@ extends Interactable
 #inp is the amount we're taking
 func Use(_inp: int):
 	inventory.add_item(item,quantity)
-	player.start_stop_movement(true)
+	player.start_stop_movement(true,"Interaction")
 	self.visible = false
 	self.remove_from_group("Interactable")
 	

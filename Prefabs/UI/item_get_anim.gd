@@ -16,9 +16,7 @@ func _ready() -> void:
 static func start_anim(Item: InvItem):
 	#var i = current.notis.size()
 	var started_one = false
-	print("STARTING ANIM")
 	for n in current.notis:
-		print("N NAME = " + n.name)
 		if n.name.ends_with("_ready") and !started_one:
 			started_one = true
 			n.start_anim(Item.name,Item.texture)

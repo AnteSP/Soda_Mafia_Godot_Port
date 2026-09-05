@@ -32,10 +32,11 @@ do stats.ambient_music_change(-3,10)
 
 ~ cs2
 ...: Press Space[#tnoise=null]
-Bartender: GET OUTTA MY PUB YOU DRUNKARD (is this working?)![#tnoise=MafiaTypeNoise.wav]
-do TalkerCS.call_out("Player_Drunk")
-You: ...[#tnoise=DefaultMaleTypeNoise.wav]
-You: Egh... F- *hiccup* fffffuck you
+You: wooooh! Wooooh...[#tnoise=DefaultMaleTypeNoise.wav]
+You: wh- WHO WANTS A SODER!?
+do TalkerCS.call_out("look_right")
+You: ...
+You: a prospective customer?!
 do CamZoom.main_camera.child.start(4,15,1)
 Everyone: [shake rate=20.0 level=20 connected=1]HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA[/shake][#tnoise=laugh.wav]
 do CamZoom.main_camera.child.stop()

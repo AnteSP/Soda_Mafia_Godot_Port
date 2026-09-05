@@ -54,16 +54,23 @@ func player_movement(_delta):
 		boundary_pulsation.interrupt_pulsating()
 		
 
-static func start_stop_movement(start: bool):
+static var stop_sources = []
+static func start_stop_movement(start: bool, cause: String):
+	if start:
+		stop_sources.erase(cause)
+		if stop_sources.size() <= 0:
+			stopped = false
+	else:
+		stop_sources.append(cause)
+		stopped = true
 	
-	stopped = !start
 	print("STOPPED PLAYER " , stopped)
 
 func post_dialogue_cleanup(resource: DialogueResource):
 	# Your code to execute when dialogue ends
 	print("Dialogue ended with resource: ", resource)
 	sbp.reset_spacebar()
-	stopped = false
+	start_stop_movement(true,"Interaction")
 
 func update_animation(state: String, input_dir: Vector2):
 

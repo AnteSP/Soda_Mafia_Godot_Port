@@ -18,10 +18,7 @@ func _ready() -> void:
 #	pass
 
 func bg_music_change(to: float, period: float) -> void:
-	print(current.bg_music.volume_db)
 	create_tween().tween_property(current.bg_music, "volume_db", to, period)
-	print(current.bg_music.volume_db)
-	print(is_inside_tree())
 	pass
 
 func ambient_music_change(to: float, period: float) -> void:

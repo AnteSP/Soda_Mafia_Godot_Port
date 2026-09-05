@@ -81,4 +81,4 @@ func changed_c_bod():
 	pass
 
 func _on_progress_bar_progress_completed() -> void:
-	print("IT DID IT!!!!")
+	pass
