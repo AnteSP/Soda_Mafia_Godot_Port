@@ -187,7 +187,10 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 		#next(dialogue_line.next_id)
 		pass
 	elif !is_stopped and event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
-		next(dialogue_line.next_id)
+		if TalkerCS.is_anything_stopping_cs():
+			print("skipped input")
+		else:
+			next(dialogue_line.next_id)
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)

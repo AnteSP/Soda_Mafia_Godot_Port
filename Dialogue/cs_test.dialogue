@@ -31,15 +31,17 @@ do stats.ambient_music_change(-3,10)
 => END
 
 ~ cs2
+do stats.bg_music_change(-100,1)
 ...: Press Space[#tnoise=null]
 You: wooooh! Wooooh...[#tnoise=DefaultMaleTypeNoise.wav]
 You: wh- WHO WANTS A SODER!?
 do TalkerCS.call_out("look_right")
 You: ...
 You: a prospective customer?!
-do CamZoom.main_camera.child.start(4,15,1)
-Everyone: [shake rate=20.0 level=20 connected=1]HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA[/shake][#tnoise=laugh.wav]
-do CamZoom.main_camera.child.stop()
+do TalkerCS.do_movement("Nazi_top","Nazi_top_Pos1",70,true)
+
+Nazi: YOU ZERE! INFERIOR LIFE FORM! VE ARE ZE THIRD REICH[#tnoise=NaziTypeNoise.wav]
+You: Wah?... Nazis? Didn't we defeat you guys like 30 years ago?[#tnoise=DefaultMaleTypeNoise.wav]
 do TalkerCS.do_movement("Player Actor","PPos1",20)
 You: Heyyy... Fuck y- *hiccup* -ou ALL![#tnoise=DefaultMaleTypeNoise.wav]
 do TalkerCS.call_out("Brother Approach")

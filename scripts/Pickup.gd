@@ -10,4 +10,4 @@ func Use(_inp: int):
 	player.start_stop_movement(true,"Interaction")
 	self.visible = false
 	self.remove_from_group("Interactable")
-	
+	process_mode = Node.PROCESS_MODE_DISABLED

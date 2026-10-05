@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=126 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_3aw6c"]
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
@@ -32,12 +32,20 @@
 [ext_resource type="Script" uid="uid://bf1c4ddh5h84e" path="res://scripts/NPC_movement.gd" id="27_4sjt4"]
 [ext_resource type="PackedScene" uid="uid://cphtpdx4cg3bo" path="res://Prefabs/UI/Item_get.tscn" id="27_llvvt"]
 [ext_resource type="Texture2D" uid="uid://bq44jd2snmkhs" path="res://sprites/characters/Brother/Car laugh.png" id="28_mgbok"]
+[ext_resource type="Texture2D" uid="uid://dph7307su6d1s" path="res://sprites/characters/nazi/front run-Sheet.png" id="28_mlafc"]
+[ext_resource type="Texture2D" uid="uid://ba5od8jdnfm6c" path="res://sprites/characters/nazi/Nazi Death.png" id="28_wbmoj"]
+[ext_resource type="Texture2D" uid="uid://c80h721wufbma" path="res://sprites/characters/nazi/Nazi drink.png" id="29_6ccc2"]
 [ext_resource type="Texture2D" uid="uid://ddn3jdrjkkn6k" path="res://sprites/characters/Brother/Car laugh 1.png" id="29_nguuq"]
 [ext_resource type="Texture2D" uid="uid://bgb7vqgfi2yvn" path="res://sprites/characters/Brother/Car look left.png" id="30_5sf6f"]
 [ext_resource type="Script" uid="uid://co6n2i8hovnyi" path="res://scripts/CamZoom.gd" id="30_nguuq"]
+[ext_resource type="Texture2D" uid="uid://dnm1r5e16hpjy" path="res://sprites/characters/nazi/left run-Sheet.png" id="31_7fqi3"]
 [ext_resource type="Texture2D" uid="uid://dkihdqsxdew2c" path="res://sprites/characters/Brother/Car.png" id="31_ur4j3"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="32_5sf6f"]
+[ext_resource type="Texture2D" uid="uid://cgfek2mvyjd8" path="res://sprites/characters/nazi/right run-Sheet.png" id="32_q1pa7"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="33_ur4j3"]
+[ext_resource type="Texture2D" uid="uid://bmg0qxyi2v6du" path="res://sprites/characters/nazi/back run-Sheet.png" id="33_w1xds"]
+[ext_resource type="Texture2D" uid="uid://t3j7fl30rr76" path="res://sprites/characters/nazi/Tank Death.png" id="34_yx20p"]
+[ext_resource type="Texture2D" uid="uid://bpaaowci0kdba" path="res://sprites/characters/nazi/Tank.png" id="35_eb5se"]
 [ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="37_t6rrq"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="38_t6rrq"]
 [ext_resource type="Texture2D" uid="uid://i4tbewu851r3" path="res://sprites/shadow.png" id="40_34pti"]
@@ -54,6 +62,10 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ur4j3"]
 rough = true
 absorbent = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 2.3
+height = 10.6
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5sf6f"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -94,10 +106,6 @@ gradient = SubResource("Gradient_vdnnh")
 fill = 1
 fill_from = Vector2(0.5, 0.015)
 fill_to = Vector2(0.97, 0)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 2.3
-height = 10.6
 
 [sub_resource type="Animation" id="Animation_mgbok"]
 resource_name = "Brother Approach"
@@ -429,21 +437,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_mlafc"]
-resource_name = "look_right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("nazi_intro_CS/Player Actor/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle_right"]
-}
-
 [sub_resource type="Animation" id="Animation_hcnwd"]
 length = 0.001
 tracks/0/type = "value"
@@ -459,11 +452,387 @@ tracks/0/keys = {
 "values": [&"Drunk"]
 }
 
+[sub_resource type="Animation" id="Animation_mlafc"]
+resource_name = "look_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nazi_intro_CS/Player Actor/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_right"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hcnwd"]
 _data = {
 &"RESET": SubResource("Animation_hcnwd"),
 &"look_right": SubResource("Animation_mlafc")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qawfd"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghcaq"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2iq6"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n22da"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1dms"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alb80"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l64t"]
+atlas = ExtResource("28_wbmoj")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eddo4"]
+atlas = ExtResource("29_6ccc2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq10j"]
+atlas = ExtResource("29_6ccc2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsa3r"]
+atlas = ExtResource("28_mlafc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5brv"]
+atlas = ExtResource("31_7fqi3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciesu"]
+atlas = ExtResource("32_q1pa7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6e7o"]
+atlas = ExtResource("33_w1xds")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r35dk"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(192, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bn0o"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whtf7"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(96, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1u6q"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(192, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iohe"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlydb"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r28ou"]
+atlas = ExtResource("34_yx20p")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcnwd"]
+atlas = ExtResource("28_mlafc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig2pj"]
+atlas = ExtResource("28_mlafc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fovy7"]
+atlas = ExtResource("28_mlafc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dsd6"]
+atlas = ExtResource("28_mlafc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d461v"]
+atlas = ExtResource("28_mlafc")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doww8"]
+atlas = ExtResource("31_7fqi3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1rsy"]
+atlas = ExtResource("31_7fqi3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86dhr"]
+atlas = ExtResource("31_7fqi3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th3r1"]
+atlas = ExtResource("31_7fqi3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbkbo"]
+atlas = ExtResource("31_7fqi3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uv3h"]
+atlas = ExtResource("32_q1pa7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss1xq"]
+atlas = ExtResource("32_q1pa7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a8cc"]
+atlas = ExtResource("32_q1pa7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv5uf"]
+atlas = ExtResource("32_q1pa7")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw4we"]
+atlas = ExtResource("32_q1pa7")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln2gx"]
+atlas = ExtResource("33_w1xds")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts4sf"]
+atlas = ExtResource("33_w1xds")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhpqv"]
+atlas = ExtResource("33_w1xds")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4txyc"]
+atlas = ExtResource("33_w1xds")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ifrw"]
+atlas = ExtResource("33_w1xds")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6qeuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qawfd")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghcaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2iq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n22da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1dms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alb80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l64t")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eddo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq10j")
+}],
+"loop": true,
+"name": &"drink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsa3r")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5brv")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciesu")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6e7o")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r35dk")
+}],
+"loop": true,
+"name": &"tank_dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bn0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whtf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1u6q")
+}],
+"loop": true,
+"name": &"tank_death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iohe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlydb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r28ou")
+}],
+"loop": true,
+"name": &"tank_drink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_eb5se")
+}],
+"loop": true,
+"name": &"tank_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcnwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig2pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fovy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dsd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d461v")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doww8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1rsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86dhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th3r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbkbo")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uv3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss1xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a8cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv5uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw4we")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln2gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts4sf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhpqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4txyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ifrw")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 4.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vxgx1"]
 shader = ExtResource("45_vxgx1")
@@ -593,6 +962,206 @@ position = Vector2(120, 336)
 [node name="Tree9" parent="Trees" instance=ExtResource("4_l83ky")]
 position = Vector2(630, 93)
 
+[node name="Crowd" type="Node" parent="."]
+
+[node name="guy" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(0, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy2" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(-16, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy2"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy2"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy3" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(-16, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy3"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy3"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy4" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(-24, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy4"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy4"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy5" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(-48, 168)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy5"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy5"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_right"
+autoplay = "idle_right"
+
+[node name="guy6" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(136, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy6"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy6"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_left"
+autoplay = "idle_left"
+
+[node name="guy7" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(128, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy7"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy7"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_left"
+autoplay = "idle_left"
+
+[node name="guy8" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(160, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy8"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy8"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_left"
+autoplay = "idle_left"
+
+[node name="guy9" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(56, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy9"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy9"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_up"
+autoplay = "idle_up"
+
+[node name="guy10" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(104, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy10"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy10"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_up"
+autoplay = "idle_up"
+
+[node name="guy11" type="CharacterBody2D" parent="Crowd"]
+y_sort_enabled = true
+position = Vector2(72, 248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/guy11"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crowd/guy11"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16, 8)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"idle_up"
+autoplay = "idle_up"
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAAEAP//AQAAAAAAAAADAP7/AQAAAAAAAAACAP7/AQAAAAAAAAABAP7/AQAAAAAAAAD/////AQACAAAAAAAAAP7/AQACAAAAAAD///7/AQACAAEAAAAAAP3/AQACAAEAAAD///3/AQACAAEAAAAAAPz/AQACAAEAAAAEAP7/AQACAAAAARAFAP//AQACAAAAARAFAP7/AQACAAEAARAFAP3/AQACAAEAARAEAP3/AQACAAEAARAEAPz/AQACAAEAARADAP3/AQACAAEAARABAP3/AQACAAEAAQABAPz/AQACAAEAAQADAPz/AQACAAEAARACAP3/AQABAAAAAAACAPz/AQABAAAAAAACAPv/AQABAAAAAAADAPv/AQACAAEAARABAPv/AQACAAEAAQAFAPz/AQACAAEAARD///z/AQACAAEAAQD///v/AQACAAEAAQAAAPv/AQACAAEAAQAEAPv/AQACAAEAARAFAPv/AQACAAEAARACAAIAAQAAAAAAAAAVAAEAAQAAAAAAAAAWAAEAAQAAAAAAAAAYAAEAAQAAAAAAAAAZAAEAAQAAAAAAAAAZAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAVAP//AQAAAAAAAAAWAP//AQAAAAAAAAAXAP//AQAAAAAAAAAYAP//AQAAAAAAAAAZAP//AQAAAAAAAAA=")
@@ -623,213 +1192,14 @@ texture = SubResource("GradientTexture2D_16566")
 position = Vector2(80, 106)
 texture = ExtResource("21_l83ky")
 
-[node name="Crowd" type="Node" parent="TileMapLayer"]
-
-[node name="guy" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(0, 144)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_right"
-autoplay = "idle_right"
-
-[node name="guy2" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(-16, 160)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy2"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy2"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_right"
-autoplay = "idle_right"
-
-[node name="guy3" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(-16, 200)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy3"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy3"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_right"
-autoplay = "idle_right"
-
-[node name="guy4" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(-24, 144)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy4"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy4"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_right"
-autoplay = "idle_right"
-
-[node name="guy5" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(-48, 168)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy5"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy5"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_right"
-autoplay = "idle_right"
-
-[node name="guy6" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(136, 136)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy6"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy6"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_left"
-autoplay = "idle_left"
-
-[node name="guy7" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(128, 160)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy7"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy7"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_left"
-autoplay = "idle_left"
-
-[node name="guy8" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(160, 120)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy8"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy8"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_left"
-autoplay = "idle_left"
-
-[node name="guy9" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(56, 232)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy9"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy9"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_up"
-autoplay = "idle_up"
-
-[node name="guy10" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(104, 232)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy10"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy10"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_up"
-autoplay = "idle_up"
-
-[node name="guy11" type="CharacterBody2D" parent="TileMapLayer/Crowd"]
-y_sort_enabled = true
-position = Vector2(72, 248)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/Crowd/guy11"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMapLayer/Crowd/guy11"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(16, 8)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"idle_up"
-autoplay = "idle_up"
-
-[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("CS_tnoise", "transition")]
+[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("enable_on_start", "CS_tnoise", "transition")]
 libraries = {
 &"": SubResource("AnimationLibrary_utrln")
 }
 script = ExtResource("20_3beet")
 convo = "cs1"
 resource = ExtResource("21_tc0jy")
+enable_on_start = [NodePath("Player Actor")]
 CS_tnoise = NodePath("CS_tnoise")
 transition = NodePath("../Transition")
 
@@ -976,8 +1346,8 @@ autoplay = "Drunk"
 
 [node name="Positions" type="Node" parent="nazi_intro_CS"]
 
-[node name="PPos1" type="Node2D" parent="nazi_intro_CS/Positions"]
-position = Vector2(1093, 127)
+[node name="Nazi_top_Pos1" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1038, 97)
 
 [node name="PPos2" type="Node2D" parent="nazi_intro_CS/Positions"]
 position = Vector2(1099, 53)
@@ -1005,6 +1375,25 @@ visible = false
 position = Vector2(961, 133)
 texture = ExtResource("46_mlafc")
 offset = Vector2(0, -32.575)
+
+[node name="Nazi_top" type="CharacterBody2D" parent="nazi_intro_CS"]
+y_sort_enabled = true
+position = Vector2(1265, 79)
+script = ExtResource("27_4sjt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Nazi_top"]
+z_index = 1
+position = Vector2(15, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Nazi_top"]
+position = Vector2(16, 8)
+sprite_frames = SubResource("SpriteFrames_6qeuv")
+animation = &"tank_idle"
+autoplay = "idle_down"
+frame_progress = 0.32074952
 
 [node name="TV effects" type="CanvasLayer" parent="."]
 

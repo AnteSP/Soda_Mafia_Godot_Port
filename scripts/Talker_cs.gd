@@ -20,6 +20,7 @@ var prev_escape: bool = false
 static var skip_prompt_on: bool = false
 var fade_instance = null
 var set_up_done = false
+static var stopping_movers: Array[NPC_Movement]
 
 
 func _process(_delta):
@@ -49,9 +50,11 @@ static func call_out(anim= ""):
 	if anim != "":
 		current.play(anim)
 
-static func do_movement(actor="",posi="",new_speed: float = 100):
+static func do_movement(actor="",posi="",new_speed: float = 100,do_stopping: bool = false):
 	var actor_node = current.get_node(actor)
 	if actor_node is NPC_Movement:
+		if do_stopping:
+			stopping_movers.append(actor_node)
 		actor_node.set_target(current.get_node("Positions/" + posi).get_path(),new_speed )
 		if DialogueManagerExampleBalloon.doing_force_finish:
 			await current.get_tree().create_timer(0.05).timeout
@@ -146,6 +149,14 @@ func start_stop_CS(start: bool):
 func set_good_to_go(go: bool):
 	DialogueManagerExampleBalloon.start_stop_CS(go)
 
+static func is_anything_stopping_cs():
+	for m in stopping_movers:
+		if m.velocity == Vector2.ZERO:
+			stopping_movers.erase(m)
+		else:
+			return true
+	return false
+
 func pack_up_attempt():
 	if current:
 		current.pack_up()
@@ -170,6 +181,9 @@ func pack_up():
 	for d in disable_on_start:
 		d.visible = true
 		d.process_mode = d.PROCESS_MODE_INHERIT
+	for d in enable_on_start:
+		d.visible = false
+		d.process_mode = d.PROCESS_MODE_DISABLED
 	player.start_stop_movement(true,"Cutscene")
 	DialogueManager.disconnect("dialogue_ended",post_dialogue_cleanup)
 	current = null
