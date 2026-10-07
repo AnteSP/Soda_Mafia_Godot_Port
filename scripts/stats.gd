@@ -17,7 +17,12 @@ func _ready() -> void:
 #func _process(delta: float) -> void:
 #	pass
 
-func bg_music_change(to: float, period: float) -> void:
+func bg_music_change(to: float, period: float, new_track: String = "") -> void:
+	if new_track != "":
+		current.bg_music.stream = load("res://sound/" + new_track)
+		current.bg_music.play()
+	elif new_track == "NONE":
+		current.bg_music.stream = null
 	create_tween().tween_property(current.bg_music, "volume_db", to, period)
 	pass
 

@@ -4,6 +4,7 @@ class_name NPC_Movement
 @export var speed: float = 100.0
 @export var target_path: NodePath
 @export var stop_distance: float = 5.0
+@export var no_anim: bool = false
 var current_dir = "down"
 
 func set_target(target: NodePath,new_speed:float = 100):
@@ -31,6 +32,8 @@ func _physics_process(_delta):
 		update_animation("idle", velocity)
 
 func update_animation(state: String, input_dir: Vector2):
+	if no_anim:
+		return
 	# Determine direction (prioritizes horizontal over vertical)
 	if input_dir.x < 0 and input_dir.x < input_dir.y:
 		current_dir = "left"

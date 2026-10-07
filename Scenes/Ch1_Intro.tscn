@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=156 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_3aw6c"]
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bjngloo1lko5y" path="res://sprites/storedoor_open.png" id="23_vlxol"]
 [ext_resource type="PackedScene" uid="uid://btlq8t13lv4ob" path="res://Prefabs/UI/Transition.tscn" id="24_tc0jy"]
 [ext_resource type="SpriteFrames" uid="uid://bf1utegua4yo4" path="res://SpriteFrames/NPC_walk.tres" id="26_4sjt4"]
+[ext_resource type="PackedScene" uid="uid://bx3pmvq7x4fmr" path="res://Scenes/Ch1.tscn" id="26_ad4ob"]
 [ext_resource type="Script" uid="uid://bf1c4ddh5h84e" path="res://scripts/NPC_movement.gd" id="27_4sjt4"]
 [ext_resource type="PackedScene" uid="uid://cphtpdx4cg3bo" path="res://Prefabs/UI/Item_get.tscn" id="27_llvvt"]
 [ext_resource type="Texture2D" uid="uid://bq44jd2snmkhs" path="res://sprites/characters/Brother/Car laugh.png" id="28_mgbok"]
@@ -46,8 +47,12 @@
 [ext_resource type="Texture2D" uid="uid://bmg0qxyi2v6du" path="res://sprites/characters/nazi/back run-Sheet.png" id="33_w1xds"]
 [ext_resource type="Texture2D" uid="uid://t3j7fl30rr76" path="res://sprites/characters/nazi/Tank Death.png" id="34_yx20p"]
 [ext_resource type="Texture2D" uid="uid://bpaaowci0kdba" path="res://sprites/characters/nazi/Tank.png" id="35_eb5se"]
+[ext_resource type="Texture2D" uid="uid://ckd52c5ukrahi" path="res://sprites/characters/GG/front run-Sheet.png" id="36_w1xds"]
 [ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="37_t6rrq"]
+[ext_resource type="Texture2D" uid="uid://dsnw1hhx1jy83" path="res://sprites/characters/GG/left run-Sheet.png" id="37_yx20p"]
+[ext_resource type="Texture2D" uid="uid://bs54n00x107fc" path="res://sprites/characters/GG/right run-Sheet.png" id="38_eb5se"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="38_t6rrq"]
+[ext_resource type="Texture2D" uid="uid://dw5f4vmi4im33" path="res://sprites/characters/GG/back run-Sheet.png" id="39_qawfd"]
 [ext_resource type="Texture2D" uid="uid://i4tbewu851r3" path="res://sprites/shadow.png" id="40_34pti"]
 [ext_resource type="Texture2D" uid="uid://b1fcyani76hpo" path="res://sprites/UI/play 1.png" id="40_kwywy"]
 [ext_resource type="Resource" uid="uid://8i57gjhmfs1y" path="res://Dialogue/Chapter1Singles.dialogue" id="40_kxw66"]
@@ -442,7 +447,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("nazi_intro_CS/Player Actor/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("nazi_intro_CS/Ysort/Player Actor/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -457,7 +462,7 @@ resource_name = "look_right"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("nazi_intro_CS/Player Actor/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("nazi_intro_CS/Ysort/Player Actor/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -517,7 +522,7 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("31_7fqi3")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ciesu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbmoj"]
 atlas = ExtResource("32_q1pa7")
 region = Rect2(0, 0, 32, 32)
 
@@ -695,7 +700,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ciesu")
+"texture": SubResource("AtlasTexture_wbmoj")
 }],
 "loop": true,
 "name": &"idle_right",
@@ -832,6 +837,217 @@ animations = [{
 "loop": true,
 "name": &"walk_up",
 "speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciesu"]
+atlas = ExtResource("36_w1xds")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iasvd"]
+atlas = ExtResource("37_yx20p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8yu7"]
+atlas = ExtResource("38_eb5se")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka425"]
+atlas = ExtResource("39_qawfd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1xds"]
+atlas = ExtResource("36_w1xds")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx20p"]
+atlas = ExtResource("36_w1xds")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb5se"]
+atlas = ExtResource("36_w1xds")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhrty"]
+atlas = ExtResource("36_w1xds")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4agyt"]
+atlas = ExtResource("36_w1xds")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnsgs"]
+atlas = ExtResource("37_yx20p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdvpy"]
+atlas = ExtResource("37_yx20p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5vw8"]
+atlas = ExtResource("37_yx20p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkb14"]
+atlas = ExtResource("37_yx20p")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsxg1"]
+atlas = ExtResource("37_yx20p")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c3vw"]
+atlas = ExtResource("38_eb5se")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpk2h"]
+atlas = ExtResource("38_eb5se")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w017r"]
+atlas = ExtResource("38_eb5se")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p3fw"]
+atlas = ExtResource("38_eb5se")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_higpb"]
+atlas = ExtResource("38_eb5se")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4n3n"]
+atlas = ExtResource("39_qawfd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajxj6"]
+atlas = ExtResource("39_qawfd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6bm6"]
+atlas = ExtResource("39_qawfd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fovx"]
+atlas = ExtResource("39_qawfd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtcts"]
+atlas = ExtResource("39_qawfd")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbmoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciesu")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iasvd")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8yu7")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka425")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1xds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx20p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb5se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhrty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4agyt")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnsgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdvpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5vw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkb14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsxg1")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c3vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpk2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w017r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p3fw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_higpb")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4n3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajxj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6bm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fovx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtcts")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 3.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vxgx1"]
@@ -1300,10 +1516,11 @@ convo = "cs2"
 resource = ExtResource("21_tc0jy")
 start_on_ready = false
 talkers_disable_on_start = [NodePath("../Start_Cutscene/Play1/StaticBody2D")]
-disable_on_start = [NodePath("../Start_Cutscene/Play1"), NodePath("../TileMapLayer/player"), NodePath("../Start_Cutscene/Shadow")]
-enable_on_start = [NodePath("Player Actor"), NodePath("Foldable Table Prop"), NodePath("Soda Machine Prop")]
+disable_on_start = [NodePath("../Start_Cutscene/Play1"), NodePath("../TileMapLayer/player"), NodePath("../Start_Cutscene/Shadow"), NodePath("../CanvasLayer/InventoryButton")]
+enable_on_start = [NodePath("Ysort")]
 CS_tnoise = NodePath("CS_tnoise2")
 transition = NodePath("../Transition")
+end_with_scene = ExtResource("26_ad4ob")
 metadata/_custom_type_script = "uid://c26fwd1q8awsq"
 
 [node name="Camera2D" type="Camera2D" parent="nazi_intro_CS"]
@@ -1324,33 +1541,28 @@ return_speed = 30.0
 process_mode = 3
 script = ExtResource("16_5sf6f")
 
-[node name="Player Actor" type="CharacterBody2D" parent="nazi_intro_CS"]
-process_mode = 4
-visible = false
-y_sort_enabled = true
-position = Vector2(979, 99)
-script = ExtResource("27_4sjt4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Player Actor"]
-z_index = 1
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
-one_way_collision_margin = 0.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Player Actor"]
-position = Vector2(2, 1)
-sprite_frames = ExtResource("26_4sjt4")
-animation = &"Drunk"
-autoplay = "Drunk"
-
 [node name="Positions" type="Node" parent="nazi_intro_CS"]
 
 [node name="Nazi_top_Pos1" type="Node2D" parent="nazi_intro_CS/Positions"]
-position = Vector2(1038, 97)
+position = Vector2(1022, 86)
 
-[node name="PPos2" type="Node2D" parent="nazi_intro_CS/Positions"]
-position = Vector2(1099, 53)
+[node name="Nazi_top_Pos2" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1004, 87)
+
+[node name="Nazi_top_Pos3" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(985, 76)
+
+[node name="Nazi_bottom_Pos1" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1038, 121)
+
+[node name="Nazi_tank_Pos1" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(1064, 99)
+
+[node name="GPos1" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(957, 66)
+
+[node name="GPos2" type="Node2D" parent="nazi_intro_CS/Positions"]
+position = Vector2(957, 85)
 
 [node name="PPos3" type="Node2D" parent="nazi_intro_CS/Positions"]
 position = Vector2(1121, 89)
@@ -1364,36 +1576,112 @@ position = Vector2(978, 104)
 [node name="CS_tnoise2" type="AudioStreamPlayer" parent="nazi_intro_CS" groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
-[node name="Foldable Table Prop" type="Sprite2D" parent="nazi_intro_CS"]
+[node name="Ysort" type="Node2D" parent="nazi_intro_CS"]
 visible = false
-position = Vector2(984, 152)
-texture = ExtResource("43_llvvt")
-offset = Vector2(0, -32.575)
+y_sort_enabled = true
 
-[node name="Soda Machine Prop" type="Sprite2D" parent="nazi_intro_CS"]
-visible = false
-position = Vector2(961, 133)
-texture = ExtResource("46_mlafc")
-offset = Vector2(0, -32.575)
+[node name="Player Actor" type="CharacterBody2D" parent="nazi_intro_CS/Ysort"]
+y_sort_enabled = true
+position = Vector2(979, 99)
+script = ExtResource("27_4sjt4")
 
-[node name="Nazi_top" type="CharacterBody2D" parent="nazi_intro_CS"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Ysort/Player Actor"]
+z_index = 1
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Ysort/Player Actor"]
+position = Vector2(2, 1)
+sprite_frames = ExtResource("26_4sjt4")
+animation = &"Drunk"
+autoplay = "Drunk"
+
+[node name="Nazi_top" type="CharacterBody2D" parent="nazi_intro_CS/Ysort"]
 y_sort_enabled = true
 position = Vector2(1265, 79)
 script = ExtResource("27_4sjt4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Nazi_top"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Ysort/Nazi_top"]
 z_index = 1
 position = Vector2(15, 16)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_onrkg")
 one_way_collision_margin = 0.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Nazi_top"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Ysort/Nazi_top"]
 position = Vector2(16, 8)
 sprite_frames = SubResource("SpriteFrames_6qeuv")
-animation = &"tank_idle"
+animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.32074952
+
+[node name="Nazi_tank" type="CharacterBody2D" parent="nazi_intro_CS/Ysort"]
+y_sort_enabled = true
+position = Vector2(1287, 92)
+script = ExtResource("27_4sjt4")
+no_anim = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Ysort/Nazi_tank"]
+z_index = 1
+position = Vector2(15, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Ysort/Nazi_tank"]
+position = Vector2(44, 8)
+sprite_frames = SubResource("SpriteFrames_6qeuv")
+animation = &"tank_idle"
+
+[node name="Nazi_bottom" type="CharacterBody2D" parent="nazi_intro_CS/Ysort"]
+y_sort_enabled = true
+position = Vector2(1252, 104)
+script = ExtResource("27_4sjt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Ysort/Nazi_bottom"]
+z_index = 1
+position = Vector2(15, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Ysort/Nazi_bottom"]
+position = Vector2(16, 8)
+sprite_frames = SubResource("SpriteFrames_6qeuv")
+animation = &"walk_left"
+autoplay = "idle_down"
+
+[node name="GG" type="CharacterBody2D" parent="nazi_intro_CS/Ysort"]
+y_sort_enabled = true
+position = Vector2(701, 59)
+script = ExtResource("27_4sjt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nazi_intro_CS/Ysort/GG"]
+z_index = 1
+position = Vector2(15, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nazi_intro_CS/Ysort/GG"]
+position = Vector2(16, 8)
+sprite_frames = SubResource("SpriteFrames_wbmoj")
+animation = &"walk_up"
+autoplay = "idle_down"
+frame = 1
+frame_progress = 0.6234337
+
+[node name="Foldable Table Prop" type="Sprite2D" parent="nazi_intro_CS/Ysort"]
+position = Vector2(984, 152)
+texture = ExtResource("43_llvvt")
+offset = Vector2(0, -32.575)
+
+[node name="Soda Machine Prop" type="Sprite2D" parent="nazi_intro_CS/Ysort"]
+top_level = true
+position = Vector2(961, 133)
+texture = ExtResource("46_mlafc")
+offset = Vector2(0, -32.575)
 
 [node name="TV effects" type="CanvasLayer" parent="."]
 

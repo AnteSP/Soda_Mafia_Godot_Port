@@ -31,35 +31,34 @@ do stats.ambient_music_change(-3,10)
 => END
 
 ~ cs2
-do stats.bg_music_change(-100,1)
+do stats.bg_music_change(-20,1,"NONE")
 ...: Press Space[#tnoise=null]
 You: wooooh! Wooooh...[#tnoise=DefaultMaleTypeNoise.wav]
 You: wh- WHO WANTS A SODER!?
 do TalkerCS.call_out("look_right")
 You: ...
 You: a prospective customer?!
-do TalkerCS.do_movement("Nazi_top","Nazi_top_Pos1",70,true)
-
-Nazi: YOU ZERE! INFERIOR LIFE FORM! VE ARE ZE THIRD REICH[#tnoise=NaziTypeNoise.wav]
-You: Wah?... Nazis? Didn't we defeat you guys like 30 years ago?[#tnoise=DefaultMaleTypeNoise.wav]
-do TalkerCS.do_movement("Player Actor","PPos1",20)
-You: Heyyy... Fuck y- *hiccup* -ou ALL![#tnoise=DefaultMaleTypeNoise.wav]
-do TalkerCS.call_out("Brother Approach")
-...
-#brother pulls up and laughs
-Brother: Oh, if it aint my LOSER brother
-do TalkerCS.do_movement("Player Actor","PPos2",10)
-Brother: Sigh... It must suck not to be the rich and famous CEO of Conker Coola
-#brother leaves
-do TalkerCS.call_out("Brother Leave")
-Brother: Toodeloo brother! Just remember, I'LL ALWAYS BE BETTER THAN YOU
-do TalkerCS.do_movement("Player Actor","PPos3",40)
-You: FUCK YOU BROTHER! I'll make my OWN SODA COMPANY
-You: AND IT'LL BE A BAJILLION TIMES BETTER THAN YOURS
-#you start walking away
-do TalkerCS.do_movement("Player Actor","PPos4",25)
-You: I'll show [bgcolor=red]him[/bgcolor]...
-do stats.bg_music_change(-8,3)
-do stats.ambient_music_change(-3,10)
-#You: Check this shit out [bgcolor=blue]whooa[/bgcolor] [shake rate=20.0 level=20 connected=1]we can even get shaky bruh[/shake] [#tnoise=DefaultMaleTypeNoise.wav]
+do TalkerCS.do_movement("Ysort/Nazi_top","Nazi_top_Pos1",70,true)
+do TalkerCS.do_movement("Ysort/Nazi_tank","Nazi_tank_Pos1",50,false)
+do TalkerCS.do_movement("Ysort/Nazi_bottom","Nazi_bottom_Pos1",70,true)
+do stats.bg_music_change(0,2,"nazi_theme_remake.ogg")
+???: YOU ZERE! INFERIOR LIFE FORM! VE ARE ZE THIRD REICH[#tnoise=NaziTypeNoise.wav]
+You: Wha?... Nazis? Didn't we like, defeat you guys like... 30 years ago?[#tnoise=DefaultMaleTypeNoise.wav]
+Nazi: NEIN! Ve are SUPERIOR! VE NEVER LOSE!!!![#tnoise=NaziTypeNoise.wav]
+Nazi: You vill all feel our wrath but ve vill tolerate your existence, kretin, if you make drinks for us. Ve get quite parched
+You: ...huh?[#tnoise=DefaultMaleTypeNoise.wav]
+Your boss now apparently: ZILENCE!!![#tnoise=NaziTypeNoise.wav]
+do TalkerCS.do_movement("Ysort/GG","GPos1",90,false)
+???: EY!!![#tnoise=MafiaTypeNoise.wav]
+???: THE HELL IS THIS!? NAZIS?!
+???: My father killed nazis back in Italy. I thoughts you was all dead'
+Nazi: You foolish Italian... You see, our hatred of minorities vas so strong it has brought us back from ze dead[#tnoise=NaziTypeNoise.wav]
+Nazi: NOW YOU VILL SERVE OUR EMPIRE!
+do TalkerCS.do_movement("Ysort/Nazi_top","Nazi_top_Pos2",50,false)
+Nazi: YOU vill provide ze ingredients
+do TalkerCS.do_movement("Ysort/Nazi_top","Nazi_top_Pos3",50,false)
+Nazi: and YOU vill serve us drinks
+Nazi: MEN! Our conquest of ZE WORLD commences
+do TalkerCS.do_movement("Ysort/GG","GPos2",70,false)
+???: EY! I just realized, did you steal my soda machine you little shit!?[#tnoise=MafiaTypeNoise.wav]
 => END

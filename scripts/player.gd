@@ -71,6 +71,11 @@ func post_dialogue_cleanup(resource: DialogueResource):
 	print("Dialogue ended with resource: ", resource)
 	sbp.reset_spacebar()
 	start_stop_movement(true,"Interaction")
+	if TalkerCS.current:
+		DialogueManagerExampleBalloon.change_type_noise(null)
+		if DialogueManagerExampleBalloon.doing_force_finish:
+			DialogueManagerExampleBalloon.doing_force_finish = false
+			AudioServer.get_bus_effect(0, 0).pitch_scale = 1
 
 func update_animation(state: String, input_dir: Vector2):
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d0vefhxldagfk" path="res://Start Screen-Sheet1.png" id="2_iv0vr"]
 [ext_resource type="Script" uid="uid://db240uog5wl2q" path="res://scripts/Utils.gd" id="3_5d0og"]
 [ext_resource type="Texture2D" uid="uid://b1fcyani76hpo" path="res://sprites/UI/play 1.png" id="3_n1emc"]
-[ext_resource type="PackedScene" uid="uid://ck46hd5aiskji" path="res://Ch1_Intro.tscn" id="4_mw7qi"]
+[ext_resource type="PackedScene" uid="uid://ck46hd5aiskji" path="res://Scenes/Ch1_Intro.tscn" id="4_mw7qi"]
 [ext_resource type="AudioStream" uid="uid://mx766w0auhhp" path="res://sound/TV turn on.mp3" id="5_5d0og"]
 [ext_resource type="Shader" uid="uid://ddtf7047f335t" path="res://SCREEN.gdshader" id="5_iv0vr"]
 [ext_resource type="Texture2D" uid="uid://ox551fu321l3" path="res://sprites/UI/play 2.png" id="6_7bqju"]
