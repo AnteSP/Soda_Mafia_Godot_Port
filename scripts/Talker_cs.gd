@@ -11,8 +11,6 @@ class_name TalkerCS
 @export var CS_tnoise: AudioStreamPlayer
 @export var transition: Node
 @export var end_with_scene: PackedScene = null
-var start_anim: AnimationPlayer
-var label: RichTextLabel
 var stopping = false
 static var current: TalkerCS = null
 var return_to_cam: Camera2D
@@ -62,12 +60,10 @@ static func do_movement(actor="",posi="",new_speed: float = 100,do_stopping: boo
 			actor_node.position = current.get_node("Positions/" + posi).position
 
 func _ready():
-	start_anim = transition.get_node("Transition/AnimationPlayer")
-	label = transition.get_node("Transition/RichTextLabel")
-
 	if start_on_ready:
-		transition.get_node("Transition").visible = true
-		transition.show()
+		#Transition.start_cuscene(true)
+		#transition.get_node("Transition").visible = true
+		#transition.show()
 		start_cs()
 	else:
 		process_mode = Node.PROCESS_MODE_DISABLED
@@ -78,24 +74,14 @@ func start_cs():
 	current = self
 	stopping = false
 	stopped_echo = false
-	label.text = "Starting cutscene"
 	
 	player.start_stop_movement(false,"Cutscene")
 	
 	if start_on_ready:
 		set_up_cs()
-	#DialogueManager.connect("dialogue_ended", post_dialogue_cleanup)
-	transition.process_mode = Node.PROCESS_MODE_ALWAYS
-	start_anim.process_mode = Node.PROCESS_MODE_ALWAYS
-	transition.get_node("Transition").visible = true
-	transition.show()
-	start_anim.stop()
-	if not start_on_ready:
-		start_anim.seek(0)
-	start_anim.play("Start_CS")
-	if start_on_ready:
-		start_anim.seek(1)
-	start_anim.speed_scale = 1
+		Transition.start_cuscene(true)
+	else:
+		Transition.start_cuscene(false)
 
 func set_up_cs():
 	set_up_done = true
@@ -126,17 +112,7 @@ func post_dialogue_cleanup(_resource: DialogueResource):
 	stopping = true
 	if fade_instance:
 		fade_instance.hide()
-	start_anim.stop()
-	if not start_on_ready:
-		start_anim.seek(start_anim.get_animation("Start_CS").length-0.4)
-		start_anim.speed_scale = -1
-		#start_anim.seek(0,true)
-	
-	start_anim.play("Start_CS")
-	if start_on_ready:
-		start_anim.seek(start_anim.get_animation("Start_CS").length-0.4)
-	label.text = "Byebye cutscene :3"
-	start_anim.speed_scale = -1
+	Transition.end_cutscene()
 	if DialogueManagerExampleBalloon.doing_force_finish:
 		AudioServer.get_bus_effect(0, 0).pitch_scale = 1
 	DialogueManagerExampleBalloon.doing_force_finish = false
@@ -170,8 +146,8 @@ func pack_up():
 		else:
 			print("PACKUP prevented- not stopping")
 		return
-	elif(!stopped_echo and start_on_ready):
-		print("PACKUP prevented- stopping echo")
+	elif(!stopped_echo and start_on_ready and false):#THIS IS HOPEFULLY DEPRECATED
+		print("PACKUP prevented- stopping echo [THIS SHOULD NOT HAVE HAPPENED]")
 		DialogueManagerExampleBalloon.change_type_noise(null)
 		stopped_echo = true
 		return
@@ -189,4 +165,5 @@ func pack_up():
 	$Camera2D.visible = false
 	return_to_cam.make_current()
 	if end_with_scene:
+		stats.start_scene_on_transition = true
 		get_tree().change_scene_to_packed(end_with_scene)

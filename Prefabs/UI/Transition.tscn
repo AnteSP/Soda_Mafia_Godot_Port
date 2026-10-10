@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://btlq8t13lv4ob"]
+[gd_scene load_steps=9 format=3 uid="uid://btlq8t13lv4ob"]
 
+[ext_resource type="Script" uid="uid://8knqnmd4xohi" path="res://scripts/transition.gd" id="1_083g7"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="1_refkr"]
 [ext_resource type="Script" uid="uid://c26fwd1q8awsq" path="res://scripts/Talker_cs.gd" id="2_o8ekl"]
 
@@ -87,6 +88,8 @@ _data = {
 
 [node name="Transition" type="CanvasLayer"]
 layer = 128
+visible = false
+script = ExtResource("1_083g7")
 
 [node name="Transition" type="ColorRect" parent="."]
 z_index = 4096

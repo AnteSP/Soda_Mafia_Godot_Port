@@ -1,4 +1,5 @@
 ~ cs1
+do Transition.set_custom_text("Somewhere near New York City...")
 ...: Press Space[#tnoise=null]
 do TalkerCS.call_out("Ch1_Intro_KickedOut")
 Bartender: GET OUTTA MY PUB YOU DRUNKARD![#tnoise=MafiaTypeNoise.wav]
@@ -25,6 +26,7 @@ You: AND IT'LL BE A BAJILLION TIMES BETTER THAN YOURS
 #you start walking away
 do TalkerCS.do_movement("Player Actor","PPos4",25)
 You: I'll show [bgcolor=red]him[/bgcolor]...
+do Transition.set_custom_text()
 do stats.bg_music_change(-8,3)
 do stats.ambient_music_change(-3,10)
 #You: Check this shit out [bgcolor=blue]whooa[/bgcolor] [shake rate=20.0 level=20 connected=1]we can even get shaky bruh[/shake] [#tnoise=DefaultMaleTypeNoise.wav]

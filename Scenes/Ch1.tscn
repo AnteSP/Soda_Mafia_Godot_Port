@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=4 uid="uid://bx3pmvq7x4fmr"]
+[gd_scene load_steps=140 format=4 uid="uid://bx3pmvq7x4fmr"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_1f7yp"]
 [ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="2_fu3uo"]
@@ -43,7 +43,6 @@
 [ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="48_3ppfe"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="49_3aoxq"]
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="50_vnjnn"]
-[ext_resource type="PackedScene" uid="uid://btlq8t13lv4ob" path="res://Prefabs/UI/Transition.tscn" id="51_ulwo1"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="52_340af"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="53_wgatk"]
 [ext_resource type="Texture2D" uid="uid://b1fcyani76hpo" path="res://sprites/UI/play 1.png" id="54_tuuk5"]
@@ -807,12 +806,11 @@ one_way_collision_margin = 0.0
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Tree" parent="Trees" node_paths=PackedStringArray("type_noise") groups=["Interactable"] instance=ExtResource("3_k2vm5")]
+[node name="Tree" parent="Trees" groups=["Interactable"] instance=ExtResource("3_k2vm5")]
 position = Vector2(-56, 136)
 script = ExtResource("4_d1rr7")
 convo = "start"
 resource = ExtResource("5_jkcyr")
-type_noise = NodePath("")
 
 [node name="Tree2" parent="Trees" groups=["Interactable"] instance=ExtResource("3_k2vm5")]
 position = Vector2(-120, 112)
@@ -1082,7 +1080,7 @@ talkers_disable_on_start = [NodePath("../Start_Cutscene/Play1/StaticBody2D")]
 disable_on_start = [NodePath("../Start_Cutscene/Play1"), NodePath("../TileMapLayer/player"), NodePath("../Start_Cutscene/Shadow"), NodePath("../CanvasLayer/InventoryButton")]
 enable_on_start = [NodePath("Ysort")]
 CS_tnoise = NodePath("CS_tnoise2")
-transition = NodePath("../Transition")
+transition = NodePath("")
 metadata/_custom_type_script = "uid://c26fwd1q8awsq"
 
 [node name="Camera2D" type="Camera2D" parent="nazi_intro_CS"]
@@ -1299,9 +1297,6 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/InventoryButton"]
 stream = ExtResource("50_vnjnn")
 
-[node name="Transition" parent="." instance=ExtResource("51_ulwo1")]
-visible = false
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.570946, 0.626316, 0.710555, 1)
 
@@ -1515,22 +1510,20 @@ scale = Vector2(5.04, 6.301)
 shape = SubResource("CapsuleShape2D_kwywy")
 one_way_collision_margin = 0.0
 
-[node name="insta1" type="StaticBody2D" parent="." node_paths=PackedStringArray("type_noise") groups=["Auto_Interact"]]
+[node name="insta1" type="StaticBody2D" parent="." groups=["Auto_Interact"]]
 position = Vector2(616, 126)
 script = ExtResource("4_d1rr7")
 convo = "insta1"
 resource = ExtResource("55_1k0wg")
-type_noise = NodePath("")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="insta1"]
 shape = SubResource("RectangleShape2D_rsj32")
 
-[node name="insta2" type="StaticBody2D" parent="." node_paths=PackedStringArray("type_noise") groups=["Auto_Interact"]]
+[node name="insta2" type="StaticBody2D" parent="." groups=["Auto_Interact"]]
 position = Vector2(734, 117)
 script = ExtResource("4_d1rr7")
 convo = "insta2"
 resource = ExtResource("55_1k0wg")
-type_noise = NodePath("")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="insta2"]
 shape = SubResource("RectangleShape2D_rsj32")
