@@ -786,7 +786,7 @@ script = ExtResource("2_fu3uo")
 [node name="CollisionShape" type="CollisionPolygon2D" parent="Boundary/StaticBody2D"]
 position = Vector2(-12, -15)
 build_mode = 1
-polygon = PackedVector2Array(1737, 316, 1729, -324, 834, -327, 835, 36, 472, 29, 350, 27, 349, 222, 887, 169, 903, 302)
+polygon = PackedVector2Array(1737, 316, 1729, -324, 834, -327, 835, 36, 853, 160, 903, 302)
 one_way_collision_margin = 0.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Boundary/StaticBody2D"]
@@ -1045,7 +1045,7 @@ tile_set = SubResource("TileSet_ktssj")
 rendering_quadrant_size = 32
 
 [node name="player" parent="TileMapLayer" instance=ExtResource("8_8e6cd")]
-position = Vector2(433, 132)
+position = Vector2(1016, 107)
 Inventory = ExtResource("9_5ft6k")
 
 [node name="player_ruler" parent="TileMapLayer" instance=ExtResource("10_cyfm2")]
@@ -1068,7 +1068,7 @@ texture = SubResource("GradientTexture2D_16566")
 position = Vector2(80, 106)
 texture = ExtResource("12_w2yrm")
 
-[node name="nazi_intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("talkers_disable_on_start", "disable_on_start", "enable_on_start", "CS_tnoise", "transition")]
+[node name="nazi_intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("talkers_disable_on_start", "disable_on_start", "enable_on_start", "CS_tnoise")]
 libraries = {
 &"": SubResource("AnimationLibrary_hcnwd")
 }
@@ -1080,7 +1080,6 @@ talkers_disable_on_start = [NodePath("../Start_Cutscene/Play1/StaticBody2D")]
 disable_on_start = [NodePath("../Start_Cutscene/Play1"), NodePath("../TileMapLayer/player"), NodePath("../Start_Cutscene/Shadow"), NodePath("../CanvasLayer/InventoryButton")]
 enable_on_start = [NodePath("Ysort")]
 CS_tnoise = NodePath("CS_tnoise2")
-transition = NodePath("")
 metadata/_custom_type_script = "uid://c26fwd1q8awsq"
 
 [node name="Camera2D" type="Camera2D" parent="nazi_intro_CS"]

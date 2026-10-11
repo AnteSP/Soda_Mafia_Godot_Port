@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=4 uid="uid://ck46hd5aiskji"]
+[gd_scene load_steps=158 format=4 uid="uid://ck46hd5aiskji"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_3aw6c"]
 [ext_resource type="Texture2D" uid="uid://chp6s7w57sspi" path="res://sprites/tileset.png" id="1_gk4mc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bchubbvxddp4h" path="res://Prefabs/Items/PlayerInventory.tres" id="3_n2c5f"]
 [ext_resource type="PackedScene" uid="uid://bnhjcdm4tneov" path="res://Prefabs/Tree.tscn" id="4_l83ky"]
 [ext_resource type="Script" uid="uid://55m633i0gbmx" path="res://scripts/Talker.gd" id="5_3beet"]
+[ext_resource type="Texture2D" uid="uid://bonothnjt4b6h" path="res://sprites/forest.png" id="6_ad4ob"]
 [ext_resource type="Resource" uid="uid://dav4r8h5ceu5n" path="res://Dialogue/test2.dialogue" id="6_tc0jy"]
 [ext_resource type="AudioStream" uid="uid://dtqxerhj7vesc" path="res://sound/TypeNoises/DefaultMaleTypeNoise.wav" id="7_utrln"]
 [ext_resource type="PackedScene" uid="uid://ddwq0yu6fm4sq" path="res://Prefabs/player_ruler.tscn" id="8_vdnnh"]
@@ -16,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://c86d5n6xfm8mx" path="res://sound/TypeNoises/laugh.wav" id="10_mgbok"]
 [ext_resource type="Texture2D" uid="uid://coakyd2ctsosf" path="res://sprites/UI/UI-tab-retracted-hover.png" id="11_ycgla"]
 [ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://scripts/UI_button.gd" id="12_1weh1"]
+[ext_resource type="Texture2D" uid="uid://dysk8ajl5uyk0" path="res://sprites/GG_door.png" id="13_0bl4p"]
 [ext_resource type="Texture2D" uid="uid://dgybi5uhp8jwr" path="res://sprites/UI/UI-tab-extended-norm.png" id="13_mgbok"]
 [ext_resource type="Texture2D" uid="uid://bdg60733p7v82" path="res://sprites/UI/UI-tab-extended-hover.png" id="14_nguuq"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="15_5sf6f"]
@@ -110,6 +112,9 @@ gradient = SubResource("Gradient_vdnnh")
 fill = 1
 fill_from = Vector2(0.5, 0.015)
 fill_to = Vector2(0.97, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bl4p"]
+size = Vector2(34, 31)
 
 [sub_resource type="Animation" id="Animation_mgbok"]
 resource_name = "Brother Approach"
@@ -1177,6 +1182,85 @@ position = Vector2(120, 336)
 [node name="Tree9" parent="Trees" instance=ExtResource("4_l83ky")]
 position = Vector2(630, 93)
 
+[node name="Tree10" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(576, 72)
+
+[node name="Tree11" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(544, 95)
+
+[node name="Tree12" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(510, 69)
+
+[node name="Tree13" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(484, 96)
+
+[node name="Tree14" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(349, 40)
+
+[node name="Tree15" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(389, 18)
+
+[node name="Tree16" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(458, 8)
+
+[node name="Tree17" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(536, 11)
+
+[node name="Tree18" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(366, 248)
+
+[node name="Tree19" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(411, 230)
+
+[node name="Tree20" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(461, 266)
+
+[node name="Tree21" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(524, 235)
+
+[node name="Tree22" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(593, 271)
+
+[node name="Tree23" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(636, 217)
+
+[node name="Tree24" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(578, 232)
+
+[node name="Tree25" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(703, 230)
+
+[node name="Tree26" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(767, 247)
+
+[node name="Tree27" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(822, 225)
+
+[node name="Tree28" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(854, 303)
+
+[node name="Tree29" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(818, 267)
+
+[node name="Tree30" parent="Trees" instance=ExtResource("4_l83ky")]
+position = Vector2(629, -1)
+
+[node name="Tree31" parent="Trees" instance=ExtResource("4_l83ky")]
+top_level = true
+position = Vector2(671, 314)
+
+[node name="Tree32" parent="Trees" instance=ExtResource("4_l83ky")]
+top_level = true
+position = Vector2(514, 288)
+
+[node name="Forest" type="Sprite2D" parent="Trees"]
+position = Vector2(550, 418)
+texture = ExtResource("6_ad4ob")
+
+[node name="Forest2" type="Sprite2D" parent="Trees"]
+position = Vector2(532, -167)
+texture = ExtResource("6_ad4ob")
+
 [node name="Crowd" type="Node" parent="."]
 
 [node name="guy" type="CharacterBody2D" parent="Crowd"]
@@ -1379,7 +1463,7 @@ autoplay = "idle_up"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAAEAP//AQAAAAAAAAADAP7/AQAAAAAAAAACAP7/AQAAAAAAAAABAP7/AQAAAAAAAAD/////AQACAAAAAAAAAP7/AQACAAAAAAD///7/AQACAAEAAAAAAP3/AQACAAEAAAD///3/AQACAAEAAAAAAPz/AQACAAEAAAAEAP7/AQACAAAAARAFAP//AQACAAAAARAFAP7/AQACAAEAARAFAP3/AQACAAEAARAEAP3/AQACAAEAARAEAPz/AQACAAEAARADAP3/AQACAAEAARABAP3/AQACAAEAAQABAPz/AQACAAEAAQADAPz/AQACAAEAARACAP3/AQABAAAAAAACAPz/AQABAAAAAAACAPv/AQABAAAAAAADAPv/AQACAAEAARABAPv/AQACAAEAAQAFAPz/AQACAAEAARD///z/AQACAAEAAQD///v/AQACAAEAAQAAAPv/AQACAAEAAQAEAPv/AQACAAEAARAFAPv/AQACAAEAARACAAIAAQAAAAAAAAAVAAEAAQAAAAAAAAAWAAEAAQAAAAAAAAAYAAEAAQAAAAAAAAAZAAEAAQAAAAAAAAAZAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAVAP//AQAAAAAAAAAWAP//AQAAAAAAAAAXAP//AQAAAAAAAAAYAP//AQAAAAAAAAAZAP//AQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAAEAP//AQAAAAAAAAADAP7/AQAAAAAAAAACAP7/AQAAAAAAAAABAP7/AQAAAAAAAAD/////AQACAAAAAAAAAP7/AQACAAAAAAD///7/AQACAAEAAAAAAP3/AQACAAEAAAD///3/AQACAAEAAAAAAPz/AQACAAEAAAAEAP7/AQACAAAAARAFAP//AQACAAAAARAFAP7/AQACAAEAARAFAP3/AQACAAEAARAEAP3/AQACAAEAARAEAPz/AQACAAEAARADAP3/AQACAAEAARABAP3/AQACAAEAAQABAPz/AQACAAEAAQADAPz/AQACAAEAARACAP3/AQABAAAAAAACAPz/AQABAAAAAAACAPv/AQABAAAAAAADAPv/AQACAAEAARABAPv/AQACAAEAAQAFAPz/AQACAAEAARD///z/AQACAAEAAQD///v/AQACAAEAAQAAAPv/AQACAAEAAQAEAPv/AQACAAEAARAFAPv/AQACAAEAARACAAIAAQAAAAAAAAAVAAEAAQAAAAAAAAAWAAEAAQAAAAAAAAAYAAEAAQAAAAAAAAAZAAEAAQAAAAAAAAAZAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAVAP//AQAAAAAAAAAWAP//AQAAAAAAAAAXAP//AQAAAAAAAAAYAP//AQAAAAAAAAAZAP//AQAAAAAAAAAXAAAAAQAAAAAAAAAVAP7/AQABAAAAAAAWAP7/AQABAAAAAAAXAP7/AQABAAAAAAAYAP7/AQABAAAAAAAZAP7/AQABAAAAAAAZAP3/AQABAAAAAAAYAP3/AQABAAAAAAAXAP3/AQABAAAAAAAWAP3/AQABAAAAAAAWAPz/AQABAAAAAAAVAPz/AQABAAAAAAAVAP3/AQABAAAAAAAXAPz/AQABAAAAAAAYAPz/AQABAAAAAAAZAPz/AQABAAAAAAA=")
 tile_set = SubResource("TileSet_ktssj")
 rendering_quadrant_size = 32
 
@@ -1403,11 +1487,22 @@ skew = 0.0363033
 color = Color(0.996078, 0.72549, 0.8, 1)
 texture = SubResource("GradientTexture2D_16566")
 
+[node name="GgDoor" type="Sprite2D" parent="TileMapLayer"]
+position = Vector2(752, 43)
+scale = Vector2(0.99999905, 1)
+texture = ExtResource("13_0bl4p")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMapLayer/GgDoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/GgDoor/StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_0bl4p")
+
 [node name="Storedoor" type="Sprite2D" parent="TileMapLayer"]
 position = Vector2(80, 106)
 texture = ExtResource("21_l83ky")
 
-[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("enable_on_start", "CS_tnoise", "transition")]
+[node name="Intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("enable_on_start", "CS_tnoise")]
 libraries = {
 &"": SubResource("AnimationLibrary_utrln")
 }
@@ -1416,7 +1511,6 @@ convo = "cs1"
 resource = ExtResource("21_tc0jy")
 enable_on_start = [NodePath("Player Actor")]
 CS_tnoise = NodePath("CS_tnoise")
-transition = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="Intro_CS"]
 process_mode = 4
@@ -1506,7 +1600,7 @@ stream = ExtResource("7_utrln")
 [node name="CS_tnoise" type="AudioStreamPlayer" parent="Intro_CS" groups=["tnoise"]]
 stream = ExtResource("7_utrln")
 
-[node name="nazi_intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("talkers_disable_on_start", "disable_on_start", "enable_on_start", "CS_tnoise", "transition")]
+[node name="nazi_intro_CS" type="AnimationPlayer" parent="." node_paths=PackedStringArray("talkers_disable_on_start", "disable_on_start", "enable_on_start", "CS_tnoise")]
 libraries = {
 &"": SubResource("AnimationLibrary_hcnwd")
 }
@@ -1518,7 +1612,6 @@ talkers_disable_on_start = [NodePath("../Start_Cutscene/Play1/StaticBody2D")]
 disable_on_start = [NodePath("../Start_Cutscene/Play1"), NodePath("../TileMapLayer/player"), NodePath("../Start_Cutscene/Shadow"), NodePath("../CanvasLayer/InventoryButton")]
 enable_on_start = [NodePath("Ysort")]
 CS_tnoise = NodePath("CS_tnoise2")
-transition = NodePath("")
 end_with_scene = ExtResource("26_ad4ob")
 metadata/_custom_type_script = "uid://c26fwd1q8awsq"
 
@@ -1967,6 +2060,7 @@ resource = ExtResource("40_kxw66")
 type_noise = NodePath("../Intro_CS/DefaultMaleTypeNoise")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="insta2"]
+position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_rsj32")
 
 [node name="WasdSign" type="Sprite2D" parent="."]
