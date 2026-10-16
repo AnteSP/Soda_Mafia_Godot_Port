@@ -17,7 +17,7 @@ func _ready():
 
 func _physics_process(delta):
 	#print("Stopped- " , stopped)
-	if Input.is_action_just_released("Space"):
+	if Input.is_action_just_released("Space") and not sbp.interaction_in_progress():
 		sbp.reset_spacebar()
 		just_pressed = false
 	player_movement(delta)

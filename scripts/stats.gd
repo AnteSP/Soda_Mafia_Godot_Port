@@ -6,7 +6,9 @@ class_name Stats
 static var current
 @export var bg_music: AudioStreamPlayer2D
 @export var ambient: AudioStreamPlayer2D
+@export var inventory: Inv
 static var start_scene_on_transition: bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

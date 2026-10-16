@@ -76,7 +76,7 @@ height = 10.6
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5sf6f"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3837"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bl4p"]
 texture = ExtResource("1_gk4mc")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -101,14 +101,14 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_p3837")
+sources/1 = SubResource("TileSetAtlasSource_0bl4p")
 
-[sub_resource type="Gradient" id="Gradient_vdnnh"]
+[sub_resource type="Gradient" id="Gradient_7qvbe"]
 interpolation_mode = 2
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_16566"]
-gradient = SubResource("Gradient_vdnnh")
+gradient = SubResource("Gradient_7qvbe")
 fill = 1
 fill_from = Vector2(0.5, 0.015)
 fill_to = Vector2(0.97, 0)

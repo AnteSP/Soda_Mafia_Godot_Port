@@ -6,7 +6,7 @@ signal progress_completed
 @onready var timer: Timer = $Timer
 
 var progress_duration: float = 0.0
-var cached_interactable: Interactable
+var cached_interactable: Interactable = null
 var original_material = null
 
 func _ready() -> void:
@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func start_progress(duration: float, interactable: Interactable):
 	cached_interactable = interactable
+	interactable.Using_anim()
 	if duration == 0:
 		_on_timer_timeout()
 		return
@@ -38,9 +39,12 @@ func _update_progress(value: float):
 func _on_timer_timeout():
 	emit_signal("progress_completed")
 	cached_interactable.Use(1)
+	reset_timer()
 	#queue_free()
 
 func reset_timer():
 	timer.stop()
+	progress_duration = 0
+	cached_interactable = null
 	fill.material = null
 	self.visible = false
