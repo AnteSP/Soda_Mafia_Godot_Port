@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=4 uid="uid://bx3pmvq7x4fmr"]
+[gd_scene load_steps=127 format=4 uid="uid://bx3pmvq7x4fmr"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_1f7yp"]
 [ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="2_fu3uo"]
@@ -15,7 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://dysk8ajl5uyk0" path="res://sprites/GG_door.png" id="10_05245"]
 [ext_resource type="AudioStream" uid="uid://ck47tc0yvha2k" path="res://sound/rustling.mp3" id="10_a0u0j"]
 [ext_resource type="PackedScene" uid="uid://ddwq0yu6fm4sq" path="res://Prefabs/player_ruler.tscn" id="10_cyfm2"]
+[ext_resource type="Texture2D" uid="uid://ilanluox2pfq" path="res://sprites/machinery/well.png" id="11_6q0ob"]
+[ext_resource type="Resource" uid="uid://sjmgflob6aci" path="res://Prefabs/Items/Water Bottle.tres" id="11_slcqe"]
 [ext_resource type="Script" uid="uid://bf1c4ddh5h84e" path="res://scripts/NPC_movement.gd" id="18_324jq"]
+[ext_resource type="Script" uid="uid://55m633i0gbmx" path="res://scripts/Talker.gd" id="21_qa32e"]
+[ext_resource type="Resource" uid="uid://8i57gjhmfs1y" path="res://Dialogue/Chapter1Singles.dialogue" id="22_6q0ob"]
 [ext_resource type="Texture2D" uid="uid://ba5od8jdnfm6c" path="res://sprites/characters/nazi/Nazi Death.png" id="26_8cxta"]
 [ext_resource type="Texture2D" uid="uid://c80h721wufbma" path="res://sprites/characters/nazi/Nazi drink.png" id="27_52umd"]
 [ext_resource type="Texture2D" uid="uid://dph7307su6d1s" path="res://sprites/characters/nazi/front run-Sheet.png" id="28_m0t1j"]
@@ -25,7 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://t3j7fl30rr76" path="res://sprites/characters/nazi/Tank Death.png" id="32_6sy4y"]
 [ext_resource type="Texture2D" uid="uid://bpaaowci0kdba" path="res://sprites/characters/nazi/Tank.png" id="33_na2tc"]
 [ext_resource type="Texture2D" uid="uid://oquo6l2488ie" path="res://sprites/machinery/Table.png" id="38_7aeq8"]
+[ext_resource type="Texture2D" uid="uid://cs5bxbv6te5d1" path="res://sprites/env/street lamp.png" id="38_j7jxd"]
+[ext_resource type="Texture2D" uid="uid://bnqa1525hg13a" path="res://light.png" id="39_jtyc4"]
 [ext_resource type="Texture2D" uid="uid://cbyrgxyep37lf" path="res://sprites/machinery/soda_atlas.tres" id="39_lp1vj"]
+[ext_resource type="Texture2D" uid="uid://db7a73khs5uki" path="res://sprites/env/kipling.png" id="40_jtyc4"]
 [ext_resource type="PackedScene" uid="uid://dr1pbs47u47cm" path="res://Prefabs/Items/inv_ui.tscn" id="40_yki5n"]
 [ext_resource type="PackedScene" uid="uid://cphtpdx4cg3bo" path="res://Prefabs/UI/Item_get.tscn" id="41_nxpem"]
 [ext_resource type="Shader" uid="uid://ddtf7047f335t" path="res://SCREEN.gdshader" id="42_j25qa"]
@@ -52,7 +59,7 @@ absorbent = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 4.0
-height = 18.0
+height = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7jxd"]
 atlas = ExtResource("5_1h0cp")
@@ -150,6 +157,52 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f5ulx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nughd"]
+atlas = ExtResource("11_6q0ob")
+region = Rect2(0, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l5rr"]
+atlas = ExtResource("11_6q0ob")
+region = Rect2(20, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iha0w"]
+atlas = ExtResource("11_6q0ob")
+region = Rect2(0, 30, 20, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5g8pd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nughd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l5rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iha0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l5rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iha0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l5rr")
+}],
+"loop": true,
+"name": &"Use",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nughd")
 }],
 "loop": true,
 "name": &"default",
@@ -525,6 +578,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucwm4"]
+size = Vector2(38, 13)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5sf6f"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
@@ -566,6 +622,10 @@ shader_parameter/zoom = 0.9
 [sub_resource type="Theme" id="Theme_3rrdj"]
 default_font = ExtResource("49_3aoxq")
 default_font_size = 0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jtyc4"]
+radius = 2.5793648
+height = 7.3591003
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwywy"]
 radius = 1.2696381
@@ -707,7 +767,7 @@ y_sort_enabled = true
 
 [node name="Apple Tree" type="CharacterBody2D" parent="NPCs" groups=["Interactable"]]
 y_sort_enabled = true
-position = Vector2(922, 21)
+position = Vector2(1565, -257)
 script = ExtResource("5_efimb")
 use_time = 3.0
 item_get = ExtResource("6_htsxj")
@@ -732,9 +792,32 @@ offset = Vector2(0, -33)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs/Apple Tree"]
 stream = ExtResource("10_a0u0j")
 
+[node name="Water pump" type="CharacterBody2D" parent="NPCs" groups=["Interactable"]]
+y_sort_enabled = true
+position = Vector2(877, -257)
+script = ExtResource("5_efimb")
+use_time = 0.5
+item_get = ExtResource("11_slcqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Water pump"]
+z_index = 1
+position = Vector2(-2, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/Water pump"]
+y_sort_enabled = true
+position = Vector2(-2, 1)
+sprite_frames = SubResource("SpriteFrames_5g8pd")
+animation = &"Use"
+autoplay = "default"
+frame_progress = 0.30169424
+offset = Vector2(0, -7.505)
+
 [node name="Apple Tree2" type="CharacterBody2D" parent="NPCs" groups=["Interactable"]]
 y_sort_enabled = true
-position = Vector2(972, 30)
+position = Vector2(1615, -248)
 script = ExtResource("5_efimb")
 use_time = 3.0
 item_get = ExtResource("6_htsxj")
@@ -752,13 +835,40 @@ one_way_collision_margin = 0.0
 y_sort_enabled = true
 position = Vector2(12, -1)
 sprite_frames = SubResource("SpriteFrames_05245")
+animation = &"Use"
+autoplay = "default"
+offset = Vector2(0, -33)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs/Apple Tree2"]
+stream = ExtResource("10_a0u0j")
+
+[node name="Apple Tree3" type="CharacterBody2D" parent="NPCs" groups=["Interactable"]]
+y_sort_enabled = true
+position = Vector2(1633, -217)
+script = ExtResource("5_efimb")
+use_time = 3.0
+item_get = ExtResource("6_htsxj")
+invis_player_while_using = true
+always_in_focus = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Apple Tree3"]
+z_index = 1
+position = Vector2(1, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/Apple Tree3"]
+y_sort_enabled = true
+position = Vector2(12, -1)
+sprite_frames = SubResource("SpriteFrames_05245")
 animation = &"Using"
 autoplay = "default"
 frame = 2
 frame_progress = 0.093655355
 offset = Vector2(0, -33)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs/Apple Tree2"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs/Apple Tree3"]
 stream = ExtResource("10_a0u0j")
 
 [node name="guy" type="CharacterBody2D" parent="NPCs"]
@@ -813,6 +923,23 @@ one_way_collision_margin = 0.0
 position = Vector2(44, 8)
 sprite_frames = SubResource("SpriteFrames_1h0cp")
 animation = &"tank_idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NPCs" node_paths=PackedStringArray("type_noise") groups=["Interactable"]]
+y_sort_enabled = true
+position = Vector2(1520, 144)
+script = ExtResource("21_qa32e")
+convo = "kipling"
+resource = ExtResource("22_6q0ob")
+type_noise = NodePath("../../Talk_Noise")
+
+[node name="Kipling" type="Sprite2D" parent="NPCs/StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(2.5, -4.5)
+texture = ExtResource("40_jtyc4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/StaticBody2D"]
+position = Vector2(1.5, 6)
+shape = SubResource("RectangleShape2D_ucwm4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -984,8 +1111,8 @@ position = Vector2(801, -539)
 
 [node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)2"]
 z_index = -5
-position = Vector2(534, -16)
-scale = Vector2(1.0152779, 1)
+position = Vector2(534, 56.750023)
+scale = Vector2(1.0152779, 0.46309954)
 texture = ExtResource("52_340af")
 
 [node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)2"]
@@ -996,8 +1123,8 @@ texture = ExtResource("52_340af")
 
 [node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)2"]
 z_index = -5
-position = Vector2(934.00977, -16.5)
-scale = Vector2(1.0152779, 1)
+position = Vector2(934.00977, 56.500004)
+scale = Vector2(1.0152779, 0.4612546)
 texture = ExtResource("52_340af")
 
 [node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)2"]
@@ -1033,6 +1160,160 @@ position = Vector2(934, 254)
 scale = Vector2(1.0152779, 1)
 texture = ExtResource("52_340af")
 
+[node name="4x4 (2)4" type="Node2D" parent="Ground"]
+position = Vector2(399, 533)
+
+[node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)4"]
+z_index = -5
+position = Vector2(534, -16)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)4"]
+z_index = -5
+position = Vector2(534, 255)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)4"]
+z_index = -5
+position = Vector2(934.00977, -16.5)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)4"]
+z_index = -5
+position = Vector2(934, 254)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="4x4 (2)5" type="Node2D" parent="Ground"]
+position = Vector2(1190, 533)
+
+[node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)5"]
+z_index = -5
+position = Vector2(534, -16)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)5"]
+z_index = -5
+position = Vector2(534, 255)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)5"]
+z_index = -5
+position = Vector2(934.00977, -16.5)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)5"]
+z_index = -5
+position = Vector2(934, 254)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="4x4 (2)6" type="Node2D" parent="Ground"]
+position = Vector2(1587, 108)
+
+[node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)6"]
+z_index = -5
+position = Vector2(534, -16)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)6"]
+z_index = -5
+position = Vector2(534, 255)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)6"]
+z_index = -5
+position = Vector2(934.00977, -16.5)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)6"]
+z_index = -5
+position = Vector2(934, 254)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="4x4 (2)7" type="Node2D" parent="Ground"]
+position = Vector2(1584, -403)
+
+[node name="Grass4" type="Sprite2D" parent="Ground/4x4 (2)7"]
+z_index = -5
+position = Vector2(534, -11.25)
+scale = Vector2(1.0152779, 0.96494466)
+texture = ExtResource("52_340af")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/4x4 (2)7"]
+z_index = -5
+position = Vector2(534, 255)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/4x4 (2)7"]
+z_index = -5
+position = Vector2(934.00977, -11.5)
+scale = Vector2(1.0152779, 0.96309966)
+texture = ExtResource("52_340af")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/4x4 (2)7"]
+z_index = -5
+position = Vector2(934, 254)
+scale = Vector2(1.0152779, 1)
+texture = ExtResource("52_340af")
+
+[node name="Concrete" type="Sprite2D" parent="Ground"]
+self_modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+position = Vector2(1694.5, -697.5)
+scale = Vector2(279.24997, 76.75001)
+texture = ExtResource("53_wgatk")
+
+[node name="Lamp" type="Sprite2D" parent="Ground"]
+position = Vector2(1182, -537)
+texture = ExtResource("38_j7jxd")
+
+[node name="PointLight2D" type="PointLight2D" parent="Ground/Lamp"]
+position = Vector2(0, -22.965)
+color = Color(1.0850894, 0.8831597, 0.49884152, 1)
+energy = 0.75
+texture = ExtResource("39_jtyc4")
+offset = Vector2(8.46, 0)
+texture_scale = 0.5
+
+[node name="PointLight2D2" type="PointLight2D" parent="Ground/Lamp"]
+position = Vector2(0, -22.965)
+scale = Vector2(1.29, 1.29)
+color = Color(1.0850894, 0.8831597, 0.49884152, 1)
+energy = 2.0
+texture = ExtResource("39_jtyc4")
+texture_scale = 0.01
+
+[node name="Lamp2" type="Sprite2D" parent="Ground"]
+position = Vector2(1629, -537)
+texture = ExtResource("38_j7jxd")
+
+[node name="PointLight2D" type="PointLight2D" parent="Ground/Lamp2"]
+position = Vector2(0, -22.965)
+color = Color(1.0850894, 0.8831597, 0.49884152, 1)
+energy = 0.75
+texture = ExtResource("39_jtyc4")
+offset = Vector2(8.46, 0)
+texture_scale = 0.5
+
+[node name="PointLight2D2" type="PointLight2D" parent="Ground/Lamp2"]
+position = Vector2(0, -22.965)
+scale = Vector2(1.29, 1.29)
+color = Color(1.0850894, 0.8831597, 0.49884152, 1)
+energy = 2.0
+texture = ExtResource("39_jtyc4")
+texture_scale = 0.01
+
 [node name="Foldable Table" type="StaticBody2D" parent="." groups=["Interactable"]]
 position = Vector2(984, 113)
 script = ExtResource("57_dv8ga")
@@ -1047,10 +1328,10 @@ offset = Vector2(0, -32.575)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foldable Table"]
 z_index = 1
-position = Vector2(-6.815, 6.135)
+position = Vector2(-5.9999976, 4.999998)
 rotation = 1.5708
 scale = Vector2(5.04, 6.301)
-shape = SubResource("CapsuleShape2D_kwywy")
+shape = SubResource("CapsuleShape2D_jtyc4")
 one_way_collision_margin = 0.0
 
 [node name="Soda machine" type="StaticBody2D" parent="." groups=["Interactable"]]
@@ -1107,6 +1388,8 @@ volume_db = -6.963
 autoplay = true
 max_distance = 4096.0
 panning_strength = 0.0
+
+[node name="Talk_Noise" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]
 

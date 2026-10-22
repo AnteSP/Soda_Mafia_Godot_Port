@@ -99,7 +99,7 @@ func changed_c_bod():
 	pass
 
 func _on_progress_bar_progress_completed() -> void:
-	reset_spacebar()
+	#reset_spacebar()
 	player.just_pressed = false
 	keep_c_bod = false
 	pass

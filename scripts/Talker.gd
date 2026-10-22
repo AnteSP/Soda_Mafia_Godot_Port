@@ -9,6 +9,7 @@ static var active_balloons := []
 @export var type_noise: AudioStreamPlayer
 var balloon
 
+
 func Use(_inp):
 	DialogueManager.connect("dialogue_started", pre_dialogue_prep)
 	DialogueManager.connect("dialogue_ended", post_dialogue_cleanup)

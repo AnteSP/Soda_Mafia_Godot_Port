@@ -30,17 +30,23 @@ func _process(delta: float) -> void:
 	#print("WITHDRAWING pos: " , position.x , "ref x: " , ref.position.x, "stay_len : " , stay_len)
 	if position.x > ref.position.x + dif:
 		process_mode = Node.PROCESS_MODE_DISABLED
-		stay_len = 1.5
+		stay_len = 2
 		name = name.replace("anim","ready")
 		
-func start_anim(item_name: String,item_text: Texture):
+func start_anim(item_name: String,item_text: Texture,quantity: int = 1):
 	name = name.replace("ready","anim")
 	position.y = starting_y
 	position.x = starting_x
 	get_node("Title").text = item_name
 	get_node("Item_Frame").get_node("Item_Frame2").texture = item_text
+	if quantity == 1:
+		get_node("Quantity_Back").visible = false
+	else:
+		get_node("Quantity_Back").visible = true
+		get_node("Quantity_Back/Quantity").text = str(quantity)
 	dif = position.x - ref.position.x
 	process_mode = PROCESS_MODE_ALWAYS
+	stay_len = 2
 
 func _on_mouse_entered() -> void:
 	#print("MOUSE IN")

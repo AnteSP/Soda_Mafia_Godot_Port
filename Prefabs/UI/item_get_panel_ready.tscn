@@ -34,6 +34,27 @@ offset_top = 3.0
 offset_right = 103.0
 offset_bottom = 103.0
 
+[node name="Quantity_Back" type="TextureRect" parent="."]
+self_modulate = Color(0.3217281, 0.32172793, 0.32172796, 0.49803922)
+layout_mode = 0
+offset_left = 5.999999
+offset_top = 74.0
+offset_right = 179.98375
+offset_bottom = 138.0
+scale = Vector2(0.615, 0.615)
+texture = ExtResource("1_i5118")
+
+[node name="Quantity" type="Label" parent="Quantity_Back"]
+layout_mode = 0
+offset_left = 1.6260179
+offset_top = 4.8780475
+offset_right = 102.58463
+offset_bottom = 34.878048
+scale = Vector2(1.675, 1.675)
+text = "0000"
+label_settings = SubResource("LabelSettings_j35bf")
+autowrap_mode = 2
+
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 118.0

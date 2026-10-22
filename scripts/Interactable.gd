@@ -31,12 +31,12 @@ func Using_anim():
 			if $AudioStreamPlayer:
 				$AudioStreamPlayer.play()
 			if invis_player_while_using:
-				player.current.visible = false
+				player.current.get_node("AnimatedSprite2D").visible = false
 				player.start_stop_movement(false,"tree")
 			await get_tree().create_timer(use_time-use_len).timeout
 			$AnimatedSprite2D.play("Use")
 			if invis_player_while_using:
-				player.current.visible = true
+				player.current.get_node("AnimatedSprite2D").visible = true
 				player.start_stop_movement(true,"tree")
 			if $AudioStreamPlayer:
 				$AudioStreamPlayer.stop()

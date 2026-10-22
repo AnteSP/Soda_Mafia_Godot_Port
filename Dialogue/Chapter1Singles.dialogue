@@ -17,3 +17,8 @@ elif Inv_UI.player_has_item("Foldable Table",1)
 else
 	*You need some items to continue
 => END
+
+~ kipling
+Kipling Park Monument[#tnoise=null]
+You: The fuck is that? A... Lizard?[#tnoise=DefaultMaleTypeNoise.wav]
+=> END

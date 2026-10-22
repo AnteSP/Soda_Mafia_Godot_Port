@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qvawp73lc564"]
 
-[ext_resource type="Texture2D" uid="uid://dkduk0tqycwki" path="res://sprites/apple.png" id="1_tgccl"]
+[ext_resource type="Texture2D" uid="uid://dkduk0tqycwki" path="res://sprites/items/apple.png" id="1_tgccl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 2.3

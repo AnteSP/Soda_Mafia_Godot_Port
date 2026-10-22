@@ -24,11 +24,24 @@ func _physics_process(delta):
 
 static var stopped = false
 static var just_pressed = false
+var down_never_came_up = false
 
 func player_movement(_delta):
 	if stopped:
+		if Input.is_action_just_pressed("Space"):
+			sbp.space_bar_prompt_reference.play("pressed")
+			sbp.space_bar_prompt_reference.self_modulate = Color(0.3,0.3,0.3,0.46)
+			down_never_came_up = true
+		elif Input.is_action_just_released("Space"):
+			sbp.space_bar_prompt_reference.play("default")
+			sbp.space_bar_prompt_reference.self_modulate = Color(1,1,1,0.46)
+			down_never_came_up = false
 		return
-	
+	else:
+		if down_never_came_up and Input.is_action_just_released("Space"):
+			sbp.space_bar_prompt_reference.play("default")
+			sbp.space_bar_prompt_reference.self_modulate = Color(1,1,1,0.46)
+			down_never_came_up = false
 	if Input.is_action_just_pressed("Space") && !just_pressed:
 		$AnimatedSprite2D.play("idle_" + current_dir)
 		just_pressed = true

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://sjmgflob6aci"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_ppupn"]
+[ext_resource type="Texture2D" uid="uid://cbm8hvvqpb5w5" path="res://sprites/items/water.png" id="2_tkos2"]
+
+[resource]
+script = ExtResource("1_ppupn")
+name = "Water Bottle"
+desc = "Some clean fresh water. Can't get enough of this stuff"
+texture = ExtResource("2_tkos2")
+metadata/_custom_type_script = "uid://bymup841uavx4"

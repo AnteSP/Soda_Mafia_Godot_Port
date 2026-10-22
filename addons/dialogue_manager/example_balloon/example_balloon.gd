@@ -88,6 +88,7 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 	is_waiting_for_input = false
 	resource = dialogue_resource
 	self.dialogue_line = await resource.get_next_dialogue_line(title, temporary_game_states)
+	do_tnoise_check(self.dialogue_line)
 
 
 ## Apply any changes to the balloon given a new [DialogueLine].
@@ -133,7 +134,11 @@ func apply_dialogue_line() -> void:
 ## Go to the next line
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
-	# === SHIT I DID:
+	do_tnoise_check(self.dialogue_line)
+	
+
+# === SHIT I DID:
+func do_tnoise_check(d: DialogueLine):
 	if(self.dialogue_line.get_tag_value("tnoise") != ""):
 		var tnoise = self.dialogue_line.get_tag_value("tnoise")
 		if tnoise == "null":
@@ -149,8 +154,6 @@ func next(next_id: String) -> void:
 			type_noise.pitch_scale = 3
 		else:
 			type_noise.pitch_scale = 1
-
-
 
 #region Signals
 
