@@ -22,3 +22,25 @@ else
 Kipling Park Monument[#tnoise=null]
 You: The fuck is that? A... Lizard?[#tnoise=DefaultMaleTypeNoise.wav]
 => END
+
+~ nazi_tank
+Nazi: You're not my dad![#tnoise=NaziTypeNoise.wav]
+Nazi: I'm in a tank and you're not
+Nazi: I'm literally in a tank and you're not
+=> END
+
+~ nazi_top
+do Talker.face_player()
+Nazi: GET TO WORK![#tnoise=NaziTypeNoise.wav]
+=> END
+
+~ nazi_bot
+do Talker.face_player()
+Nazi: Vat are you looking at?[#tnoise=NaziTypeNoise.wav]
+Nazi: Do not look at me like zat, I am very self conscious
+=> END
+
+~ GG
+do Talker.face_player()
+Nazi: Yo wzg gng[#tnoise=MafiaTypeNoise.wav]
+=> END

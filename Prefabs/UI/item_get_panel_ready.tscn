@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3nm2g0bxisaa"]
+[gd_scene load_steps=6 format=3 uid="uid://b3nm2g0bxisaa"]
 
 [ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="1_i5118"]
 [ext_resource type="Script" uid="uid://d1rhdqr82kwaj" path="res://Prefabs/UI/item_get_panel.gd" id="2_f8r75"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="3_g66j3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i5118"]
+font = ExtResource("3_g66j3")
+font_size = 26
+outline_size = 1
+outline_color = Color(0.60237265, 0.33692464, 3.85046e-07, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_j35bf"]
 font = ExtResource("3_g66j3")
@@ -52,7 +58,7 @@ offset_right = 102.58463
 offset_bottom = 34.878048
 scale = Vector2(1.675, 1.675)
 text = "0000"
-label_settings = SubResource("LabelSettings_j35bf")
+label_settings = SubResource("LabelSettings_i5118")
 autowrap_mode = 2
 
 [node name="Title" type="Label" parent="."]

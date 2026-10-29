@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://b7qmpkpojiduh"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_ojxfh"]
+[ext_resource type="Texture2D" uid="uid://csvdjbb2uo7ow" path="res://sprites/items/Cars2.png" id="2_ojxfh"]
+
+[resource]
+script = ExtResource("1_ojxfh")
+name = "Cars 2 on dvd"
+desc = "a strange box with freaky humanoid cars with a strange disc inside"
+texture = ExtResource("2_ojxfh")
+metadata/_custom_type_script = "uid://bymup841uavx4"

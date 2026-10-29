@@ -233,6 +233,7 @@ shader_parameter/progress = 0.0
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sbp")]
 y_sort_enabled = true
+collision_layer = 3
 script = ExtResource("1_onrkg")
 sbp = NodePath("InteractArea")
 

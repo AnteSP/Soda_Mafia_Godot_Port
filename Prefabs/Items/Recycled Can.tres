@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://xbt7mo81e3nc"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_iwc66"]
+[ext_resource type="Texture2D" uid="uid://b2sl64qeto1od" path="res://sprites/items/Recycled Can.png" id="2_iwc66"]
+
+[resource]
+script = ExtResource("1_iwc66")
+name = "Recycled Can"
+desc = "You scraped the branding off and cleaned this gross old used can. Are you happy with yourself?"
+texture = ExtResource("2_iwc66")
+metadata/_custom_type_script = "uid://bymup841uavx4"

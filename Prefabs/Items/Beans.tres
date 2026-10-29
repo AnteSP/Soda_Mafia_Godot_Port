@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cjc47baa6kst7"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_nic3c"]
+[ext_resource type="Texture2D" uid="uid://brh8eeaxbngmf" path="res://sprites/items/beans.png" id="2_nic3c"]
+
+[resource]
+script = ExtResource("1_nic3c")
+name = "Beans"
+desc = "Yum! When combined with something else can make for the ultimate cinematic experience"
+texture = ExtResource("2_nic3c")
+metadata/_custom_type_script = "uid://bymup841uavx4"
