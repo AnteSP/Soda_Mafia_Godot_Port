@@ -259,6 +259,7 @@ texture = ExtResource("3_4qbli")
 offset = Vector2(0, 11.71)
 
 [node name="InteractArea" type="Area2D" parent="."]
+collision_mask = 3
 script = ExtResource("3_y5hcb")
 
 [node name="interactable" type="CollisionShape2D" parent="InteractArea"]

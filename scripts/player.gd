@@ -21,7 +21,7 @@ func _physics_process(delta):
 		sbp.reset_spacebar()
 		just_pressed = false
 	player_movement(delta)
-
+	
 static var stopped = false
 static var just_pressed = false
 var down_never_came_up = false
@@ -55,6 +55,9 @@ func player_movement(_delta):
 		actual_speed = float(speed)/3
 	else:
 		actual_speed = speed
+	
+	for s in speed_changes.values():
+		actual_speed *= s
 	velocity = input_dir * actual_speed
 	move_and_slide()
 	
@@ -120,3 +123,12 @@ func dissapear():
 func reappear():
 	$Camera2D.visible = true
 	$Camera2D.process_mode = $Camera2D.PROCESS_MODE_INHERIT
+
+var speed_changes: Dictionary[String,float]
+func change_speed(by_perc: float,source: String):
+	if source in speed_changes.keys():
+		if by_perc == -1:
+			speed_changes.erase(source)
+	else:
+		speed_changes.set(source,by_perc)
+	pass
