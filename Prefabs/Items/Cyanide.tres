@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cypc1ow2i34kd"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_qq5av"]
+[ext_resource type="Texture2D" uid="uid://cj774ndk4388f" path="res://sprites/items/Cyanide.png" id="2_qq5av"]
+
+[resource]
+script = ExtResource("1_qq5av")
+name = "Cyanide"
+desc = "Whoever drinks this will surely die. Kinda smells like almonds"
+texture = ExtResource("2_qq5av")
+metadata/_custom_type_script = "uid://bymup841uavx4"

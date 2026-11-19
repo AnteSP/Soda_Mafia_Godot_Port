@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dxd2eyrdwuqpx"]
+
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="1_xjxdg"]
+[ext_resource type="Texture2D" uid="uid://bio4rscs7jrl1" path="res://sprites/items/SparklingWater.png" id="2_xjxdg"]
+
+[resource]
+script = ExtResource("1_xjxdg")
+name = "Sparkling Water"
+desc = "Basic default soda"
+texture = ExtResource("2_xjxdg")
+metadata/_custom_type_script = "uid://bymup841uavx4"

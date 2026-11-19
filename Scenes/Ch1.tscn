@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=4 uid="uid://bx3pmvq7x4fmr"]
+[gd_scene load_steps=180 format=4 uid="uid://bx3pmvq7x4fmr"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_1f7yp"]
 [ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="2_fu3uo"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://cphtpdx4cg3bo" path="res://Prefabs/UI/Item_get.tscn" id="41_nxpem"]
 [ext_resource type="Shader" uid="uid://ddtf7047f335t" path="res://SCREEN.gdshader" id="42_j25qa"]
 [ext_resource type="Texture2D" uid="uid://cuncyo0ppoepb" path="res://sprites/UI/UI-tab-retracted-norm.png" id="43_b7cyp"]
+[ext_resource type="PackedScene" uid="uid://bvoyyb4a4so7b" path="res://Prefabs/UI/Recipe_List.tscn" id="43_d1rr7"]
 [ext_resource type="Texture2D" uid="uid://dk3jjigaf772j" path="res://sprites/UI/UI-tab-pressed.png" id="44_1qru6"]
 [ext_resource type="Texture2D" uid="uid://coakyd2ctsosf" path="res://sprites/UI/UI-tab-retracted-hover.png" id="45_iiewe"]
 [ext_resource type="Script" uid="uid://hgcrh23t12o2" path="res://scripts/UI_button.gd" id="46_slbus"]
@@ -1402,6 +1403,9 @@ shape = SubResource("RectangleShape2D_nughd")
 visible = false
 InventoryButton = NodePath("../../CanvasLayer/InventoryButton")
 
+[node name="Recipe_List" parent="TV effects" instance=ExtResource("43_d1rr7")]
+visible = false
+
 [node name="ItemGet" parent="TV effects" instance=ExtResource("41_nxpem")]
 offset_right = -1152.0
 offset_bottom = -648.0
@@ -1447,6 +1451,40 @@ text = "Inventory"
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/InventoryButton"]
+stream = ExtResource("50_vnjnn")
+
+[node name="RecipeButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 27.0
+offset_top = 508.0
+offset_right = 79.0
+offset_bottom = 521.0
+scale = Vector2(3, 3)
+focus_mode = 0
+texture_normal = ExtResource("43_b7cyp")
+texture_pressed = ExtResource("44_1qru6")
+texture_hover = ExtResource("45_iiewe")
+script = ExtResource("46_slbus")
+target_node = NodePath("../../TV effects/Recipe_List")
+alt_norm = ExtResource("47_116d8")
+alt_hover = ExtResource("48_3ppfe")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RecipeButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01282051
+anchor_right = 0.012820611
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 146.0
+offset_bottom = 22.0
+scale = Vector2(0.29, 0.49)
+mouse_filter = 1
+theme = SubResource("Theme_3rrdj")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Recipes"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/RecipeButton"]
 stream = ExtResource("50_vnjnn")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -1822,5 +1860,6 @@ panning_strength = 0.0
 [node name="Talk_Noise" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/InventoryButton" to="CanvasLayer/InventoryButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/RecipeButton" to="CanvasLayer/RecipeButton" method="_on_pressed"]
 
 [editable path="TileMapLayer/player_ruler"]

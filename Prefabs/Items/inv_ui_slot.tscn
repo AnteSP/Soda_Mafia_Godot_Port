@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccakifieoc2aa"]
 
-[ext_resource type="Script" uid="uid://by3sfs52htea3" path="res://scripts/inv_ui_slot.gd" id="1_0doom"]
+[ext_resource type="Script" uid="uid://by3sfs52htea3" path="res://scripts/inv_ui_slot.gd" id="1_n7fex"]
 [ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="2_0doom"]
 [ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="3_n7fex"]
 
@@ -9,7 +9,7 @@ self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
-script = ExtResource("1_0doom")
+script = ExtResource("1_n7fex")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.443137, 1, 0.392157)

@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvoyyb4a4so7b"]
+
+[ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="1_4ob03"]
+[ext_resource type="Script" uid="uid://bqpq2tfmnetj7" path="res://scripts/rec_ui.gd" id="1_uv56j"]
+[ext_resource type="PackedScene" uid="uid://dlhf3qje5x1iq" path="res://Prefabs/UI/rec_ui_slot.tscn" id="2_4ob03"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="3_d40ap"]
+[ext_resource type="Resource" uid="uid://dxd2eyrdwuqpx" path="res://Prefabs/Items/Sparkling Water.tres" id="4_v8g25"]
+[ext_resource type="Script" uid="uid://bymup841uavx4" path="res://scripts/inventory_item.gd" id="5_pkqd0"]
+[ext_resource type="Resource" uid="uid://xbt7mo81e3nc" path="res://Prefabs/Items/Recycled Can.tres" id="6_xihgx"]
+[ext_resource type="Resource" uid="uid://sjmgflob6aci" path="res://Prefabs/Items/Water Bottle.tres" id="7_d6sm8"]
+[ext_resource type="Resource" uid="uid://cypc1ow2i34kd" path="res://Prefabs/Items/Cyanide.tres" id="8_xihgx"]
+[ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="9_d6sm8"]
+
+[node name="Recipe_List" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uv56j")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.392157)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 23.0
+offset_right = 1092.0
+offset_bottom = 415.0
+mouse_filter = 1
+texture = ExtResource("1_4ob03")
+region_rect = Rect2(0, 0, 411, 64)
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -180.0
+offset_right = 514.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="rec_ui_slot" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+recipe_product = ExtResource("4_v8g25")
+ingredients_items = Array[ExtResource("5_pkqd0")]([ExtResource("6_xihgx"), ExtResource("7_d6sm8")])
+
+[node name="rec_ui_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+recipe_product = ExtResource("8_xihgx")
+ingredients_items = Array[ExtResource("5_pkqd0")]([ExtResource("9_d6sm8"), ExtResource("9_d6sm8"), ExtResource("9_d6sm8"), ExtResource("9_d6sm8"), ExtResource("6_xihgx")])
+
+[node name="rec_ui_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+
+[node name="rec_ui_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+
+[node name="rec_ui_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+
+[node name="rec_ui_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+
+[node name="rec_ui_slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+
+[node name="rec_ui_slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 408.0
+offset_right = 1056.0
+offset_bottom = 472.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_d40ap")
+theme_override_font_sizes/normal_font_size = 50
+text = "Title"
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 472.0
+offset_right = 1056.0
+offset_bottom = 616.0
+theme_override_colors/default_color = Color(0.74978, 0.74978, 0.74978, 1)
+theme_override_colors/font_outline_color = Color(0.156863, 0.156863, 0.156863, 1)
+theme_override_colors/font_shadow_color = Color(0.158472, 0.158472, 0.158472, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_d40ap")
+theme_override_font_sizes/normal_font_size = 30
+text = "Description..."

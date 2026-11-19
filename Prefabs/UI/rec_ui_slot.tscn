@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlhf3qje5x1iq"]
+
+[ext_resource type="Script" uid="uid://dnq5ul47gmvn6" path="res://scripts/recipe_ui_slot.gd" id="1_lbcdx"]
+[ext_resource type="Texture2D" uid="uid://cho4i2fhwprll" path="res://sprites/UI/Recipe_Slot.png" id="2_wv436"]
+[ext_resource type="Texture2D" uid="uid://bio4rscs7jrl1" path="res://sprites/items/SparklingWater.png" id="3_rh3s8"]
+
+[node name="rec_ui_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+clip_contents = true
+custom_minimum_size = Vector2(510, 71)
+localize_numeral_system = false
+script = ExtResource("1_lbcdx")
+
+[node name="recipe_display" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 1.0
+offset_right = 470.0
+offset_bottom = 70.0
+texture = ExtResource("2_wv436")
+expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 23.0
+offset_right = 87.0
+offset_bottom = 64.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="recipe_display" type="TextureRect" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -22.0
+offset_top = -26.0
+offset_right = 37.0
+offset_bottom = 33.0
+texture = ExtResource("3_rh3s8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="item_display1" type="TextureRect" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -26.0
+offset_right = 133.0
+offset_bottom = 33.0
+texture = ExtResource("3_rh3s8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="item_display2" type="TextureRect" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = -26.0
+offset_right = 201.0
+offset_bottom = 33.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="item_display3" type="TextureRect" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 211.0
+offset_top = -26.0
+offset_right = 270.0
+offset_bottom = 33.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="item_display4" type="TextureRect" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = -26.0
+offset_right = 339.0
+offset_bottom = 33.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="item_display5" type="TextureRect" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 349.0
+offset_top = -26.0
+offset_right = 408.0
+offset_bottom = 33.0
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
