@@ -1,0 +1,242 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgecyx8bse3kq"]
+
+[ext_resource type="Script" uid="uid://dwpca8p4rb53b" path="res://Prefabs/UI/soda_info.gd" id="1_u8btx"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="1_yc5hk"]
+[ext_resource type="Texture2D" uid="uid://cbyrgxyep37lf" path="res://sprites/machinery/soda_atlas.tres" id="3_55tmn"]
+[ext_resource type="PackedScene" uid="uid://qhj6tf6dw8wi" path="res://Prefabs/UI/soda_info_ing.tscn" id="3_u8btx"]
+
+[sub_resource type="Animation" id="Animation_u8btx"]
+resource_name = "pop_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_55tmn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u6sao"]
+_data = {
+&"RESET": SubResource("Animation_55tmn"),
+&"pop_in": SubResource("Animation_u8btx")
+}
+
+[node name="soda_info" type="ColorRect"]
+offset_left = 3.0
+offset_top = -65.0
+offset_right = 43.0
+offset_bottom = -25.0
+scale = Vector2(1.545, 1.545)
+script = ExtResource("1_u8btx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 1.0
+offset_right = 13.0
+offset_bottom = 1.0
+scale = Vector2(0.25, 0.25)
+mouse_filter = 1
+
+[node name="recipe_label" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 8.000001
+offset_right = 248.96382
+offset_bottom = 77.10843
+scale = Vector2(0.415, 0.415)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_yc5hk")
+theme_override_font_sizes/normal_font_size = 16
+text = "SELECTED RECIPE:
+NONE
+"
+
+[node name="craftable_label" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 36.0
+offset_right = 198.4762
+offset_bottom = 96.95238
+scale = Vector2(0.525, 0.525)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_yc5hk")
+theme_override_font_sizes/normal_font_size = 16
+text = "ABLE TO MAKE:
+N/A"
+
+[node name="recipe_display" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = -53.12507
+offset_top = 3.125
+offset_right = 5.8749313
+offset_bottom = 62.125
+tooltip_text = "PRODUCT"
+texture = ExtResource("3_55tmn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="item_display1" parent="Panel" instance=ExtResource("3_u8btx")]
+visible = false
+layout_mode = 0
+offset_left = -48.0
+offset_top = 128.0
+offset_right = 11.0
+offset_bottom = 187.0
+
+[node name="item_display2" parent="Panel" instance=ExtResource("3_u8btx")]
+visible = false
+layout_mode = 0
+offset_left = -20.000008
+offset_top = 128.0
+offset_right = 38.999992
+offset_bottom = 187.0
+
+[node name="item_display3" parent="Panel" instance=ExtResource("3_u8btx")]
+visible = false
+layout_mode = 0
+offset_left = 7.999997
+offset_top = 128.0
+offset_right = 67.0
+offset_bottom = 187.0
+
+[node name="item_display4" parent="Panel" instance=ExtResource("3_u8btx")]
+visible = false
+layout_mode = 0
+offset_left = 35.999996
+offset_top = 128.0
+offset_right = 95.0
+offset_bottom = 187.0
+
+[node name="item_display5" parent="Panel" instance=ExtResource("3_u8btx")]
+visible = false
+layout_mode = 0
+offset_left = 63.999996
+offset_top = 128.0
+offset_right = 123.0
+offset_bottom = 187.0
+
+[node name="BOTTOM_num" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 120.0
+offset_right = 121.802795
+offset_bottom = 142.5352
+scale = Vector2(0.355, 0.355)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_yc5hk")
+theme_override_font_sizes/normal_font_size = 16
+text = "0"
+
+[node name="TOP_num" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 72.0
+offset_right = 151.60562
+offset_bottom = 117.070404
+scale = Vector2(0.355, 0.355)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_yc5hk")
+theme_override_font_sizes/normal_font_size = 16
+text = "N/A"
+
+[node name="MIDDLE_num" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 96.0
+offset_right = 151.60562
+offset_bottom = 141.0704
+scale = Vector2(0.355, 0.355)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_yc5hk")
+theme_override_font_sizes/normal_font_size = 16
+
+[node name="WARNING" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="WARNING"]
+layout_mode = 0
+offset_left = 1.9417477
+offset_top = 12.944984
+offset_right = 145.94174
+offset_bottom = 115.496155
+scale = Vector2(0.275, 0.275)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yc5hk")
+theme_override_font_sizes/font_size = 16
+text = "Select a 
+Recipe"
+
+[node name="WARNING2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 17.475729
+offset_right = 40.0
+offset_bottom = 26.537222
+color = Color(0.74658525, 2.0094587e-06, 8.663535e-07, 1)
+
+[node name="Label" type="Label" parent="WARNING2"]
+layout_mode = 0
+offset_left = 1.2944984
+offset_right = 177.2945
+offset_bottom = 39.000004
+scale = Vector2(0.215, 0.215)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yc5hk")
+theme_override_font_sizes/font_size = 16
+text = "Need more
+Ingredients"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WARNING2"]
+libraries = {
+&"": SubResource("AnimationLibrary_u6sao")
+}
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

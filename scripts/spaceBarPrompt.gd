@@ -75,6 +75,7 @@ func reset_spacebar():
 	keep_c_bod = false
 
 var last_c_bod: String = ""
+var last_c_bod_ref = null
 var keep_c_bod: bool = false
 func _physics_process(_delta):
 	if stopped:return
@@ -82,16 +83,24 @@ func _physics_process(_delta):
 	if keep_c_bod:return
 	if c_bod:
 		space_bar_prompt_reference.global_position = c_bod.global_position + Vector2(0, -25)
+		if c_bod.is_in_group("soda_info"):
+			c_bod.get_node("soda_info").visible = true
+		elif last_c_bod_ref and last_c_bod_ref.is_in_group("soda_info"):
+			last_c_bod_ref.get_node("soda_info").visible = false
 		if(c_bod.name != last_c_bod):
 			changed_c_bod()
 		last_c_bod = c_bod.name
+		last_c_bod_ref = c_bod
 		if c_bod is Interactable and c_bod.always_in_focus and progress_bar.timer.time_left > 0:
 			keep_c_bod = true
 	else:
 		space_bar_prompt_reference.global_position = space_bar_innactive
+		if last_c_bod_ref and last_c_bod_ref.is_in_group("soda_info"):
+			last_c_bod_ref.get_node("soda_info").visible = false
 		if(last_c_bod != ""):
 			changed_c_bod()
 			last_c_bod = ""
+			last_c_bod_ref = null
 
 func changed_c_bod():
 	progress_bar.reset_timer()

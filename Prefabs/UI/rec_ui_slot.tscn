@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlhf3qje5x1iq"]
+[gd_scene load_steps=5 format=3 uid="uid://dlhf3qje5x1iq"]
 
 [ext_resource type="Script" uid="uid://dnq5ul47gmvn6" path="res://scripts/recipe_ui_slot.gd" id="1_lbcdx"]
 [ext_resource type="Texture2D" uid="uid://cho4i2fhwprll" path="res://sprites/UI/Recipe_Slot.png" id="2_wv436"]
 [ext_resource type="Texture2D" uid="uid://bio4rscs7jrl1" path="res://sprites/items/SparklingWater.png" id="3_rh3s8"]
+[ext_resource type="FontFile" uid="uid://bqswrwoxq6kq4" path="res://Misc/oregon-bound.otf" id="4_wv436"]
 
 [node name="rec_ui_slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -37,6 +38,7 @@ offset_left = -22.0
 offset_top = -26.0
 offset_right = 37.0
 offset_bottom = 33.0
+tooltip_text = "PRODUCT"
 texture = ExtResource("3_rh3s8")
 expand_mode = 1
 stretch_mode = 5
@@ -87,5 +89,24 @@ offset_bottom = 33.0
 expand_mode = 1
 stretch_mode = 5
 
+[node name="SELECTED" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 51.0
+offset_right = 156.0
+offset_bottom = 70.0
+color = Color(18.892157, 18.892157, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SELECTED"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 132.0
+offset_bottom = 19.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_wv436")
+text = "Selected"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://qhj6tf6dw8wi"]
+
+[ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="1_1bjro"]
+
+[node name="item_display1" type="TextureRect"]
+offset_right = 59.0
+offset_bottom = 59.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_1bjro")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Progress_back" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 9.999999
+offset_top = -129.99998
+offset_right = 50.0
+offset_bottom = -10.0
+color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+
+[node name="Progress_bar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 9.999999
+offset_top = -129.99998
+offset_right = 50.0
+offset_bottom = -10.0
+color = Color(0.9130397, 0.33249253, 0, 1)

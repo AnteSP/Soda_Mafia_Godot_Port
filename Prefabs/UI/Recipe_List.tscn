@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvoyyb4a4so7b"]
+[gd_scene load_steps=12 format=3 uid="uid://bvoyyb4a4so7b"]
 
 [ext_resource type="Texture2D" uid="uid://05ilhot78ach" path="res://Square.png" id="1_4ob03"]
 [ext_resource type="Script" uid="uid://bqpq2tfmnetj7" path="res://scripts/rec_ui.gd" id="1_uv56j"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://sjmgflob6aci" path="res://Prefabs/Items/Water Bottle.tres" id="7_d6sm8"]
 [ext_resource type="Resource" uid="uid://cypc1ow2i34kd" path="res://Prefabs/Items/Cyanide.tres" id="8_xihgx"]
 [ext_resource type="Resource" uid="uid://xda64nwy2vqv" path="res://Prefabs/Items/Apple.tres" id="9_d6sm8"]
+[ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="11_d6sm8"]
 
 [node name="Recipe_List" type="Control"]
 layout_mode = 3
@@ -102,3 +103,9 @@ theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/normal_font = ExtResource("3_d40ap")
 theme_override_font_sizes/normal_font_size = 30
 text = "Description..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_d6sm8")
+pitch_scale = 4.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

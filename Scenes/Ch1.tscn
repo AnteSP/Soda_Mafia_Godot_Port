@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=4 uid="uid://bx3pmvq7x4fmr"]
+[gd_scene load_steps=184 format=4 uid="uid://bx3pmvq7x4fmr"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_1f7yp"]
 [ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="2_fu3uo"]
@@ -61,18 +61,19 @@
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="53_wgatk"]
 [ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="57_dv8ga"]
 [ext_resource type="Resource" uid="uid://40t1g7hceh7s" path="res://Prefabs/Items/Foldable Table.tres" id="58_qfpjk"]
-[ext_resource type="Resource" uid="uid://yjyil7hgmwvd" path="res://Prefabs/Items/Soda Machine.tres" id="59_v6efp"]
 [ext_resource type="Texture2D" uid="uid://dnvcucrofdx0f" path="res://sprites/WASD sign.png" id="60_d66hm"]
+[ext_resource type="Script" uid="uid://x1o2m7nynlc8" path="res://scripts/soda_machine.gd" id="61_d1rr7"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="61_ksb1k"]
 [ext_resource type="AudioStream" uid="uid://bqxltvj5bausg" path="res://sound/Perfectly_Good_Soda_Maker.mp3" id="62_fjmr2"]
+[ext_resource type="PackedScene" uid="uid://cgecyx8bse3kq" path="res://Prefabs/UI/soda_info.tscn" id="63_jkcyr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ur4j3"]
 rough = true
 absorbent = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 2.0
-height = 12.0
+radius = 6.0
+height = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nughd"]
 atlas = ExtResource("11_6q0ob")
@@ -967,6 +968,87 @@ shader_parameter/zoom = 0.9
 default_font = ExtResource("49_3aoxq")
 default_font_size = 0
 
+[sub_resource type="Animation" id="Animation_jkcyr"]
+resource_name = "Menu_Button_Blip"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.8, 1.1333333, 1.6),
+"transitions": PackedFloat32Array(1, 922.8801, 1, 10809.406, 1),
+"update": 0,
+"values": [Color(1, 0.36957705, 0.84310174, 1), Color(1, 1, 1, 0), Color(1, 0.36957705, 0.84310174, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.73333335, 0.8, 0.87, 1.52, 1.59, 1.6333334),
+"transitions": PackedFloat32Array(48.50294, 48.50294, 48.50294, 48.50294, 48.50294, 48.50294, 48.50294, 48.50294),
+"update": 0,
+"values": [4.0, 1.0, 1.0, 4.0, 1.0, 1.0, 4.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qk12n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jgynj"]
+_data = {
+&"Menu_Button_Blip": SubResource("Animation_jkcyr"),
+&"RESET": SubResource("Animation_qk12n")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jtyc4"]
 radius = 2.5793648
 height = 7.3591003
@@ -1218,6 +1300,7 @@ stream = ExtResource("10_a0u0j")
 
 [node name="Trash Can2" type="RigidBody2D" parent="NPCs" groups=["Interactable"]]
 y_sort_enabled = true
+position = Vector2(1290, -1)
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
@@ -1226,14 +1309,14 @@ item_pool = Array[ExtResource("14_nughd")]([ExtResource("13_05245"), ExtResource
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Trash Can2"]
 z_index = 1
-position = Vector2(1284, -5)
+position = Vector2(0, -6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_onrkg")
 one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/Trash Can2"]
 y_sort_enabled = true
-position = Vector2(1284, -15)
+position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_d1rr7")
 autoplay = "default"
 
@@ -1454,6 +1537,7 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("50_vnjnn")
 
 [node name="RecipeButton" type="TextureButton" parent="CanvasLayer"]
+visible = false
 offset_left = 27.0
 offset_top = 508.0
 offset_right = 79.0
@@ -1486,6 +1570,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/RecipeButton"]
 stream = ExtResource("50_vnjnn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/RecipeButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_jgynj")
+}
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.570946, 0.626316, 0.710555, 1)
@@ -1802,13 +1891,10 @@ scale = Vector2(5.04, 6.301)
 shape = SubResource("CapsuleShape2D_jtyc4")
 one_way_collision_margin = 0.0
 
-[node name="Soda machine" type="StaticBody2D" parent="." groups=["Interactable"]]
+[node name="Soda machine" type="StaticBody2D" parent="." groups=["Interactable", "soda_info"]]
 y_sort_enabled = true
 position = Vector2(977, 94)
-script = ExtResource("57_dv8ga")
-item = ExtResource("59_v6efp")
-quantity = 1
-inventory = ExtResource("9_5ft6k")
+script = ExtResource("61_d1rr7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Soda machine"]
 position = Vector2(-4, 36)
@@ -1822,6 +1908,13 @@ rotation = 1.5708
 scale = Vector2(5.04, 6.301)
 shape = SubResource("CapsuleShape2D_kwywy")
 one_way_collision_margin = 0.0
+
+[node name="soda_info" parent="Soda machine" node_paths=PackedStringArray("Recipe_Button") instance=ExtResource("63_jkcyr")]
+visible = false
+z_index = 1
+offset_left = 5.0
+offset_right = 45.0
+Recipe_Button = NodePath("../../CanvasLayer/RecipeButton")
 
 [node name="WasdSign" type="Sprite2D" parent="."]
 modulate = Color(0.7706806, 0, 0.34710264, 1)
