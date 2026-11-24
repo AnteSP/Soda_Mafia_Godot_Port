@@ -55,26 +55,34 @@ recipe_product = ExtResource("4_v8g25")
 ingredients_items = Array[ExtResource("5_pkqd0")]([ExtResource("6_xihgx"), ExtResource("7_d6sm8")])
 
 [node name="rec_ui_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 recipe_product = ExtResource("8_xihgx")
 ingredients_items = Array[ExtResource("5_pkqd0")]([ExtResource("9_d6sm8"), ExtResource("9_d6sm8"), ExtResource("9_d6sm8"), ExtResource("9_d6sm8"), ExtResource("6_xihgx")])
+metadata/recipe_Cyanide = false
 
 [node name="rec_ui_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 
 [node name="rec_ui_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 
 [node name="rec_ui_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 
 [node name="rec_ui_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 
 [node name="rec_ui_slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 
 [node name="rec_ui_slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_4ob03")]
+visible = false
 layout_mode = 2
 
 [node name="Title" type="RichTextLabel" parent="."]

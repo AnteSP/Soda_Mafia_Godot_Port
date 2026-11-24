@@ -1,7 +1,8 @@
-[gd_scene load_steps=184 format=4 uid="uid://bx3pmvq7x4fmr"]
+[gd_scene load_steps=187 format=4 uid="uid://bx3pmvq7x4fmr"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_1f7yp"]
 [ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="2_fu3uo"]
+[ext_resource type="Texture2D" uid="uid://bd1j7oxn7r4fp" path="res://sprites/UI/save.png" id="3_d1rr7"]
 [ext_resource type="PackedScene" uid="uid://bnhjcdm4tneov" path="res://Prefabs/Tree.tscn" id="3_k2vm5"]
 [ext_resource type="Texture2D" uid="uid://bonothnjt4b6h" path="res://sprites/forest.png" id="4_f5ulx"]
 [ext_resource type="Texture2D" uid="uid://c6imo8tdgucx6" path="res://sprites/env/apple tree-Sheet.png" id="5_1h0cp"]
@@ -59,13 +60,52 @@
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="50_vnjnn"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="52_340af"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="53_wgatk"]
-[ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="57_dv8ga"]
-[ext_resource type="Resource" uid="uid://40t1g7hceh7s" path="res://Prefabs/Items/Foldable Table.tres" id="58_qfpjk"]
 [ext_resource type="Texture2D" uid="uid://dnvcucrofdx0f" path="res://sprites/WASD sign.png" id="60_d66hm"]
 [ext_resource type="Script" uid="uid://x1o2m7nynlc8" path="res://scripts/soda_machine.gd" id="61_d1rr7"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="61_ksb1k"]
 [ext_resource type="AudioStream" uid="uid://bqxltvj5bausg" path="res://sound/Perfectly_Good_Soda_Maker.mp3" id="62_fjmr2"]
 [ext_resource type="PackedScene" uid="uid://cgecyx8bse3kq" path="res://Prefabs/UI/soda_info.tscn" id="63_jkcyr"]
+
+[sub_resource type="Animation" id="Animation_34pti"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_kwywy"]
+resource_name = "hover"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.36602148, 2.2191386, 2.3784146),
+"update": 0,
+"values": [1.0, -5.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlafc"]
+_data = {
+&"RESET": SubResource("Animation_34pti"),
+&"hover": SubResource("Animation_kwywy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkcyr"]
+size = Vector2(14.944456, 9)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ur4j3"]
 rough = true
@@ -1077,6 +1117,54 @@ bg_music = NodePath("BG Music")
 ambient = NodePath("Ambient")
 inventory = ExtResource("9_5ft6k")
 
+[node name="SaveShit" type="Node2D" parent="."]
+position = Vector2(-18, 120)
+
+[node name="SPAWN1" type="Node2D" parent="SaveShit"]
+position = Vector2(1051, 53)
+
+[node name="save_parent" type="Node2D" parent="SaveShit"]
+position = Vector2(896, 2)
+
+[node name="Save" type="Sprite2D" parent="SaveShit/save_parent"]
+position = Vector2(3, 1)
+texture = ExtResource("3_d1rr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SaveShit/save_parent/Save"]
+libraries = {
+&"": SubResource("AnimationLibrary_mlafc")
+}
+autoplay = "hover"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SaveShit/save_parent/Save" groups=["Interactable"]]
+script = ExtResource("21_qa32e")
+convo = "save"
+resource = ExtResource("22_6q0ob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaveShit/save_parent/Save/StaticBody2D"]
+position = Vector2(-0.472229, 7.5)
+shape = SubResource("RectangleShape2D_jkcyr")
+
+[node name="Load" type="Sprite2D" parent="SaveShit"]
+self_modulate = Color(0, 0.42352942, 0, 1)
+position = Vector2(889, 1)
+texture = ExtResource("3_d1rr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SaveShit/Load"]
+libraries = {
+&"": SubResource("AnimationLibrary_mlafc")
+}
+autoplay = "hover"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SaveShit/Load" groups=["Interactable"]]
+script = ExtResource("21_qa32e")
+convo = "load"
+resource = ExtResource("22_6q0ob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaveShit/Load/StaticBody2D"]
+position = Vector2(-0.472229, 7.5)
+shape = SubResource("RectangleShape2D_jkcyr")
+
 [node name="Boundary" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Boundary"]
@@ -1298,6 +1386,29 @@ offset = Vector2(0, -33)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs/Apple Tree3"]
 stream = ExtResource("10_a0u0j")
 
+[node name="Trash CanA" type="RigidBody2D" parent="NPCs" groups=["Interactable"]]
+modulate = Color(0.9999997, 0.18004707, 0.046137773, 1)
+y_sort_enabled = true
+position = Vector2(1023, 18)
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("13_45gbp")
+item_pool = Array[ExtResource("14_nughd")]([ExtResource("6_htsxj")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Trash CanA"]
+z_index = 1
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/Trash CanA"]
+y_sort_enabled = true
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_d1rr7")
+autoplay = "default"
+
 [node name="Trash Can2" type="RigidBody2D" parent="NPCs" groups=["Interactable"]]
 y_sort_enabled = true
 position = Vector2(1290, -1)
@@ -1416,22 +1527,48 @@ position = Vector2(22, 0)
 sprite_frames = SubResource("SpriteFrames_1h0cp")
 animation = &"tank_idle"
 
-[node name="GG" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("type_noise") groups=["Interactable"]]
+[node name="GG (before rec)" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("type_noise") groups=["Interactable"]]
 y_sort_enabled = true
-position = Vector2(937, 58)
+position = Vector2(901, 113)
 script = ExtResource("21_qa32e")
 convo = "GG"
 resource = ExtResource("22_6q0ob")
 type_noise = NodePath("../../Talk_Noise")
+metadata/recipe_Cyanide = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/GG"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/GG (before rec)"]
 z_index = 1
 position = Vector2(1, 9)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kv1xx")
 one_way_collision_margin = 0.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/GG"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/GG (before rec)"]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_vat4v")
+animation = &"idle_down"
+autoplay = "idle_down"
+frame_progress = 0.7794426
+
+[node name="GG (after rec)" type="CharacterBody2D" parent="NPCs" node_paths=PackedStringArray("type_noise") groups=["Interactable"]]
+process_mode = 4
+visible = false
+y_sort_enabled = true
+position = Vector2(901, 113)
+script = ExtResource("21_qa32e")
+convo = "GG_post_recipe"
+resource = ExtResource("22_6q0ob")
+type_noise = NodePath("../../Talk_Noise")
+metadata/recipe_Cyanide = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/GG (after rec)"]
+z_index = 1
+position = Vector2(1, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kv1xx")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPCs/GG (after rec)"]
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_vat4v")
 animation = &"idle_down"
@@ -1871,12 +2008,8 @@ energy = 2.0
 texture = ExtResource("39_jtyc4")
 texture_scale = 0.01
 
-[node name="Foldable Table" type="StaticBody2D" parent="." groups=["Interactable"]]
+[node name="Foldable Table" type="StaticBody2D" parent="."]
 position = Vector2(984, 113)
-script = ExtResource("57_dv8ga")
-item = ExtResource("58_qfpjk")
-quantity = 1
-inventory = ExtResource("9_5ft6k")
 
 [node name="Sprite2D" type="Sprite2D" parent="Foldable Table"]
 position = Vector2(-4, 36)

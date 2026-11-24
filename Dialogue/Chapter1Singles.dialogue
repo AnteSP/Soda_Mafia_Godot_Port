@@ -42,5 +42,23 @@ Nazi: Do not look at me like zat, I am very self conscious
 
 ~ GG
 do Talker.face_player()
-Nazi: Yo wzg gng[#tnoise=MafiaTypeNoise.wav]
+GG: I'm going to discreetly give ya somethin', here[#tnoise=MafiaTypeNoise.wav]
+do Stats.set_flag("recipe_Cyanide",true)
+do get_tree().create_timer(2.0).timeout
+GG: Poison those hoes[#tnoise=MafiaTypeNoise.wav]
+=> END
+
+~ GG_post_recipe
+do Talker.face_player()
+GG: Use that cyanide bruh[#tnoise=MafiaTypeNoise.wav]
+=> END
+
+~ save
+do Stats.save_game()
+Progress saved
+=> END
+
+~ load
+do Stats.load_game()
+Loaded state
 => END

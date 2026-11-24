@@ -11,7 +11,8 @@ func _ready() -> void:
 var pairs: Array[InvPair]
 var repeats: Dictionary[String, int]
 var craftable_pairs: Dictionary[String, float]
-func update():
+var max_count_old: float = 0.0
+func update(full_update= false):
 	if not Rec_ui_slot.selected:
 		if Recipe_Button:
 			Recipe_Button.visible = true
@@ -41,6 +42,7 @@ func update():
 	craftable = int(floor(craftable_pairs.values().min())) > 0
 
 	var max_count: float = craftable_pairs.values().max()
+	if not full_update: max_count = max_count_old
 	$Panel/TOP_num.text = str( int(floor(max_count)) )
 	var count = 5
 	for p in craftable_pairs:
@@ -53,7 +55,7 @@ func update():
 		p_bar.position.y = -10
 	if int(floor(max_count)) > 0:
 		$Panel/MIDDLE_num.text = ""
-		if int(floor(max_count)) > 1:
+		if int(floor(max_count)) > 3:
 			$Panel/MIDDLE_num.text = str( int(floor(max_count/2)) )
 		count = 5
 		for p in craftable_pairs:
@@ -64,11 +66,12 @@ func update():
 			p_bar.size.y = 120.0*perc
 			p_bar.position.y = -(120.0*perc) - 10
 			print(p_bar.size, p_bar.position, perc)
-	
+	max_count_old = max_count
+
 func no_ingredients_anim():
 	$WARNING2/AnimationPlayer.play("pop_in")
 
 
 func _on_visibility_changed() -> void:
-	update()
+	update(true)
 	pass # Replace with function body.

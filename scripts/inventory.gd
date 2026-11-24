@@ -5,11 +5,15 @@ class_name Inv
 @export var item_pairs: Array[InvPair] = []
 var InventoryButton: TextureButton
 
+func get_item_list():
+	var my_dict: Dictionary[String, int] = {}
 
-func add_item(new_item: InvItem, count: int = 1):
+	for a in item_pairs:
+		my_dict[a.item.name] = a.quantity
+	return my_dict
+
+func quiet_add_item(new_item: InvItem, count: int=1):
 	var existing = find_pair(new_item)
-	if InventoryButton: InventoryButton.visible = true
-	
 	if existing:
 		existing.quantity += count
 		print("adding existing " + new_item.name)
@@ -18,6 +22,10 @@ func add_item(new_item: InvItem, count: int = 1):
 	else:
 		item_pairs.append(InvPair.new(new_item, count))
 		print("adding new " + new_item.name)
+
+func add_item(new_item: InvItem, count: int = 1):
+	if InventoryButton: InventoryButton.visible = true
+	quiet_add_item(new_item,count)
 	if count > 0:
 		item_Get_Anim.start_anim(new_item)
 
