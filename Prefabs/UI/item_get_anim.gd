@@ -17,7 +17,7 @@ static var last_panel = null
 static var last_nums = 1
 static func start_anim(Item: InvItem,recipe_override: String = ""):
 	#var i = current.notis.size()
-	if last_item and Item.name == last_item.name:
+	if last_item and Item and Item.name == last_item.name:
 		last_nums = last_nums + 1
 		last_panel.start_anim(Item.name,Item.texture,last_nums)
 		return

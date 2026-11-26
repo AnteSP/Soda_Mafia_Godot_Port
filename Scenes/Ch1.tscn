@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=4 uid="uid://bx3pmvq7x4fmr"]
+[gd_scene load_steps=190 format=4 uid="uid://bx3pmvq7x4fmr"]
 
 [ext_resource type="Script" uid="uid://cjtdyp5xkknga" path="res://scripts/stats.gd" id="1_1f7yp"]
 [ext_resource type="Script" uid="uid://ba2j5j7b6tts8" path="res://scripts/pulsate.gd" id="2_fu3uo"]
@@ -60,7 +60,9 @@
 [ext_resource type="AudioStream" uid="uid://bqqcys8vxtxaf" path="res://sound/Item1 Quiet.ogg" id="50_vnjnn"]
 [ext_resource type="Texture2D" uid="uid://c2h8fpd7dh20" path="res://sprites/Grass.png" id="52_340af"]
 [ext_resource type="Texture2D" uid="uid://bl3tkhhxpd7aw" path="res://sprites/Square.png" id="53_wgatk"]
+[ext_resource type="Script" uid="uid://dxvgi3vhch413" path="res://scripts/Pickup.gd" id="59_qk12n"]
 [ext_resource type="Texture2D" uid="uid://dnvcucrofdx0f" path="res://sprites/WASD sign.png" id="60_d66hm"]
+[ext_resource type="Texture2D" uid="uid://cun6nls7i6euf" path="res://sprites/env/apple_bag.png" id="60_jgynj"]
 [ext_resource type="Script" uid="uid://x1o2m7nynlc8" path="res://scripts/soda_machine.gd" id="61_d1rr7"]
 [ext_resource type="AudioStream" uid="uid://c74r3x5lijnsm" path="res://sound/ambient_ny_summer.mp3" id="61_ksb1k"]
 [ext_resource type="AudioStream" uid="uid://bqxltvj5bausg" path="res://sound/Perfectly_Good_Soda_Maker.mp3" id="62_fjmr2"]
@@ -1089,6 +1091,10 @@ _data = {
 &"RESET": SubResource("Animation_qk12n")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8e6cd"]
+radius = 0.9920645
+height = 4.126343
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jtyc4"]
 radius = 2.5793648
 height = 7.3591003
@@ -2007,6 +2013,28 @@ color = Color(1.0850894, 0.8831597, 0.49884152, 1)
 energy = 2.0
 texture = ExtResource("39_jtyc4")
 texture_scale = 0.01
+
+[node name="Apple_bag" type="StaticBody2D" parent="." groups=["Interactable"]]
+y_sort_enabled = true
+position = Vector2(978, 45)
+script = ExtResource("59_qk12n")
+item = ExtResource("6_htsxj")
+quantity = 9
+inventory = ExtResource("9_5ft6k")
+fun_threshold = 11111
+
+[node name="Sprite2D" type="Sprite2D" parent="Apple_bag"]
+y_sort_enabled = true
+position = Vector2(-3, -5)
+texture = ExtResource("60_jgynj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Apple_bag"]
+z_index = 1
+position = Vector2(-2.9999976, 5.999998)
+rotation = 1.5708
+scale = Vector2(5.04, 6.301)
+shape = SubResource("CapsuleShape2D_8e6cd")
+one_way_collision_margin = 0.0
 
 [node name="Foldable Table" type="StaticBody2D" parent="."]
 position = Vector2(984, 113)

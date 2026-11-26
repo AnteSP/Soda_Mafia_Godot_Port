@@ -11,12 +11,16 @@ static var start_scene_on_transition: bool = false
 static var flags = {}#JSON object
 static var cur_scene: Dictionary[int,String] = {}#ch number : tscn file under res://Scenes/
 static var spawn_point: int = 1#not fully implemented
-
+static var fun_value: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current = self
+	print("current? " , current.inventory)
 	cur_scene.set(get_ch_num(),get_tree().current_scene.scene_file_path)
+	load_game()
+	if fun_value == -1:
+		fun_value = randi_range(1, 99)
 
 func get_ch_num():
 	var scene_f = get_tree().current_scene.scene_file_path
@@ -46,13 +50,15 @@ static func set_flag(label: String,value):
 
 const SAVE_PATH = "res://SAVE_DATA.json"
 static func save_game():
-	
+	if fun_value == -1:
+		fun_value = randi_range(1, 99)
 	
 	var save_data = {
 		"cur_scene": cur_scene,
 		"spawn_point": spawn_point,
 		"inventory": current.inventory.get_item_list(),
 		"flags": flags,
+		"fun_value":fun_value
 	}
 
 	#file.store_string(JSON.stringify(save_data, "\t"))
@@ -86,16 +92,22 @@ static func load_game():
 	var save_data = json.data
 	print(save_data)
 	
-	cur_scene.assign(save_data.get("cur_scene", {}))
+	#cur_scene.assign(save_data.get("cur_scene", {}))
+	for key in save_data.get("cur_scene", {}):
+		cur_scene[int(key)] = save_data["cur_scene"][key]
 	var d_inv = save_data.get("inventory", {})
-	for p in d_inv:
-		current.inventory.quiet_add_item(Inv.find_inv_item("res://Prefabs/Items",p), d_inv[p])
+	print("current? " , current.inventory)
+
 	flags = save_data.get("flags", {})
 	for f in flags:
 		find_nodes_with_meta(current.get_tree().root, f,flags[f])
-	
+	fun_value = save_data.get("fun_value", {})
 	#GameState.inventory = save_data.get("inventory", {})
 	#GameState.flags = save_data.get("flags", {})
+	#[PROBLEM HERE]
+	if current.inventory:
+		for p in d_inv:
+			current.inventory.quiet_add_item(Inv.find_inv_item("res://Prefabs/Items",p), d_inv[p])
 
 static func find_nodes_with_meta(node: Node, meta_tag: String, value: bool):
 	if node.has_meta(meta_tag):

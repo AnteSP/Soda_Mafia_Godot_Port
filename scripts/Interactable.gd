@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name Interactable
 @onready var animated_sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
@@ -9,10 +9,40 @@ class_name Interactable
 @export var item_get: InvItem
 @export var invis_player_while_using: bool = false
 @export var always_in_focus: bool = false
+@export var fun_threshold: int = 0
+#MIN-MAX    [XXYY]XX is min YY is max. 2 digit number means max only. XX99 means min only [1-4 digit num]
+#EVEN/ODD   [11111]Means even [22222]Means odd [33333]Means %10 [44444] Angel
 var use_len: float = 0
 
+static func fun_threshold_to_true_value(fun_t: int) -> bool:
+	if fun_t < 9999:#MIN-MAX
+		var max_val = fun_t%100
+		@warning_ignore("integer_division")
+		var min_val = fun_t/100
+		if fun_t < 1000:# one digit min. 2 digit max XYY
+			max_val = fun_t%10
+			@warning_ignore("integer_division")
+			min_val = fun_t/10
+		if fun_t < 100:#only max YY
+			max_val = fun_t
+			min_val = 0
+		return stats.fun_value > min_val and stats.fun_value < max_val
+	elif fun_t == 11111:#ODD
+		return stats.fun_value%2 == 1
+	elif fun_t == 22222:#EVEN
+		return stats.fun_value%2 == 0
+	elif fun_t == 33333:
+		return stats.fun_value%10 == 0
+	elif fun_t == 44444:
+		@warning_ignore("integer_division")
+		return stats.fun_value%10 == stats.fun_value/10
+	else:
+		return false
 
 func _ready():
+	if not fun_threshold_to_true_value(fun_threshold):
+		visible = false
+		process_mode = Node.PROCESS_MODE_DISABLED
 	if animated_sprite and has_use_anim:
 		use_len = duration(animated_sprite.sprite_frames,"Use")
 		if $AnimatedSprite2D.sprite_frames.get_animation_loop("Use"):

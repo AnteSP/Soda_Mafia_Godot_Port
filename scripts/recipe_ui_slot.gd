@@ -50,6 +50,7 @@ func _on_gui_input(event: InputEvent):
 		if event.button_index == MOUSE_BUTTON_LEFT and inside:
 			if event.pressed:
 				modulate = Color(0.2, 0.2, 0.2, 1)
+				soda_info.current.update(true)
 			else:
 				modulate = Color(0.7, 0.7, 0.7, 1)
 				if selected:
@@ -57,4 +58,4 @@ func _on_gui_input(event: InputEvent):
 				selected = self
 				selected_graphic.visible = true
 				UI.sound.play()
-				soda_info.current.update()
+				soda_info.current.update(true)

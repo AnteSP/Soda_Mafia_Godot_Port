@@ -1,12 +1,15 @@
 {
 	"cur_scene": {
-		"1": "res://Scenes/Ch1.tscn"
+		"1": "res://Scenes/Ch1.tscn",
+		"2": "res://Scenes/Ch2_main.tscn"
 	},
 	"flags": {
 
 	},
+	"fun_value": 77,
 	"inventory": {
-
+		"Apple": 3,
+		"Recycled Can": 3
 	},
 	"spawn_point": 1
 }
